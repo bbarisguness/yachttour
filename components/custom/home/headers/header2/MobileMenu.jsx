@@ -53,7 +53,7 @@ const MobileMenu = () => {
             </MenuItem>
             {/* End  Destinations Menu */}
 
-            <MenuItem
+            {/* <MenuItem
               component={
                 <Link
                   href="/services"
@@ -67,7 +67,7 @@ const MobileMenu = () => {
             >
               Services
             </MenuItem>
-            {/* End  Services Menu */}
+            End  Services Menu */}
 
             <MenuItem
               component={

@@ -25,10 +25,10 @@ const MainMenu = ({ style = "" }) => {
         </li>
         {/* End Destinatinos single menu */}
 
-        <li className={router.pathname === "/services" ? "current" : ""}>
+        {/* <li className={router.pathname === "/services" ? "current" : ""}>
           <Link href="/services">Services</Link>
         </li>
-        {/* End Services single menu */}
+         End Services single menu  */}
 
         <li className={router.pathname === "/yacht-services" ? "current" : ""}>
           <Link href="/yacht-services">Yacht Services</Link>
