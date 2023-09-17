@@ -1,11 +1,17 @@
+import { useRouter } from 'next/router'
 import dynamic from "next/dynamic";
-import CallToActions from "../components/common/CallToActions";
 import Seo from "../components/common/Seo";
-import DefaultHeader from "../components/header/default-header";
-import DefaultFooter from "../components/footer/default";
+import Header from '../components/custom/home/headers/header2/header'
+import Footer from '../components/custom/footers/footer'
 import NotFound from "../components/common/NotFound";
+import { useEffect } from 'react';
 
-const index = () => {
+const NotFoundPage = () => {
+  const router = useRouter()
+
+  useEffect(() => {
+    router.replace('/404')
+  }, [])
   return (
     <>
       <Seo pageTitle="404" />
@@ -14,19 +20,16 @@ const index = () => {
       <div className="header-margin"></div>
       {/* header top margin */}
 
-      <DefaultHeader />
+      <Header />
       {/* End Header 1 */}
 
       <NotFound />
       {/* End 404 section */}
 
-      <CallToActions />
-      {/* End Call To Actions Section */}
-
-      <DefaultFooter />
+      <Footer />
       {/* End Call To Actions Section */}
     </>
   );
 };
 
-export default dynamic(() => Promise.resolve(index), { ssr: false });
+export default dynamic(() => Promise.resolve(NotFoundPage), { ssr: false });

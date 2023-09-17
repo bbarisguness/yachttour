@@ -2,13 +2,13 @@ import React from "react";
 import Seo from "../../components/custom/common/Seo";
 import LocationTopBar from "../../components/custom/common/LocationTopBar/LocationTopBar";
 import Footer from '../../components/custom/footers/footer'
-import YachtList from "../../components/custom/yacht-services/yacht-list";
+import BlogList from "../../components/custom/blog/blog-list";
 import Header from "../../components/custom/home/headers/header2/header";
 
-const YachtServices = () => {
+const BlogPage = () => {
     return (
         <>
-            <Seo pageTitle="Yacht Services" />
+            <Seo pageTitle="Blog" />
             {/* End Page Title */}
 
             <div className="header-margin"></div>
@@ -25,14 +25,14 @@ const YachtServices = () => {
                     <div className="row justify-center text-center">
                         <div className="col-auto">
                             <div className="sectionTitle -md">
-                                <h2 className="sectionTitle__title">Yacht Services</h2>
+                                <h2 className="sectionTitle__title">Blog</h2>
                                 <p className=" sectionTitle__text mt-5 sm:mt-0">
                                     Lorem ipsum is placeholder text commonly used in site.
                                 </p>
                             </div>
                         </div>
                     </div>
-                    <YachtList />
+                    <BlogList />
                 </div>
             </section>
 
@@ -42,4 +42,4 @@ const YachtServices = () => {
     );
 };
 
-export default YachtServices;
+export default BlogPage;

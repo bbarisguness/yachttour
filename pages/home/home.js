@@ -4,22 +4,22 @@ import Seo from "../../components/custom/common/Seo";
 import Footer from '../../components/custom/footers/footer'
 import HomeTourList from "../../components/custom/home/homeTourList";
 import Hero from "../../components/custom/home/hero/index";
-import TopDestinations from "../../components/custom/home/topDestinations";
 import Testimonial from "../../components/custom/home/testimonials/Testimonial";
 import Counter from "../../components/custom/home/testimonials/Counter";
 import Brand from "../../components/custom/home/testimonials/brand";
 import Blog from "../../components/custom/home/blog";
 import WhyChoose from "../../components/custom/home/whyChoose";
 import Header from "../../components/custom/home/headers/header";
+import TopDestinations from "../../components/custom/destinations/TopDestinations";
 
 const Home = () => {
   return (
     <>
-      <Seo pageTitle="Home-1" />      
+      <Seo pageTitle="Home-1" />
 
       <Header />
 
-      <Hero />      
+      <Hero />
 
       <section className="layout-pt-md layout-pb-lg mt-60">
         <div className="container">
@@ -28,13 +28,13 @@ const Home = () => {
               <div className="sectionTitle -md">
                 <h2 className="sectionTitle__title">Popular Tours</h2>
                 <p className=" sectionTitle__text mt-5 sm:mt-0">
-                We have listed our most preferred tours.
+                  We have listed our most preferred tours.
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="tabs -pills-2 pt-40">            
+          <div className="tabs -pills-2 pt-40">
             <div className="tabs__content pt-40">
               <div className="row y-gap-30">
                 <HomeTourList />
@@ -69,7 +69,7 @@ const Home = () => {
           </div>
 
           <div className="row y-gap-40 justify-between pt-40 sm:pt-20">
-            <TopDestinations />
+            <TopDestinations home={true} />
           </div>
         </div>
       </section>

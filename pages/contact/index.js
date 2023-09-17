@@ -21,7 +21,10 @@ const Contact = () => {
             <Header />
             {/* End Header 1 */}
 
-            <LocationTopBar />
+            <div style={{height: '61px'}}>
+
+            </div>
+            {/* <LocationTopBar /> */}
             {/* End location top bar section */}
 
             <div className="map-outer">

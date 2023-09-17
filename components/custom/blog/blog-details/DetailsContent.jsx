@@ -2,13 +2,13 @@ import Social2 from "../../common/social/Social2";
 import yachtsData from "../../../../customdata/yachts";
 import Link from "next/link";
 
-const DetailsContent = ({ data }) => {
+const DetailsContentBlog = ({ data }) => {
   console.log(data)
   return (
     <>
       {/* <h3 className="text-20 fw-500">What makes a good brand book?</h3> */}
       <div style={{ whiteSpace: 'pre-line' }} className="text-15 mt-20">
-        {data?.longDescription}
+        {data?.longText}
       </div>
 
       <div className="row y-gap-20 justify-between pt-30">
@@ -42,4 +42,4 @@ const DetailsContent = ({ data }) => {
   );
 };
 
-export default DetailsContent;
+export default DetailsContentBlog;

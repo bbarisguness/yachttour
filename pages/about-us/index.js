@@ -7,11 +7,24 @@ import Block1 from "../../components/custom/about-us/Block1";
 import Image from "next/image";
 import Counter from "../../components/custom/counter/Counter";
 import Team1 from "../../components/custom/team/Team1";
+import { getAbout } from "../../services/about";
+import { useEffect, useState } from "react";
 
 const About = () => {
+
+  const [data, setData] = useState()
+
+  useEffect(() => {
+    getAbout().then((data) => {
+      setData(data.data.attributes)
+    })
+  }, [])
+
+  console.log(data)
+
   return (
     <>
-      <Seo pageTitle="About" />
+      <Seo pageTitle={data?.metaFields?.metaTitle} />
       {/* End Page Title */}
 
       <div className="header-margin"></div>
@@ -36,7 +49,7 @@ const About = () => {
           <div className="row justify-center text-center">
             <div className="col-xl-6 col-lg-8 col-md-10">
               <h1 className="text-40 md:text-25 fw-600 text-white">
-                Looking for joy?
+                {data?.title}
               </h1>
               <div className="text-white mt-15">
                 Your trusted trip companion
@@ -51,7 +64,7 @@ const About = () => {
       <section className="layout-pt-md">
         <div className="container">
           <div className="row y-gap-30 justify-between items-center">
-            <Block1 />
+            <Block1 data={data} />
           </div>
         </div>
       </section>

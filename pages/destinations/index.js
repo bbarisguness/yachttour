@@ -17,7 +17,7 @@ export default function Destinations() {
             <Header />
             {/* End Header */}
 
-            <LocationTopBar />
+            {/* <LocationTopBar /> */}
             {/* End location top bar section */}
 
             <section className="layout-pt-md layout-pb-lg">

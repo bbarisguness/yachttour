@@ -8,7 +8,7 @@ import TestimonialLeftCol from "../../../components/custom/home/TestimonialLeftC
 import Testimonial from "../../../components/custom/destinations/Testimonial";
 import Link from "next/link";
 import Slights from "../../../components/custom/block/Slights";
-import Blog from "../../../components/custom/yacht-services/yacht-list";
+import YachtList from "../../../components/custom/yacht-services/yacht-list";
 import LocationTopBar from "../../../components/custom/common/LocationTopBar/LocationTopBar";
 import Banner from "../../../components/custom/destinations/Banner";
 import Categories from "../../../components/custom/destinations/Categories";
@@ -20,11 +20,36 @@ import Tours from "../../../components/custom/tours/Tours";
 import Activity from "../../../components/custom/activity/Activity";
 import Rentals from "../../../components/custom/rentals/Rentals";
 import Hotels from "../../../components/custom/hotels/Hotels2";
+import { useRouter } from "next/router";
+import { getDestinationDetail } from "../../../services/destination";
+import { useEffect, useState } from "react";
 
-const Destinations = () => {
+const DestinationsDetail = () => {
+    const [data, setData] = useState()
+    const router = useRouter();
+    const slug = router.query.slug;
+    const [notFound, setNotFound] = useState(false)
+
+    useEffect(() => {
+        if (slug) {
+            getDestinationDetail({ slug }).then((data) => {
+                if (data.data.length == 0) {
+                    setNotFound(true)
+                }
+                setData(data?.data[0]?.attributes)
+            })
+        }
+    }, [slug])
+
+    useEffect(() => {
+        if (notFound) {
+            router.push("/404")
+        }
+    }, [notFound])
+    
     return (
         <>
-            <Seo pageTitle="Destinations" />
+            <Seo pageTitle={data?.metaFields?.metaTitle} />
             {/* End Page Title */}
 
             <div className="header-margin"></div>
@@ -33,13 +58,15 @@ const Destinations = () => {
             <Header />
             {/* End Header 1 */}
 
-            <LocationTopBar />
+
+            <div style={{ height: '61px' }}></div>
+            {/* <LocationTopBar /> */}
             {/* End location top bar section */}
 
             <section className="layout-pb-md">
                 <div className="container">
                     <div className="row">
-                        <Banner />
+                        <Banner data={data} />
                     </div>
                     {/* End .row */}
 
@@ -50,11 +77,11 @@ const Destinations = () => {
 
                     <div className="row y-gap-20 pt-40">
                         <div className="col-auto">
-                            <h2>What to know before visiting London</h2>
+                            <h2>What to know before visiting {data?.name}</h2>
                         </div>
                         {/* End .col-auto */}
 
-                        <IntroTown />
+                        <IntroTown data={data} />
                     </div>
                     {/* End .row */}
 
@@ -273,7 +300,7 @@ const Destinations = () => {
                     </div>
                     {/* End .row  */}
                     <div className="row y-gap-30 pt-40">
-                        <Blog />
+                        <YachtList home={true} />
                     </div>
                     {/* End .row */}
                 </div>
@@ -395,4 +422,4 @@ const Destinations = () => {
     );
 };
 
-export default dynamic(() => Promise.resolve(Destinations), { ssr: false });
+export default dynamic(() => Promise.resolve(DestinationsDetail), { ssr: false });

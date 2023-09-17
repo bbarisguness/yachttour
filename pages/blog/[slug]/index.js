@@ -6,14 +6,14 @@ import LocationTopBar from "../../../components/custom/common/LocationTopBar/Loc
 import RelatedYacht from "../../../components/custom/yacht-services/yacht-details/RelatedYacht";
 import yachtsData from "../../../customdata/yachts";
 import { useRouter } from "next/router";
-import DetailsContent from "../../../components/custom/yacht-services/yacht-details/DetailsContent"
+import DetailsContentBlog from "../../../components/custom/blog/blog-details/DetailsContent";
 import FormReply from "../../../components/custom/yacht-services/yacht-details/FormReply"
 import TopComment from "../../../components/custom/yacht-services/yacht-details/TopComment";
 import YachtNavigator from "../../../components/custom/yacht-services/yacht-details/YachtNavigator";
 import Comments from "../../../components/custom/yacht-services/yacht-details/Comments";
-import { getYachtServiceDetail } from "../../../services/yacht-services";
+import { getBlogDetails } from "../../../services/blog";
 
-const YachtDetailPage = () => {
+const BlogDetailPage = () => {
   const router = useRouter();
   const slug = router.query.slug;
   const [data, setData] = useState([])
@@ -21,7 +21,7 @@ const YachtDetailPage = () => {
 
   useEffect(() => {
     if (slug) {
-      getYachtServiceDetail({ slug }).then((data) => {
+      getBlogDetails({ slug }).then((data) => {
         if (data.data.length == 0) {
           setNotFound(true)
         }
@@ -35,6 +35,7 @@ const YachtDetailPage = () => {
       router.push("/404")
     }
   }, [notFound])
+
 
   return (
     <>
@@ -55,15 +56,15 @@ const YachtDetailPage = () => {
           <div className="row y-gap-40 justify-center text-center">
             <div className="col-auto">
               <div className="text-15 fw-500 text-blue-1 mb-8 text-capitalize">
-                Adventure
+                Beaches
               </div>
-              <h1 className="text-30 fw-600">{data?.name}</h1>
+              <h1 className="text-30 fw-600">{data?.title}</h1>
               <div className="text-15 text-light-1 mt-10">Jan 06, 2023</div>
             </div>
             <div className="col-12">
               <img
-                src={`${"http://3.74.191.230:1337"}${data?.image?.data?.attributes?.formats?.large?.url}`}
-                alt={data?.name}
+                src={`${"http://3.74.191.230:1337"}${data?.image?.data[0].attributes?.url}`}
+                alt={data?.title}
                 className="col-12 rounded-8 w-100 img_large_details"
               />
             </div>
@@ -72,7 +73,7 @@ const YachtDetailPage = () => {
 
           <div className="row y-gap-30 justify-center">
             <div className="col-xl-8 col-lg-10 layout-pt-md">
-              <DetailsContent data={data} />
+              <DetailsContentBlog data={data} />
               {/* Details content */}
 
               <div className="border-top-light border-bottom-light py-30 mt-30">
@@ -139,4 +140,4 @@ const YachtDetailPage = () => {
   );
 };
 
-export default YachtDetailPage;
+export default BlogDetailPage;
