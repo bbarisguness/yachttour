@@ -12,7 +12,6 @@ const Blog = () => {
       setData(data.data)
     })
   }, [])
-  console.log(data)
 
   return (
     <>

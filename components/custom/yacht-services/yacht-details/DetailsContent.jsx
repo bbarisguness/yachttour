@@ -3,7 +3,6 @@ import yachtsData from "../../../../customdata/yachts";
 import Link from "next/link";
 
 const DetailsContent = ({ data }) => {
-  console.log(data)
   return (
     <>
       {/* <h3 className="text-20 fw-500">What makes a good brand book?</h3> */}

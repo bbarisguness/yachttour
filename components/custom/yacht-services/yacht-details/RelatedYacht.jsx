@@ -11,7 +11,6 @@ const RelatedYacht = () => {
       setData(data.data)
     })
   }, [])
-  console.log(data);
 
   return (
     <>

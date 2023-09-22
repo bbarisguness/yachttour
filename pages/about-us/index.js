@@ -19,9 +19,7 @@ const About = () => {
       setData(data.data.attributes)
     })
   }, [])
-
-  console.log(data)
-
+  
   return (
     <>
       <Seo pageTitle={data?.metaFields?.metaTitle} />
@@ -38,7 +36,7 @@ const About = () => {
           <Image
             width={1920}
             height={400}
-            src="/img/pages/about/1.png"
+            src="/img/custom/resim.png"
             alt="image"
             priority
           />
