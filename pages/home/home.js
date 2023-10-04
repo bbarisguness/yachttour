@@ -4,8 +4,8 @@ import Seo from "../../components/custom/common/Seo";
 import Footer from '../../components/custom/footers/footer'
 import HomeTourList from "../../components/custom/home/homeTourList";
 import Hero from "../../components/custom/home/hero/index";
-import Testimonial from "../../components/custom/home/testimonials/Testimonial";
-import Counter from "../../components/custom/home/testimonials/Counter";
+import Testimonial from "../../components/custom/home/testimonials/testimonial";
+import Counter from "../../components/custom/home/testimonials/counter";
 import Brand from "../../components/custom/home/testimonials/brand";
 import Blog from "../../components/custom/home/blog";
 import WhyChoose from "../../components/custom/home/whyChoose";

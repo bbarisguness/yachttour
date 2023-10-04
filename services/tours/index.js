@@ -29,7 +29,7 @@ async function getTourDetail({ tourSlug }) {
     return data
 }
 
-async function getTourDestination({ rSlug }) {
+async function getTourDestination({ rSlug, category }) {
     const query = qs.stringify({
         fields: '*',
         populate: '*',
@@ -39,6 +39,11 @@ async function getTourDestination({ rSlug }) {
                     $eqi: `${rSlug}`,
                 }
             },
+            categories: {
+                name: {
+                    $eqi: `${category}`,
+                }
+            }
         },
     }, {
         encodeValuesOnly: true,

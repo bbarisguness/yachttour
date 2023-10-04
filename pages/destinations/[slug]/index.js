@@ -53,13 +53,15 @@ import Hotels2 from "../../../components/hotels/Hotels2";
 
 import style from './image.module.css'
 
-export default function DestinationDetail({ data, toursDestination, yachtTours, guletTours, tours }) {
+export default function DestinationDetail({ data, toursDestination, yachtDestination, guletDestination, yachtTours, guletTours, tours }) {
     const router = useRouter();
     const slug = router.query.slug;
     const path = router.asPath
     const [tourDetail, setTourDetail] = useState([])
     const [notFound, setNotFound] = useState(false)
     const tourSlug = path.slice(20 + slug.length)
+    const yachtSlug = path.slice(21 + slug.length)
+    const guletSlug = path.slice(21 + slug.length)
 
     const [isOpen, setOpen] = useState(false);
     const [hotel, setHotel] = useState({});
@@ -80,7 +82,24 @@ export default function DestinationDetail({ data, toursDestination, yachtTours, 
                 }
             })
         }
+        else if (path === `/destinations/${slug}#yacht/${yachtSlug}`) {
+            getTourDetail({ tourSlug: `${yachtSlug}` }).then((data) => {
+                setTourDetail(data);
+                if (data?.data.length == 0) {
+                    router.push("/404")
+                }
+            })
+        }
+        else if (path === `/destinations/${slug}#gulet/${guletSlug}`) {
+            getTourDetail({ tourSlug: `${guletSlug}` }).then((data) => {
+                setTourDetail(data);
+                if (data?.data.length == 0) {
+                    router.push("/404")
+                }
+            })
+        }
     }, [path])
+
 
     useEffect(() => {
         if (data?.data.length === 0) {
@@ -91,7 +110,7 @@ export default function DestinationDetail({ data, toursDestination, yachtTours, 
         }
     }, [notFound])
 
-    if (path === `/destinations/${slug}#tour`) {
+    if (path === `/destinations/${slug}#tour` || path === `/destinations/${slug}#yacht` || path === `/destinations/${slug}#gulet`) {
         window.scrollTo(0, 0);
         return (
             <>
@@ -147,7 +166,18 @@ export default function DestinationDetail({ data, toursDestination, yachtTours, 
                                 <div className="mt-30"></div>
                                 {/* End mt--30 */}
                                 <div className="row y-gap-30">
-                                    <TourProperties data={toursDestination} />
+                                    {
+                                        path === `/destinations/${slug}#tour` &&
+                                        <TourProperties data={toursDestination} />
+                                    }
+                                    {
+                                        path === `/destinations/${slug}#yacht` &&
+                                        <TourProperties data={yachtDestination} />
+                                    }
+                                    {
+                                        path === `/destinations/${slug}#gulet` &&
+                                        <TourProperties data={guletDestination} />
+                                    }
                                 </div>
                                 {/* End .row */}
                                 <Pagination />
@@ -748,7 +778,7 @@ export default function DestinationDetail({ data, toursDestination, yachtTours, 
 
                                 <div className="col-auto">
                                     <Link
-                                        href="#"
+                                        href="#tour"
                                         className="button -md -blue-1 bg-blue-1-05 text-blue-1"
                                     >
                                         More <div className="icon-arrow-top-right ml-15" />
@@ -780,7 +810,7 @@ export default function DestinationDetail({ data, toursDestination, yachtTours, 
 
                                 <div className="col-auto">
                                     <Link
-                                        href="#tour"
+                                        href="#yacht"
                                         className="button -md -blue-1 bg-blue-1-05 text-blue-1"
                                     >
                                         More <div className="icon-arrow-top-right ml-15" />
@@ -814,7 +844,7 @@ export default function DestinationDetail({ data, toursDestination, yachtTours, 
 
                                 <div className="col-auto">
                                     <Link
-                                        href="#"
+                                        href="#gulet"
                                         className="button -md -blue-1 bg-blue-1-05 text-blue-1"
                                     >
                                         More <div className="icon-arrow-top-right ml-15" />
@@ -1048,9 +1078,11 @@ export async function getServerSideProps({ params }) {
     const rSlug = slug.replace(/\-+/g, ' ')
 
     const data = await getDestinationDetail({ slug })
-    const tours = await getTours()
-    const toursDestination = await getTourDestination({ rSlug })
+    const tours = await getTourCategory({ category: 'Tour' })
+    const toursDestination = await getTourDestination({ rSlug, category: 'tour' })
+    const yachtDestination = await getTourDestination({ rSlug, category: 'yacht' })
+    const guletDestination = await getTourDestination({ rSlug, category: 'gulet' })
     const yachtTours = await getTourCategory({ category: 'Yacht' })
     const guletTours = await getTourCategory({ category: 'Gulet' })
-    return { props: { data, toursDestination, yachtTours, guletTours, tours } }
+    return { props: { data, toursDestination, yachtDestination, guletDestination, yachtTours, guletTours, tours } }
 }

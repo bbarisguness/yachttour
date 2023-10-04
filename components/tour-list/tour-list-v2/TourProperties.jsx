@@ -16,7 +16,7 @@ const TourProperties = ({ data }) => {
           data-aos-delay={index * 100}
         >
           <Link
-            href={`/destinations/${item?.attributes.destinations.data[0].attributes.slug}#tour/${item?.attributes.slug}`}
+            href={`/destinations/${item?.attributes.destinations.data[0].attributes.slug}#${item?.attributes.categories.data[0].attributes.slug}/${item?.attributes.slug}`}
             className="tourCard -type-1 rounded-4 position-relative"
           >
             <div className="tourCard__image">
