@@ -7,7 +7,7 @@ const DetailsContent = ({ data }) => {
     <>
       {/* <h3 className="text-20 fw-500">What makes a good brand book?</h3> */}
       <div style={{ whiteSpace: 'pre-line' }} className="text-15 mt-20">
-        {data?.longDescription}
+        {data?.data[0]?.attributes.longDescription}
       </div>
 
       <div className="row y-gap-20 justify-between pt-30">

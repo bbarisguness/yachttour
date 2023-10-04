@@ -1,29 +1,17 @@
 import Link from "next/link";
-import { destinations7 } from "../../../customdata/destinations";
-import { getDestinations } from "../../../services/destination";
-import { useEffect, useState } from "react";
 
-const TopDestinations = ({ home }) => {
-
-  const [data, setData] = useState([])
-
-  useEffect(() => {
-    getDestinations().then((data) => {
-      setData(data?.data)
-    })
-  }, [])
-
+const TopDestinations = ({ home, data }) => {
   function checkListCount() {
     if (home) {
       return 6
     }
     else {
-      return data.length
+      return data?.length
     }
   }
   return (
     <>
-      {data.slice(0, checkListCount()).map((item, index) => (
+      {data?.data.slice(0, checkListCount()).map((item, index) => (
         <div
           className={home ? `${(index + 1) == 1 && 'col-xl-6 col-md-4 col-sm-6'} ${(index + 1) == 2 && 'col-xl-6 col-md-4 col-sm-6'} ${(index + 1) !== 1 && 'col-xl-3 col-md-4 col-sm-6'} ${(index + 1) !== 2 && 'col-xl-3 col-md-4 col-sm-6'}` : `col-xl-4 col-md-4 col-sm-6`}
           key={item.id}
@@ -51,5 +39,7 @@ const TopDestinations = ({ home }) => {
     </>
   );
 };
+
+
 
 export default TopDestinations;

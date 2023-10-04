@@ -4,7 +4,7 @@ import Slider from "react-slick";
 import activityData from "../../../data/activity";
 import isTextMatched from "../../../utils/isTextMatched";
 
-const Activity = () => {
+const Activity = ({data}) => {
   var settings = {
     dots: true,
     infinite: true,
@@ -69,14 +69,14 @@ const Activity = () => {
   return (
     <>
       <Slider {...settings}>
-        {activityData.slice(0, 4).map((item) => (
+        {data.data.slice(0, 4).map((item,index) => (
           <div
             key={item?.id}
             data-aos="fade"
-            data-aos-delay={item?.delayAnimation}
+            data-aos-delay={index * 100}
           >
             <Link
-              href={`/activity/activity-single/${item.id}`}
+              href={`/destinations/${item.attributes.destinations.data[0].attributes.slug}/${item.attributes.slug}`}
               className="activityCard -type-1 rounded-4 hover-inside-slider"
             >
               <div className="activityCard__image position-relative">
@@ -87,14 +87,14 @@ const Activity = () => {
                     nextArrow={<Arrow type="next" />}
                     prevArrow={<Arrow type="prev" />}
                   >
-                    {item?.slideImg?.map((slide, i) => (
+                    {item?.attributes.images.data.map((slide, i) => (
                       <div className="cardImage ratio ratio-1:1" key={i}>
                         <div className="cardImage__content ">
                           <Image
                             width={300}
                             height={300}
                             className="col-12 js-lazy"
-                            src={slide}
+                            src={`${`http://3.74.191.230:1337`}${slide.attributes.formats.medium.url}`}
                             alt="image"
                           />
                         </div>
@@ -102,29 +102,26 @@ const Activity = () => {
                     ))}
                   </Slider>
 
-                  <div className="cardImage__wishlist">
+                  {/* <div className="cardImage__wishlist">
                     <button className="button -blue-1 bg-white size-30 rounded-full shadow-2">
                       <i className="icon-heart text-12" />
                     </button>
-                  </div>
+                  </div> */}
 
                   <div className="cardImage__leftBadge">
                     <div
-                      className={`py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase ${
-                        isTextMatched(item?.tag, "likely to sell out*")
-                          ? "bg-dark-1 text-white"
-                          : ""
-                      } ${
-                        isTextMatched(item?.tag, "best seller")
+                      className={`py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase ${isTextMatched(item?.tag, "likely to sell out*")
+                        ? "bg-dark-1 text-white"
+                        : ""
+                        } ${isTextMatched(item?.tag, "best seller")
                           ? "bg-blue-1 text-white"
                           : ""
-                      }  ${
-                        isTextMatched(item?.tag, "top rated")
+                        }  ${isTextMatched(item?.tag, "top rated")
                           ? "bg-yellow-1 text-dark-1"
                           : ""
-                      }`}
+                        }`}
                     >
-                      {item.tag}
+                      
                     </div>
                   </div>
                 </div>
@@ -133,13 +130,13 @@ const Activity = () => {
 
               <div className="activityCard__content mt-10">
                 <div className="text-14 lh-14 text-light-1 mb-5">
-                  {item?.duration}+ hours
+                  3+ hours
                 </div>
                 <h4 className="activityCard__title lh-16 fw-500 text-dark-1 text-18">
-                  <span>{item?.title}</span>
+                  <span>{item?.attributes.title}</span>
                 </h4>
                 <p className="text-light-1 text-14 lh-14 mt-5">
-                  {item?.location}
+                  {item?.attributes.destinations.data[0].attributes.name} {item?.attributes.destinations.data[1].attributes.name}
                 </p>
 
                 <div className="row justify-between items-center pt-10">
@@ -149,9 +146,9 @@ const Activity = () => {
 
                       <div className="text-14 text-light-1">
                         <span className="text-15 text-dark-1 fw-500">
-                          {item?.ratings}
+                          4.5
                         </span>{" "}
-                        {item?.numberOfReviews} reviews
+                        3525 reviews
                       </div>
                     </div>
                   </div>
@@ -161,7 +158,7 @@ const Activity = () => {
                     <div className="text-14 text-light-1">
                       From{" "}
                       <span className="text-16 fw-500 text-dark-1">
-                        US${item.price}
+                        US${item?.attributes.price}
                       </span>
                     </div>
                   </div>

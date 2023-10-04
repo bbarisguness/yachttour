@@ -9,7 +9,7 @@ import Social from "../../components/custom/common/social/Social";
 import ContactForm from "../../components/custom/common/ContactForm";
 import LocationTopBar from "../../components/custom/common/LocationTopBar/LocationTopBar";
 
-const Contact = () => {
+export default function Contact() {
     return (
         <>
             <Seo pageTitle="Contact" />
@@ -21,7 +21,7 @@ const Contact = () => {
             <Header />
             {/* End Header 1 */}
 
-            <div style={{height: '61px'}}>
+            <div style={{ height: '61px' }}>
 
             </div>
             {/* <LocationTopBar /> */}
@@ -99,7 +99,5 @@ const Contact = () => {
             <Footer />
             {/* End Call To Actions Section */}
         </>
-    );
-};
-
-export default dynamic(() => Promise.resolve(Contact), { ssr: false });
+    )
+}

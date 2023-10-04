@@ -1,7 +1,7 @@
 module.exports = [
   {
     id: 1,
-    tag: "LIKELY TO SELL OUT*",
+    tag: "likely to sell out*",
     slideImg: ["/img/tours/1.png"],
     title: "Stonehenge, Windsor Castle and Bath with Pub Lunch in Lacock",
     location: "Westminster Borough, London",

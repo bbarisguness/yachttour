@@ -3,7 +3,7 @@ const IntroTown = ({data}) => {
     <>
       <div className="col-xl-8">
         <p style={{whiteSpace: 'pre-line'}} className="text-15 text-dark-1">
-          {data?.longDescription}
+          {data?.data[0]?.attributes.longDescription}
         </p>
         <a
           href="#"

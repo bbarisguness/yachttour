@@ -6,7 +6,8 @@ import Footer from '../components/custom/footers/footer'
 import NotFound from "../components/common/NotFound";
 import { useEffect } from 'react';
 
-const NotFoundPage = () => {
+
+export default function NotFoundPage() {
   const router = useRouter()
 
   useEffect(() => {
@@ -29,7 +30,6 @@ const NotFoundPage = () => {
       <Footer />
       {/* End Call To Actions Section */}
     </>
-  );
-};
+  )
+}
 
-export default dynamic(() => Promise.resolve(NotFoundPage), { ssr: false });

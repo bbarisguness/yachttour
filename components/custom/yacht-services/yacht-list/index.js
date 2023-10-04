@@ -4,27 +4,27 @@ import Link from "next/link";
 import { getYachtServices } from "../../../../services/yacht-services";
 import { useEffect, useState } from "react";
 
-const YachtList = ({ home }) => {
-    const [data, setData] = useState([])
-    useEffect(() => {
-        getYachtServices().then((data) => {
-            setData(data.data)
-        })
-    }, [])
-    
+const YachtList = ({ home, data }) => {
+    // const [data, setData] = useState([])
+    // useEffect(() => {
+    //     getYachtServices().then((data) => {
+    //         setData(data.data)
+    //     })
+    // }, [])
+
     function checkListCount() {
         if (home) {
             return 3;
         }
         else {
-            return data.length
+            return data?.data.length
         }
     }
     return (
         <>
             <div className="tabs -pills-3 pt-30 js-tabs">
                 <div className="row y-gap-30 pt-30">
-                    {data.slice(0, checkListCount()).map((item) => (
+                    {data?.data.slice(0, checkListCount()).map((item) => (
                         <div className="col-lg-4 col-sm-6" key={item?.id}>
                             <Link
                                 href={`/yacht-services/${item?.attributes?.slug}`}

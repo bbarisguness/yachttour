@@ -4,18 +4,12 @@ import Link from "next/link";
 import { getBlogs } from "../../../../services/blog";
 import { useEffect, useState } from "react";
 
-const BlogList = () => {
-    const [data, setData] = useState([])
-    useEffect(() => {
-        getBlogs().then((data) => {
-            setData(data.data)
-        })
-    }, [])
+export default function BlogList({ data }) {
     return (
         <>
             <div className="tabs -pills-3 pt-30 js-tabs">
                 <div className="row y-gap-30 pt-30">
-                    {data.map((item) => (
+                    {data?.data.map((item) => (
                         <div className="col-lg-4 col-sm-6" key={item?.id}>
                             <Link
                                 href={`/blog/${item?.attributes?.slug}`}
@@ -46,7 +40,6 @@ const BlogList = () => {
                 {/* End .row */}
             </div>
         </>
-    );
-};
+    )
+}
 
-export default BlogList;

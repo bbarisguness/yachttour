@@ -5,39 +5,41 @@ import { Navigation, Pagination } from "swiper";
 import toursData from "../../../data/tours";
 import isTextMatched from "../../../utils/isTextMatched";
 
-const TourProperties = () => {
+const TourProperties = ({ data }) => {
   return (
     <>
-      {toursData.slice(0, 9).map((item) => (
+      {data?.data.slice(0, 9).map((item,index) => (
         <div
           className="col-lg-4 col-sm-6"
           key={item?.id}
           data-aos="fade"
-          data-aos-delay={item?.delayAnimation}
+          data-aos-delay={index * 100}
         >
           <Link
-            href={`/tour/tour-single/${item.id}`}
+            href={`/destinations/${item?.attributes.destinations.data[0].attributes.slug}#tour/${item?.attributes.slug}`}
             className="tourCard -type-1 rounded-4 position-relative"
           >
             <div className="tourCard__image">
               <div className="cardImage ratio ratio-1:1">
                 <div className="cardImage__content">
-                  <div className="cardImage-slider rounded-4 overflow-hidden custom_inside-slider">
+                  <div style={{ height: '100%' }} className="cardImage-slider rounded-4 overflow-hidden custom_inside-slider">
                     <Swiper
                       className="mySwiper"
+                      style={{ height: '100%' }}
                       modules={[Pagination, Navigation]}
                       pagination={{
                         clickable: true,
                       }}
                       navigation={true}
                     >
-                      {item?.slideImg?.map((slide, i) => (
+                      {item?.attributes.images?.data.map((slide, i) => (
                         <SwiperSlide key={i}>
                           <Image
                             width={300}
                             height={300}
-                            className="rounded-4 col-12 js-lazy"
-                            src={slide}
+                            className={`rounded-4 col-12 js-lazy`}
+                            style={{ height: '100%' }}
+                            src={`${"http://3.74.191.230:1337"}${slide.attributes?.formats?.medium.url}`}
                             alt="image"
                           />
                         </SwiperSlide>
@@ -47,29 +49,26 @@ const TourProperties = () => {
                 </div>
               </div>
 
-              <div className="cardImage__wishlist">
+              {/* <div className="cardImage__wishlist">
                 <button className="button -blue-1 bg-white size-30 rounded-full shadow-2">
                   <i className="icon-heart text-12" />
                 </button>
-              </div>
+              </div> */}
 
               <div className="cardImage__leftBadge">
                 <div
-                  className={`py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase ${
-                    isTextMatched(item?.tag, "likely to sell out*")
-                      ? "bg-dark-1 text-white"
-                      : ""
-                  } ${
-                    isTextMatched(item?.tag, "best seller")
+                  className={`py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase ${isTextMatched(item?.tag, "likely to sell out*")
+                    ? "bg-dark-1 text-white"
+                    : ""
+                    } ${isTextMatched(item?.tag, "best seller")
                       ? "bg-blue-1 text-white"
                       : ""
-                  }  ${
-                    isTextMatched(item?.tag, "top rated")
+                    }  ${isTextMatched(item?.tag, "top rated")
                       ? "bg-yellow-1 text-dark-1"
                       : ""
-                  }`}
+                    }`}
                 >
-                  {item.tag}
+                  {/* {item.tag} */}
                 </div>
               </div>
             </div>
@@ -78,16 +77,16 @@ const TourProperties = () => {
             <div className="tourCard__content mt-10">
               <div className="d-flex items-center lh-14 mb-5">
                 <div className="text-14 text-light-1">
-                  {item?.duration}+ hours
+                  3+ hours
                 </div>
                 <div className="size-3 bg-light-1 rounded-full ml-10 mr-10" />
-                <div className="text-14 text-light-1">{item?.tourType}</div>
+                <div className="text-14 text-light-1">{item?.attributes.categories?.data[0].attributes.name}</div>
               </div>
               <h4 className="tourCard__title text-dark-1 text-18 lh-16 fw-500">
-                <span>{item?.title}</span>
+                <span>{item?.attributes.title}</span>
               </h4>
               <p className="text-light-1 lh-14 text-14 mt-5">
-                {item?.location}
+                {item?.attributes.destinations?.data[0].attributes.name} {item?.attributes.destinations?.data[1].attributes.name}
               </p>
 
               <div className="row justify-between items-center pt-15">
@@ -103,7 +102,7 @@ const TourProperties = () => {
                     {/* End ratings */}
 
                     <div className="text-14 text-light-1 ml-10">
-                      {item?.numberOfReviews} reviews
+                      3125 reviews
                     </div>
                   </div>
                 </div>
@@ -112,7 +111,7 @@ const TourProperties = () => {
                     From
                     <span className="text-16 fw-500 text-dark-1">
                       {" "}
-                      US${item.price}
+                      US${item?.attributes?.price}
                     </span>
                   </div>
                 </div>

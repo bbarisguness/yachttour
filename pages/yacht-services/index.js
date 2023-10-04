@@ -4,8 +4,9 @@ import LocationTopBar from "../../components/custom/common/LocationTopBar/Locati
 import Footer from '../../components/custom/footers/footer'
 import YachtList from "../../components/custom/yacht-services/yacht-list";
 import Header from "../../components/custom/home/headers/header2/header";
+import { getYachtServices } from "../../services/yacht-services";
 
-const YachtServices = () => {
+export default function YachtServices({ data }) {
     return (
         <>
             <Seo pageTitle="Yacht Services" />
@@ -32,14 +33,17 @@ const YachtServices = () => {
                             </div>
                         </div>
                     </div>
-                    <YachtList />
+                    <YachtList data={data} />
                 </div>
             </section>
 
             <Footer />
             {/* End Call To Actions Section */}
         </>
-    );
-};
+    )
+}
 
-export default YachtServices;
+export async function getServerSideProps() {
+    const data = await getYachtServices()
+    return { props: { data } }
+}

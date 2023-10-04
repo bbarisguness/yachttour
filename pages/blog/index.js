@@ -4,8 +4,9 @@ import LocationTopBar from "../../components/custom/common/LocationTopBar/Locati
 import Footer from '../../components/custom/footers/footer'
 import BlogList from "../../components/custom/blog/blog-list";
 import Header from "../../components/custom/home/headers/header2/header";
+import { getBlogs } from "../../services/blog";
 
-const BlogPage = () => {
+export default function BlogPage({ data }) {
     return (
         <>
             <Seo pageTitle="Blog" />
@@ -32,14 +33,17 @@ const BlogPage = () => {
                             </div>
                         </div>
                     </div>
-                    <BlogList />
+                    <BlogList data={data} />
                 </div>
             </section>
 
             <Footer />
             {/* End Call To Actions Section */}
         </>
-    );
-};
+    )
+}
 
-export default BlogPage;
+export async function getServerSideProps() {
+    const data = await getBlogs()
+    return { props: { data } }
+}

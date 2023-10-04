@@ -4,8 +4,9 @@ import Header from '../../components/custom/home/headers/header2/header'
 import Footer from '../../components/custom/footers/footer'
 import TopDestinations from "../../components/custom/destinations/TopDestinations";
 import LocationTopBar from "../../components/custom/common/LocationTopBar/LocationTopBar";
+import { getDestinations } from '../../services/destination';
 
-export default function Destinations() {
+export default function Destinations({data}) {
     return (
         <>
             <Seo pageTitle="Destinations" />
@@ -35,7 +36,7 @@ export default function Destinations() {
                     {/* End .row */}
 
                     <div className="row y-gap-40 justify-between pt-40 sm:pt-20">
-                        <TopDestinations />
+                        <TopDestinations data={data}/>
                     </div>
                     {/* End .row */}
                 </div>
@@ -49,3 +50,7 @@ export default function Destinations() {
 }
 
 
+export async function getServerSideProps() {
+    const data = await getDestinations()
+    return { props: { data } }
+}

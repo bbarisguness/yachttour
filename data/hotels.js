@@ -1,7 +1,7 @@
 export const hotelsData = [
   {
     id: 1,
-    tag: "Breakfast Included",
+    tag: "breakfast included",
     slideImg: ["/img/hotels/1.png"],
     img: "/img/hotels/1.png",
     title: "The Montcalm At Brewery London City",
@@ -49,7 +49,7 @@ export const hotelsData = [
   },
   {
     id: 5,
-    tag: "Breakfast Included",
+    tag: "breakfast included",
     slideImg: ["/img/hotels/5.png"],
     img: "/img/hotels/5.png",
     title: "The Montcalm At Brewery London City",
@@ -97,7 +97,7 @@ export const hotelsData = [
   },
   {
     id: 9,
-    tag: "Breakfast Included",
+    tag: "breakfast included",
     img: "/img/hotels/9.png",
     slideImg: ["/img/hotels/9.png"],
     title: "The Montcalm At Brewery London City",

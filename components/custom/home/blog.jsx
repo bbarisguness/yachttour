@@ -1,21 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import blogsData from "../../../data/blogs";
-import { getBlogs } from "../../../services/blog";
-import { useEffect, useState } from "react";
 
-const Blog = () => {
-
-  const [data, setData] = useState([])
-  useEffect(() => {
-    getBlogs().then((data) => {
-      setData(data.data)
-    })
-  }, [])
+const Blog = ({ data }) => {
 
   return (
     <>
-      {data.slice(0, 3).map((item, index) => (
+      {data?.data.slice(0, 3).map((item, index) => (
         <div
           className="col-lg-4 col-sm-6"
           key={item.id}

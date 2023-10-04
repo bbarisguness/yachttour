@@ -10,19 +10,10 @@ import Team1 from "../../components/custom/team/Team1";
 import { getAbout } from "../../services/about";
 import { useEffect, useState } from "react";
 
-const About = () => {
-
-  const [data, setData] = useState()
-
-  useEffect(() => {
-    getAbout().then((data) => {
-      setData(data.data.attributes)
-    })
-  }, [])
-  
+export default function About({ data }) {
   return (
     <>
-      <Seo pageTitle={data?.metaFields?.metaTitle} />
+      <Seo pageTitle={data?.data?.attributes.metaFields?.metaTitle} />
       {/* End Page Title */}
 
       <div className="header-margin"></div>
@@ -47,7 +38,7 @@ const About = () => {
           <div className="row justify-center text-center">
             <div className="col-xl-6 col-lg-8 col-md-10">
               <h1 className="text-40 md:text-25 fw-600 text-white">
-                {data?.title}
+                {data?.data?.attributes.title}
               </h1>
               <div className="text-white mt-15">
                 Your trusted trip companion
@@ -131,7 +122,10 @@ const About = () => {
       <Footer />
       {/* End Call To Actions Section */}
     </>
-  );
-};
+  )
+}
 
-export default dynamic(() => Promise.resolve(About), { ssr: false });
+export async function getServerSideProps() {
+  const data = await getAbout()
+  return { props: { data } }
+}

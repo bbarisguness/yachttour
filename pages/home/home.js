@@ -11,8 +11,10 @@ import Blog from "../../components/custom/home/blog";
 import WhyChoose from "../../components/custom/home/whyChoose";
 import Header from "../../components/custom/home/headers/header";
 import TopDestinations from "../../components/custom/destinations/TopDestinations";
+import { getDestinations } from "../../services/destination";
 
-const Home = () => {
+export default function Home({ data }) {
+  console.log(data)
   return (
     <>
       <Seo pageTitle="Home-1" />
@@ -69,7 +71,7 @@ const Home = () => {
           </div>
 
           <div className="row y-gap-40 justify-between pt-40 sm:pt-20">
-            <TopDestinations home={true} />
+            <TopDestinations home={true} data={data} />
           </div>
         </div>
       </section>
@@ -151,7 +153,10 @@ const Home = () => {
 
       <Footer />
     </>
-  );
-};
+  )
+}
 
-export default dynamic(() => Promise.resolve(Home), { ssr: false });
+export async function getServerSideProps() {
+  const data = await getDestinations()
+  return { props: { data } }
+}

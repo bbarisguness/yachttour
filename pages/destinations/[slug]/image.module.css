@@ -1,0 +1,33 @@
+.customImage {
+    height: 255px !important;
+}
+
+@media only screen and (max-width: 1399px) {
+    .customImage {
+        height: 219px !important;
+    }
+}
+
+@media only screen and (max-width: 1199px) {
+    .customImage {
+        height: 183px !important;
+    }
+}
+
+@media only screen and (max-width: 991px) {
+    .customImage {
+        height: 187.77px !important;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .customImage {
+        height: 210.83px !important;
+    }
+}
+
+@media only screen and (max-width: 575px) {
+    .customImage {
+        height: 100% !important;
+    }
+}

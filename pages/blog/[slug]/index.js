@@ -13,33 +13,22 @@ import YachtNavigator from "../../../components/custom/yacht-services/yacht-deta
 import Comments from "../../../components/custom/yacht-services/yacht-details/Comments";
 import { getBlogDetails } from "../../../services/blog";
 
-const BlogDetailPage = () => {
+export default function BlogDetailPage({ data }) {
   const router = useRouter();
-  const slug = router.query.slug;
-  const [data, setData] = useState([])
   const [notFound, setNotFound] = useState(false)
 
   useEffect(() => {
-    if (slug) {
-      getBlogDetails({ slug }).then((data) => {
-        if (data.data.length == 0) {
-          setNotFound(true)
-        }
-        setData(data?.data[0]?.attributes)
-      })
+    if (data?.data.length === 0) {
+      setNotFound(true)
     }
-  }, [slug])
-
-  useEffect(() => {
     if (notFound) {
       router.push("/404")
     }
   }, [notFound])
 
-
   return (
     <>
-      <Seo pageTitle={data?.metaFields?.metaTitle} />
+      <Seo pageTitle={data?.data[0]?.attributes.metaFields?.metaTitle} />
       {/* End Page Title */}
 
       <div className="header-margin"></div>
@@ -58,13 +47,13 @@ const BlogDetailPage = () => {
               <div className="text-15 fw-500 text-blue-1 mb-8 text-capitalize">
                 Beaches
               </div>
-              <h1 className="text-30 fw-600">{data?.title}</h1>
+              <h1 className="text-30 fw-600">{data?.data[0]?.attributes.title}</h1>
               <div className="text-15 text-light-1 mt-10">Jan 06, 2023</div>
             </div>
             <div className="col-12">
               <img
-                src={`${"http://3.74.191.230:1337"}${data?.image?.data[0].attributes?.url}`}
-                alt={data?.title}
+                src={`${"http://3.74.191.230:1337"}${data?.data[0]?.attributes.image?.data[0].attributes?.url}`}
+                alt={data?.data[0]?.attributes.title}
                 className="col-12 rounded-8 w-100 img_large_details"
               />
             </div>
@@ -137,7 +126,11 @@ const BlogDetailPage = () => {
       <Footer />
       {/* End Call To Actions Section */}
     </>
-  );
-};
+  )
+}
 
-export default BlogDetailPage;
+export async function getServerSideProps({ params }) {
+  const slug = params.slug
+  const data = await getBlogDetails({ slug })
+  return { props: { data } }
+}
