@@ -81,9 +81,14 @@ const HomeTourList = ({ data }) => {
 
                 <div className="cardImage__leftBadge">
                   <div
-                    className={`py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase ${isTextMatched(item?.tag, "breakfast included") ? "bg-dark-1 text-white" : ""} ${isTextMatched(item?.tag, "best seller") ? "bg-blue-1 text-white" : ""} } ${isTextMatched(item?.tag, "-25% today") ? "bg-brown-1 text-white" : ""} ${isTextMatched(item?.tag, "top rated") ? "bg-yellow-1 text-dark-1" : ""}`}
+                    className={`py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase ${item?.attributes?.tag == "blackAttr" ? "bg-dark-1 text-white" : ""} ${item?.attributes?.tag == "brownAttr" ? "bg-brown-1 text-white" : ""} ${item?.attributes?.tag == "blueAttr" ? "bg-blue-1 text-white" : ""
+                      }  ${item?.attributes?.tag == "yellowAttr" ? "bg-yellow-1 text-dark-1" : ""}
+                    `}
                   >
-
+                    {`
+                      ${item?.attributes?.tag == "blackAttr" ? "Breakfast included" : ''} ${item?.attributes?.tag == "yellowAttr" ? "Top Rated" : ''} ${item?.attributes?.tag == "blueAttr" ? "Best Seller" : ''} ${item?.attributes?.tag == "brownAttr" ? "-25% Today" : ''}
+                      `
+                    }
                   </div>
                 </div>
               </div>
@@ -95,22 +100,16 @@ const HomeTourList = ({ data }) => {
               <p className="text-light-1 lh-14 text-14 mt-5">
                 {item?.attributes.destinations?.data[0].attributes.name} {item?.attributes.destinations?.data[1].attributes.name}
               </p>
-              <div className="d-flex items-center mt-20">
-                <div className="flex-center bg-blue-1 rounded-4 size-30 text-12 fw-600 text-white">
-                  4.5
-                </div>
-                <div className="text-14 text-dark-1 fw-500 ml-10">
-                  Exceptional
-                </div>
-                <div className="text-14 text-light-1 ml-10">
+              <div style={{ justifyContent: 'space-between' }} className="d-flex items-center mt-20">
+                <div className="text-14 text-light-1">
                   3252 reviews
+                </div>
+                <div className="fw-500">
+                  $ {item?.attributes.price}
                 </div>
               </div>
               <div className="mt-5">
-                <div className="fw-500">
-                  Starting from{" "}
-                  <span className="text-blue-1">US${item?.attributes.price}</span>
-                </div>
+                {item?.attributes.shortText}
               </div>
             </div>
           </Link>

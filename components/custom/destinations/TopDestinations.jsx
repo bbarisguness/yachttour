@@ -30,7 +30,7 @@ const TopDestinations = ({ home, data }) => {
                 {item.attributes.name}
               </h4>
               <div className="text-15 text-white">
-                1770 properties
+                {item?.attributes?.tours?.data?.length} tour
               </div>
             </div>
           </Link>

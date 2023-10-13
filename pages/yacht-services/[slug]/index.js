@@ -1,4 +1,4 @@
-import React, { use, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Seo from "../../../components/custom/common/Seo";
 import Header from "../../../components/custom/home/headers/header2/header";
 import Footer from '../../../components/custom/footers/footer'
@@ -25,7 +25,7 @@ export default function YachtDetailPage({ data }) {
       router.push("/404")
     }
   }, [notFound])
-  
+
   return (
     <>
       <Seo pageTitle={data?.data[0]?.attributes.metaFields?.metaTitle} />
@@ -65,12 +65,12 @@ export default function YachtDetailPage({ data }) {
               <DetailsContent data={data} />
               {/* Details content */}
 
-              <div className="border-top-light border-bottom-light py-30 mt-30">
+              {/* <div className="border-top-light border-bottom-light py-30 mt-30">
                 <TopComment />
-              </div>
+              </div> */}
               {/* End  topcommnet  */}
               <div className="border-bottom-light py-30">
-                <YachtNavigator />
+                {/* <YachtNavigator /> */}
               </div>
               {/* End YachtNavigator */}
 
@@ -100,27 +100,7 @@ export default function YachtDetailPage({ data }) {
       </section>
       {/* Details Blog Details Content */}
 
-      <section className="layout-pt-md layout-pb-lg">
-        <div className="container">
-          <div className="row justify-center text-center">
-            <div className="col-auto">
-              <div className="sectionTitle -md">
-                <h2 className="sectionTitle__title">Related content</h2>
-                <p className=" sectionTitle__text mt-5 sm:mt-0">
-                  Interdum et malesuada fames
-                </p>
-              </div>
-            </div>
-          </div>
-          {/* End .row */}
 
-          <div className="row y-gap-30 pt-40">
-            <RelatedYacht />
-          </div>
-          {/* End .row */}
-        </div>
-        {/* End .container */}
-      </section>
       {/* End Related Content */}
 
       <Footer />

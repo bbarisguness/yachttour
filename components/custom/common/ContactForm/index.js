@@ -1,7 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
+import ReCAPTCHA from "react-google-recaptcha";
 
 const ContactForm = () => {
+  const [captchaState, setCaptchaState] = useState(false)
+  const [error, setError] = useState(false)
+  function onChange() {
+    setCaptchaState(true)
+    setError(false)
+  }
+
   const handleSubmit = (event) => {
+    if (captchaState) {
+      setError(false)
+      console.log('gönderildi');
+    } else {
+      setError(true)
+    }
     event.preventDefault();
     // handle form submission logic here
   };
@@ -38,6 +52,20 @@ const ContactForm = () => {
           <label htmlFor="message" className="lh-1 text-16 text-light-1">
             Your Message
           </label>
+        </div>
+      </div>
+      <div className="col-12">
+        <div style={{ display: 'block' }} className="form-input">
+          {
+            error &&
+            <div className="text-14 text-danger">lütfen doğrulamayı yapınız!</div>
+          }
+          <div>
+            <ReCAPTCHA
+              sitekey="6Lfca5coAAAAAO4t9o2FMb0nXMSlR5KjpUkfCd6Y"
+              onChange={onChange}
+            />
+          </div>
         </div>
       </div>
       <div className="col-auto">

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InputRange from "react-input-range";
 
 const PirceSlider = () => {
@@ -9,6 +9,15 @@ const PirceSlider = () => {
   const handleOnChange = (value) => {
     setPrice({ value });
   };
+
+  const changeValue = (e) => {
+
+    console.log(e);
+  };
+
+  // useEffect(() => {
+  //   console.log(price);
+  // }, [price])
 
   return (
     <div className="js-price-rangeSlider">
@@ -28,6 +37,7 @@ const PirceSlider = () => {
           maxValue={2000}
           value={price.value}
           onChange={(value) => handleOnChange(value)}
+          onChangeComplete={(e) => changeValue(e)}
         />
       </div>
     </div>

@@ -4,31 +4,31 @@ import Slider from "react-slick";
 import activityData from "../../../data/activity";
 import isTextMatched from "../../../utils/isTextMatched";
 
-const Activity = ({data}) => {
+const Activity = ({ data }) => {
   var settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: data?.data?.length > 4 ? 4 : data?.data?.length,
     slidesToScroll: 1,
     responsive: [
       {
         breakpoint: 992,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: data?.data?.length > 2 ? 2 : data?.data?.length,
         },
       },
 
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: data?.data?.length > 2 ? 2 : data?.data?.length,
         },
       },
       {
         breakpoint: 520,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: data?.data?.length > 1 ? 1 : data?.data?.length,
         },
       },
     ],
@@ -69,7 +69,7 @@ const Activity = ({data}) => {
   return (
     <>
       <Slider {...settings}>
-        {data.data.slice(0, 4).map((item,index) => (
+        {data.data.slice(0, 4).map((item, index) => (
           <div
             key={item?.id}
             data-aos="fade"
@@ -110,18 +110,14 @@ const Activity = ({data}) => {
 
                   <div className="cardImage__leftBadge">
                     <div
-                      className={`py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase ${isTextMatched(item?.tag, "likely to sell out*")
-                        ? "bg-dark-1 text-white"
-                        : ""
-                        } ${isTextMatched(item?.tag, "best seller")
-                          ? "bg-blue-1 text-white"
-                          : ""
-                        }  ${isTextMatched(item?.tag, "top rated")
-                          ? "bg-yellow-1 text-dark-1"
-                          : ""
-                        }`}
+                      className={`py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase ${item?.attributes?.tag == "blackAttr" ? "bg-dark-1 text-white" : ""} ${item?.attributes?.tag == "brownAttr" ? "bg-brown-1 text-white" : ""} ${item?.attributes?.tag == "blueAttr" ? "bg-blue-1 text-white" : ""
+                        }  ${item?.attributes?.tag == "yellowAttr" ? "bg-yellow-1 text-dark-1" : ""}
+                    `}
                     >
-                      
+                      {`
+                      ${item?.attributes?.tag == "blackAttr" ? "Breakfast included" : ''} ${item?.attributes?.tag == "yellowAttr" ? "Top Rated" : ''} ${item?.attributes?.tag == "blueAttr" ? "Best Seller" : ''} ${item?.attributes?.tag == "brownAttr" ? "-25% Today" : ''}
+                      `
+                      }
                     </div>
                   </div>
                 </div>
@@ -129,9 +125,9 @@ const Activity = ({data}) => {
               {/* End .tourCard__image */}
 
               <div className="activityCard__content mt-10">
-                <div className="text-14 lh-14 text-light-1 mb-5">
+                {/* <div className="text-14 lh-14 text-light-1 mb-5">
                   3+ hours
-                </div>
+                </div> */}
                 <h4 className="activityCard__title lh-16 fw-500 text-dark-1 text-18">
                   <span>{item?.attributes.title}</span>
                 </h4>
@@ -142,12 +138,7 @@ const Activity = ({data}) => {
                 <div className="row justify-between items-center pt-10">
                   <div className="col-auto">
                     <div className="d-flex items-center">
-                      <div className="icon-star text-yellow-1 text-10 mr-5" />
-
                       <div className="text-14 text-light-1">
-                        <span className="text-15 text-dark-1 fw-500">
-                          4.5
-                        </span>{" "}
                         3525 reviews
                       </div>
                     </div>
@@ -156,11 +147,13 @@ const Activity = ({data}) => {
 
                   <div className="col-auto">
                     <div className="text-14 text-light-1">
-                      From{" "}
                       <span className="text-16 fw-500 text-dark-1">
-                        US${item?.attributes.price}
+                        $ {item?.attributes.price}
                       </span>
                     </div>
+                  </div>
+                  <div>
+                    {item?.attributes.shortText}
                   </div>
                 </div>
               </div>

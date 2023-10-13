@@ -10,7 +10,7 @@ const DetailsContent = ({ data }) => {
         {data?.data[0]?.attributes.longDescription}
       </div>
 
-      <div className="row y-gap-20 justify-between pt-30">
+      {/* <div className="row y-gap-20 justify-between pt-30">
         <div className="col-auto">
           <div className="d-flex items-center">
             <div className="fw-500 mr-10">Share</div>
@@ -19,7 +19,6 @@ const DetailsContent = ({ data }) => {
             </div>
           </div>
         </div>
-        {/* End social share */}
 
         <div className="col-auto">
           <div className="row x-gap-10 y-gap-10">
@@ -35,8 +34,7 @@ const DetailsContent = ({ data }) => {
             ))}
           </div>
         </div>
-        {/* End tags */}
-      </div>
+      </div> */}
     </>
   );
 };

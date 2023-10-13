@@ -35,9 +35,6 @@ const MainMenu = ({ style = "" }) => {
         </li>
         {/* End Yacht Services single menu */}
 
-        <li className={router.pathname === "/blog" ? "current" : ""}>
-          <Link href="/blog">Blog</Link>
-        </li>
         {/* End Blog single menu */}
 
         <li className={router.pathname === "/abaoutus" ? "current" : ""}>

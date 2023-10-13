@@ -4,7 +4,8 @@ import { Navigation } from "swiper";
 import { destinations4 } from "../../../data/desinations";
 import Image from "next/image";
 
-const TopDestinations2 = () => {
+const TopDestinations2 = ({ data }) => {
+  console.log(data);
   return (
     <>
       <Swiper
@@ -17,44 +18,44 @@ const TopDestinations2 = () => {
         }}
         breakpoints={{
           540: {
-            slidesPerView: 2,
+            slidesPerView: data?.data?.length > 2 ? 2 : data?.data?.length,
             spaceBetween: 20,
           },
           768: {
-            slidesPerView: 2,
+            slidesPerView: data?.data?.length > 2 ? 2 : data?.data?.length,
             spaceBetween: 22,
           },
           1024: {
-            slidesPerView: 3,
+            slidesPerView: data?.data?.length > 3 ? 3 : data?.data?.length,
           },
           1200: {
-            slidesPerView: 6,
+            slidesPerView: data?.data?.length > 6 ? 6 : data?.data?.length,
           },
         }}
       >
-        {destinations4.map((item) => (
+        {data?.data?.map((item, index) => (
           <SwiperSlide key={item.id}>
             <Link
               href="#"
               className="citiesCard -type-2"
               data-aos="fade"
-              data-aos-delay={item.delayAnimation}
+              data-aos-delay={index * 100}
             >
               <div className="citiesCard__image rounded-4 ratio ratio-1:1">
                 <Image
                   width={191}
                   height={191}
                   className="img-ratio rounded-4 js-lazy"
-                  src={item.img}
+                  src={`${`http://3.74.191.230:1337`}${item?.attributes?.image?.data[0].attributes?.formats?.medium?.url}`}
                   alt="image"
                 />
               </div>
               <div className="citiesCard__content mt-10">
                 <h4 className="text-18 lh-13 fw-500 text-dark-1 text-capitalize">
-                  {item.location}
+                  {item?.attributes?.name}
                 </h4>
                 <div className="text-14 text-light-1">
-                  {item.properties} properties
+                  {item?.attributes?.tours?.data?.length} tour
                 </div>
               </div>
             </Link>

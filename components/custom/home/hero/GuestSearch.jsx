@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 const counters = [
-  { name: "Adults", defaultValue: 2 },
-  { name: "Children", defaultValue: 1 },
-  { name: "Rooms", defaultValue: 1 },
+  { name: "Person", defaultValue: 1 },
 ];
 
 const Counter = ({ name, defaultValue, onCounterChange }) => {
@@ -60,7 +58,7 @@ const Counter = ({ name, defaultValue, onCounterChange }) => {
 
 const GuestSearch = () => {
   const [guestCounts, setGuestCounts] = useState({
-    Adults: 2,
+    Person: 1,
     Children: 1,
     Rooms: 1,
   });
@@ -75,12 +73,12 @@ const GuestSearch = () => {
         aria-expanded="false"
         data-bs-offset="0,22"
       >
-        <h4 className="text-15 fw-500 ls-2 lh-16">Guest</h4>
+        <h4 className="text-15 fw-500 ls-2 lh-16">Person</h4>
         <div className="text-15 text-light-1 ls-2 lh-16">
-          <span className="js-count-adult">{guestCounts.Adults}</span> adults -{" "}
-          <span className="js-count-child">{guestCounts.Children}</span>{" "}
+          <span className="js-count-adult">{guestCounts.Person}</span> person
+          {/* <span className="js-count-child">{guestCounts.Children}</span>{" "}
           childeren - <span className="js-count-room">{guestCounts.Rooms}</span>{" "}
-          room
+          room */}
         </div>
       </div>
       {/* End guest */}

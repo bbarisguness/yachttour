@@ -9,26 +9,26 @@ const Tours = ({ data }) => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: data?.data?.length > 4 ? 4 : data?.data?.length,
     slidesToScroll: 1,
     responsive: [
       {
         breakpoint: 992,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: data?.data?.length > 2 ? 2 : data?.data?.length,
         },
       },
 
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: data?.data?.length > 2 ? 2 : data?.data?.length,
         },
       },
       {
         breakpoint: 520,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: data?.data?.length > 1 ? 1 : data?.data?.length,
         },
       },
     ],
@@ -110,18 +110,14 @@ const Tours = ({ data }) => {
 
                   <div className="cardImage__leftBadge">
                     <div
-                      className={`py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase ${isTextMatched(item?.tag, "likely to sell out*")
-                          ? "bg-dark-1 text-white"
-                          : ""
-                        } ${isTextMatched(item?.tag, "best seller")
-                          ? "bg-blue-1 text-white"
-                          : ""
-                        }  ${isTextMatched(item?.tag, "top rated")
-                          ? "bg-yellow-1 text-dark-1"
-                          : ""
-                        }`}
+                      className={`py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase ${item?.attributes?.tag == "blackAttr" ? "bg-dark-1 text-white" : ""} ${item?.attributes?.tag == "brownAttr" ? "bg-brown-1 text-white" : ""} ${item?.attributes?.tag == "blueAttr" ? "bg-blue-1 text-white" : ""
+                        }  ${item?.attributes?.tag == "yellowAttr" ? "bg-yellow-1 text-dark-1" : ""}
+                    `}
                     >
-                    
+                      {`
+                      ${item?.attributes?.tag == "blackAttr" ? "Breakfast included" : ''} ${item?.attributes?.tag == "yellowAttr" ? "Top Rated" : ''} ${item?.attributes?.tag == "blueAttr" ? "Best Seller" : ''} ${item?.attributes?.tag == "brownAttr" ? "-25% Today" : ''}
+                      `
+                      }
                     </div>
                   </div>
                 </div>
@@ -129,13 +125,13 @@ const Tours = ({ data }) => {
               {/* End .tourCard__image */}
 
               <div className="tourCard__content mt-10">
-                <div className="d-flex items-center lh-14 mb-5">
+                {/* <div className="d-flex items-center lh-14 mb-5">
                   <div className="text-14 text-light-1">
                     3+ hours
                   </div>
                   <div className="size-3 bg-light-1 rounded-full ml-10 mr-10" />
                   <div className="text-14 text-light-1">{item?.attributes.categories.data[0].attributes.name}</div>
-                </div>
+                </div> */}
                 <h4 className="tourCard__title text-dark-1 text-18 lh-16 fw-500">
                   <span>{item?.attributes.title}</span>
                 </h4>
@@ -146,28 +142,29 @@ const Tours = ({ data }) => {
                 <div className="row justify-between items-center pt-15">
                   <div className="col-auto">
                     <div className="d-flex items-center">
-                      <div className="d-flex items-center x-gap-5">
+                      {/* <div className="d-flex items-center x-gap-5">
                         <div className="icon-star text-yellow-1 text-10" />
                         <div className="icon-star text-yellow-1 text-10" />
                         <div className="icon-star text-yellow-1 text-10" />
                         <div className="icon-star text-yellow-1 text-10" />
                         <div className="icon-star text-yellow-1 text-10" />
-                      </div>
+                      </div> */}
                       {/* End ratings */}
 
-                      <div className="text-14 text-light-1 ml-10">
+                      <div className="text-14 text-light-1">
                         3525 reviews
                       </div>
                     </div>
                   </div>
                   <div className="col-auto">
                     <div className="text-14 text-light-1">
-                      From
                       <span className="text-16 fw-500 text-dark-1">
-                        {" "}
-                        US${item?.attributes.price}
+                        $ {item?.attributes.price}
                       </span>
                     </div>
+                  </div>
+                  <div>
+                    {item?.attributes.shortText}
                   </div>
                 </div>
               </div>

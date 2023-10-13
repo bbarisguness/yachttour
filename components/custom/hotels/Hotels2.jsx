@@ -5,30 +5,31 @@ import { hotelsData } from "../../../data/hotels";
 import isTextMatched from "../../../utils/isTextMatched";
 
 const Hotels2 = ({ data }) => {
+
   var settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: data?.data?.length > 4 ? 4 : data?.data?.length,
     slidesToScroll: 1,
     responsive: [
       {
         breakpoint: 992,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: data?.data?.length > 2 ? 2 : data?.data?.length,
         },
       },
 
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: data?.data?.length > 2 ? 2 : data?.data?.length,
         },
       },
       {
         breakpoint: 520,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: data?.data?.length > 1 ? 1 : data?.data?.length,
         },
       },
     ],
@@ -110,8 +111,15 @@ const Hotels2 = ({ data }) => {
                   </div> */}
 
                   <div className="cardImage__leftBadge">
-                    <div className={`py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase ${isTextMatched(item?.tag, "breakfast included") ? "bg-dark-1 text-white" : ""} ${isTextMatched(item?.tag, "best seller") ? "bg-blue-1 text-white" : ""} ${isTextMatched(item?.tag, "top rated") ? "bg-yellow-1 text-dark-1" : ""}`}>
-                      
+                    <div
+                      className={`py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase ${item?.attributes?.tag == "blackAttr" ? "bg-dark-1 text-white" : ""} ${item?.attributes?.tag == "brownAttr" ? "bg-brown-1 text-white" : ""} ${item?.attributes?.tag == "blueAttr" ? "bg-blue-1 text-white" : ""
+                        }  ${item?.attributes?.tag == "yellowAttr" ? "bg-yellow-1 text-dark-1" : ""}
+                    `}
+                    >
+                      {`
+                      ${item?.attributes?.tag == "blackAttr" ? "Breakfast included" : ''} ${item?.attributes?.tag == "yellowAttr" ? "Top Rated" : ''} ${item?.attributes?.tag == "blueAttr" ? "Best Seller" : ''} ${item?.attributes?.tag == "brownAttr" ? "-25% Today" : ''}
+                      `
+                      }
                     </div>
                   </div>
                 </div>
@@ -123,21 +131,23 @@ const Hotels2 = ({ data }) => {
                 <p className="text-light-1 lh-14 text-14 mt-5">
                   {item?.attributes.destinations.data[0].attributes.name} {item?.attributes.destinations.data[1].attributes.name}
                 </p>
-                <div className="d-flex items-center mt-20">
-                  <div className="flex-center bg-blue-1 rounded-4 size-30 text-12 fw-600 text-white">
+                <div style={{ justifyContent: 'space-between' }} className="d-flex items-center mt-20">
+                  {/* <div className="flex-center bg-blue-1 rounded-4 size-30 text-12 fw-600 text-white">
                     4.5
-                  </div>
-                  <div className="text-14 text-dark-1 fw-500 ml-10">
+                  </div> */}
+                  {/* <div className="text-14 text-dark-1 fw-500 ml-10">
                     Exceptional
-                  </div>
-                  <div className="text-14 text-light-1 ml-10">
+                  </div> */}
+                  <div className="text-14 text-light-1 ">
                     3256 reviews
+                  </div>
+                  <div className="text-dark-1 fw-500">
+                    $ {item?.attributes.price}
                   </div>
                 </div>
                 <div className="mt-5">
-                  <div className="fw-500">
-                    Starting from{" "}
-                    <span className="text-blue-1">US${item?.attributes.price}</span>
+                  <div className="fw-400">
+                    {item?.attributes.shortText}
                   </div>
                 </div>
               </div>

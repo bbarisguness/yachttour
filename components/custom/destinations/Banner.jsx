@@ -13,7 +13,7 @@ const Banner = ({ data }) => {
             Explore {data?.data[0]?.attributes.name}
           </h1>
           <div className="text-white">
-            Explore deals, travel guides and things to do in {data?.data[0]?.attributes.name}
+            {data?.data[0]?.attributes.shortText}
           </div>
         </div>
         <div className="absolute d-flex justify-end items-end col-12 h-full z-1 px-10 py-10">

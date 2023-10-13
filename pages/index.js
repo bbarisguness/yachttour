@@ -6,15 +6,17 @@ import Hero from "../components/custom/home/hero/index";
 import Testimonial from "../components/custom/home/testimonials/testimonial";
 import Counter from "../components/custom/home/testimonials/counter";
 import Brand from "../components/custom/home/testimonials/brand";
-import Blog from "../components/custom/home/blog";
+// import Blog from "../components/custom/home/blog";
 import WhyChoose from "../components/custom/home/whyChoose";
 import Header from "../components/custom/home/headers/header";
 import TopDestinations from "../components/custom/destinations/TopDestinations";
 import { getDestinations } from "../services/destination";
 import { getBlogs } from "../services/blog";
 import { getTours } from "../services/tours";
+import { getYachtServices } from "../services/yacht-services";
 
-export default function Home({ destinations, blog, tours }) {
+export default function Home({ destinations, tours }) {
+
   return (
     <>
       <Seo pageTitle="Home-1" />
@@ -39,14 +41,14 @@ export default function Home({ destinations, blog, tours }) {
           <div className="tabs -pills-2 pt-40">
             <div className="tabs__content pt-40">
               <div className="row y-gap-30">
-                <HomeTourList data={tours}/>
+                <HomeTourList data={tours} />
               </div>
             </div>
 
             <div className="row justify-center pt-60">
               <div className="col-auto">
                 <Link
-                  href="#"
+                  href="/tours"
                   className="button px-40 h-50 -outline-blue-1 text-blue-1"
                 >
                   View All <div className="icon-arrow-top-right ml-15" />
@@ -129,7 +131,7 @@ export default function Home({ destinations, blog, tours }) {
         </div>
       </section>
 
-      <section className="layout-pt-md layout-pb-md">
+      {/* <section className="layout-pt-md layout-pb-md">
         <div className="container">
           <div className="row justify-center text-center">
             <div className="col-auto">
@@ -147,7 +149,7 @@ export default function Home({ destinations, blog, tours }) {
             <Blog data={blog} />
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* <CallToActions /> */}
 
@@ -158,7 +160,6 @@ export default function Home({ destinations, blog, tours }) {
 
 export async function getServerSideProps() {
   const destinations = await getDestinations()
-  const blog = await getBlogs()
   const tours = await getTours()
-  return { props: { destinations, blog, tours } }
+  return { props: { destinations, tours } }
 }

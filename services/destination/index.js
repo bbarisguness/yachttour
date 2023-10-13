@@ -10,6 +10,25 @@ async function getDestinations() {
     return data
 }
 
+async function getDestinationsIsNot({ slug }) {
+    const query = qs.stringify({
+        fields: '*',
+        populate: '*',
+        filters: {
+            slug: {
+                $ne: `${slug}`,
+            },
+        },
+    }, {
+        encodeValuesOnly: true,
+    });
+    const response = await fetch(`${apiUrl}/destinations?${query}`, {
+        cache: 'no-store'
+    })
+    const data = await response.json()
+    return data
+}
+
 async function getDestinationDetail({ slug }) {
     const query = qs.stringify({
         fields: '*',
@@ -29,5 +48,24 @@ async function getDestinationDetail({ slug }) {
     return data
 }
 
+async function getSearchDestination({ searchValue }) {
+    const query = qs.stringify({
+        fields: '*',
+        populate: '*',
+        filters: {
+            name: {
+                $startsWithi: `${searchValue}`,
+            },
+        },
+    }, {
+        encodeValuesOnly: true,
+    });
+    const response = await fetch(`${apiUrl}/destinations?${query}`, {
+        cache: 'no-store'
+    })
+    const data = await response.json()
+    return data
+}
 
-export { getDestinations, getDestinationDetail }
+
+export { getDestinations, getDestinationDetail, getSearchDestination, getDestinationsIsNot }

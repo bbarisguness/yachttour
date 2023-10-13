@@ -10,6 +10,24 @@ async function getTours() {
     return data
 }
 
+async function getToursPagination({ page }) {
+    const query = qs.stringify({
+        fields: '*',
+        populate: '*',
+        pagination: {
+            pageSize: 9,
+            page: page,
+        },
+    }, {
+        encodeValuesOnly: true,
+    });
+    const response = await fetch(`${apiUrl}/tours?${query}`, {
+        cache: 'no-store'
+    })
+    const data = await response.json()
+    return data
+}
+
 async function getTourDetail({ tourSlug }) {
     const query = qs.stringify({
         fields: '*',
@@ -78,4 +96,4 @@ async function getTourCategory({ category }) {
 }
 
 
-export { getTours, getTourDetail, getTourCategory, getTourDestination }
+export { getTours, getTourDetail, getTourCategory, getTourDestination, getToursPagination }

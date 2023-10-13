@@ -4,8 +4,23 @@ import Copyright from "./Copyright";
 import FooterContent from "./FooterContent";
 import Social from "../../common/social/Social";
 import Subscribe from "./Subscribe";
+import { getYachtServices } from "../../../../services/yacht-services";
+import { getDestinations } from "../../../../services/destination";
+import { useEffect, useState } from "react";
 
-const index = () => {
+export default function Footer() {
+
+  const [yachtServices, setYachtServices] = useState([])
+  const [destinations, setDestinations] = useState([])
+  useEffect(() => {
+    getYachtServices().then((data) => {
+      setYachtServices(data)
+    })
+    getDestinations().then((data) => {
+      setDestinations(data)
+    })
+  }, [])
+
   return (
     <footer className="footer -type-2 bg-dark-3 text-white">
       <div className="container">
@@ -41,15 +56,10 @@ const index = () => {
 
             <div className="col-lg-6">
               <div className="row y-gap-30">
-                <div className="col-12">
-                  <h5 className="text-16 fw-500 mb-15">
-                    Get Updates &amp; More
-                  </h5>
-                  <Subscribe />
-                </div>
+
                 {/* End .col */}
 
-                <FooterContent />
+                <FooterContent yacht={yachtServices} data={destinations} />
               </div>
               {/* End .row */}
             </div>
@@ -67,6 +77,4 @@ const index = () => {
       {/* End container */}
     </footer>
   );
-};
-
-export default index;
+}

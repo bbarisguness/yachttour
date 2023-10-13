@@ -5,7 +5,7 @@ const Block1 = ({ data }) => {
     <>
       <div className="col-lg-5">
         <h2 className="text-30 fw-600">{data?.data?.attributes.title}</h2>
-        <p className="mt-5">{data?.data?.attributes.shortText}</p>
+        {/* <p className="mt-5">{data?.data?.attributes.shortText}</p> */}
         <p style={{ whiteSpace: 'pre-line' }} className="text-dark-1 mt-60 lg:mt-40 md:mt-20">
           {data?.data?.attributes.longText}
         </p>

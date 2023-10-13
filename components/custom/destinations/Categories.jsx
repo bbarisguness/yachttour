@@ -1,35 +1,52 @@
+import { useEffect, useState } from "react";
 import Slider from "react-slick";
+import { getCategories } from "../../../services/category";
 
 const Categories = () => {
+  const [count, setCount] = useState(1)
+  // const [categories, setCategories] = useState([])
+
+  // useEffect(() => {
+  //   getCategories().then((data) => {
+  //     setCategories(data)
+  //   })
+  // }, [])
+
+
   var settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 7,
+    // slidesToShow: count > 7 ? 7 : count,
+    slidesToShow: 3,
     slidesToScroll: 1,
     responsive: [
       {
         breakpoint: 1199,
         settings: {
-          slidesToShow: 5,
+          // slidesToShow: count > 5 ? 5 : count,
+          slidesToShow: 3,
         },
       },
       {
         breakpoint: 992,
         settings: {
-          slidesToShow: 4,
+          // slidesToShow: count > 4 ? 4 : count,
+          slidesToShow: 3,
         },
       },
 
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 4,
+          // slidesToShow: count > 4 ? 4 : count,
+          slidesToShow: 3,
         },
       },
       {
         breakpoint: 520,
         settings: {
+          // slidesToShow: count > 2 ? 2 : count,
           slidesToShow: 2,
         },
       },
@@ -47,14 +64,24 @@ const Categories = () => {
   ];
   return (
     <Slider {...settings}>
-      {catContent.map((item) => (
-        <div className="col" key={item.id}>
-          <button className="d-flex flex-column justify-center px-20 py-15 rounded-4 border-light text-16 lh-14 fw-500 col-12">
-            <i className={`${item.icon} text-25 mb-10`} />
-            {item.catName}
-          </button>
-        </div>
-      ))}
+      <div className="col">
+        <button className="d-flex flex-column justify-center px-20 py-15 rounded-4 border-light text-16 lh-14 fw-500 col-12">
+          <i className="icon-destination text-25 mb-10" />
+          Tour
+        </button>
+      </div>
+      <div className="col">
+        <button className="d-flex flex-column justify-center px-20 py-15 rounded-4 border-light text-16 lh-14 fw-500 col-12">
+          <i className="icon-yatch text-25 mb-10" />
+          Yacht
+        </button>
+      </div>
+      <div className="col">
+        <button className="d-flex flex-column justify-center px-20 py-15 rounded-4 border-light text-16 lh-14 fw-500 col-12">
+          <i className="icon-ski text-25 mb-10" />
+          Gulet
+        </button>
+      </div>
     </Slider>
   );
 };
