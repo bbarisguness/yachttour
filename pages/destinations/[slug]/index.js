@@ -429,7 +429,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                             <Overview data={tourDetail} />
                                         </div>
 
-                                        <div className="col-12">
+                                        <div id="facilities" className="col-12">
                                             <h3 className="text-22 fw-500 border-top-light pt-40">Facilities of this Cruise</h3>
                                             <div className="row x-gap-40 y-gap-40 pt-20">
                                                 <Facilities />
@@ -685,7 +685,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                             {/* End .row */}
 
                             <div className="row x-gap-20 y-gap-20 items-center pt-20 item_gap-x10">
-                                <Categories  />
+                                <Categories />
                             </div>
                             {/* End .row */}
 

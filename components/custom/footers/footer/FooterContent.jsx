@@ -2,7 +2,6 @@ import Link from "next/link";
 import footerDataContent from "../../../../data/footerContent";
 
 export default function FooterContent({ data, yacht }) {
-  console.log(yacht);
   return (
     <>
       {footerDataContent.map((item) => (

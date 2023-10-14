@@ -27,7 +27,6 @@ const Pagination = ({ data }) => {
     } else {
       router.replace('/tours')
     }
-    console.log(currentPage);
   }, [currentPage])
 
   const totalPages = data?.pagination?.pageCount;
