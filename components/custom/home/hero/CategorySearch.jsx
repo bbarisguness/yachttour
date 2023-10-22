@@ -15,6 +15,13 @@ const CategorySearch = () => {
   const handleOptionClick = (item) => {
     setSearchValue(item.attributes.name);
     setSelectedItem(item);
+    const a = JSON.parse(localStorage.getItem('i')) || '';
+    const object = {
+      l: a.l,
+      c: item.attributes.slug,
+      p: a.p
+    }
+    localStorage.setItem('i', JSON.stringify(object));
   };
 
   return (
@@ -56,7 +63,7 @@ const CategorySearch = () => {
                       <div className="text-15 lh-0 fw-500 js-search-option-target">
                         {item.attributes.name}
                       </div>
-                      
+
                     </div>
                   </div>
                 </li>

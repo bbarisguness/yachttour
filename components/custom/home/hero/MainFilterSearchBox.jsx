@@ -1,10 +1,41 @@
-import Router from "next/router";
+import { useRouter } from "next/router";
 import DateSearch from "./DateSearch";
 import GuestSearch from "./GuestSearch";
 import LocationSearch from "./LocationSearch";
 import CategorySearch from "./CategorySearch"
+import { useEffect } from "react";
 
 const MainFilterSearchBox = () => {
+  const router = useRouter()
+  const query = router.query
+
+  useEffect(() => {
+    const object = {
+      l: '',
+      c: '',
+      p: ''
+    }
+    localStorage.setItem('i', JSON.stringify(object));
+  }, [])
+
+  function searchHandle() {
+    const a = JSON.parse(localStorage.getItem('i')) || '';
+    if (a.p == "") {
+      router.replace({ pathname: '/tours', query: { ...query, dest: a.l, cat: a.c } })
+    }
+    else if (a.p <= 5) {
+      router.replace({ pathname: '/tours', query: { ...query, dest: a.l, cat: a.c, e: '0-5' } })
+    }
+    else if (a.p <= 10) {
+      router.replace({ pathname: '/tours', query: { ...query, dest: a.l, cat: a.c, e: '5-10' } })
+    }
+    else if (a.p <= 20) {
+      router.replace({ pathname: '/tours', query: { ...query, dest: a.l, cat: a.c, e: '10-20' } })
+    }
+    else if (a.p > 20) {
+      router.replace({ pathname: '/tours', query: { ...query, dest: a.l, cat: a.c, e: '20' } })
+    }
+  }
   return (
     <>
       <div className="position-relative mt-30 md:mt-20 js-tabs-content">
@@ -26,7 +57,7 @@ const MainFilterSearchBox = () => {
             <div className="button-item">
               <button
                 className="mainSearch__submit button -dark-1 h-60 px-35 col-12 rounded-100 bg-blue-1 text-white"
-                onClick={() => Router.push("/hotel/hotel-list-v1")}
+                onClick={() => searchHandle()}
               >
                 <i className="icon-search text-20 mr-10" />
                 Search

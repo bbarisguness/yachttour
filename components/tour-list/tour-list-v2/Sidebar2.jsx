@@ -10,37 +10,10 @@ import WidthTypes from "../sidebar/WidthTypes";
 import HpTypes from "../sidebar/HpTypes";
 import YearSlider from "../sidebar/YearSlider";
 
-const Sidebar = () => {
+const Sidebar2 = () => {
   return (
     <>
-      {/* <div className="sidebar__item -no-border">
-        <div className="px-20 py-20 bg-light-2 rounded-4">
-          <h5 className="text-18 fw-500 mb-10">Search Tours</h5>
-
-          <div className="row y-gap-20 pt-20">
-            <MainFilterSearchBox />
-          </div>
-        </div>
-      </div> */}
-
-      <div className="sidebar__item -no-border">
-        <h5 className="text-18 fw-500 mb-10">Destination</h5>
-        <div className="sidebar-checkbox">
-          <DestinationTypes />
-        </div>
-        {/* End Sidebar-checkbox */}
-      </div>
-
-      <div className="sidebar__item ">
-        <h5 className="text-18 fw-500 mb-10">Category</h5>
-        <div className="sidebar-checkbox">
-          <CategoryTypes />
-        </div>
-        {/* End Sidebar-checkbox */}
-      </div>
-      {/* End popular filter */}
-
-      <div className="sidebar__item pb-30">
+      <div className="sidebar__item pb-30 -no-border">
         <h5 className="text-18 fw-500 mb-10">Price</h5>
         <div className="row x-gap-10 y-gap-30">
           <div className="col-12">
@@ -89,4 +62,4 @@ const Sidebar = () => {
   );
 };
 
-export default Sidebar;
+export default Sidebar2;

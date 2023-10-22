@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Slider from "react-slick";
 import { getCategories } from "../../../services/category";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Categories = () => {
   const [count, setCount] = useState(1)
@@ -11,6 +13,9 @@ const Categories = () => {
   //     setCategories(data)
   //   })
   // }, [])
+
+  const router = useRouter()
+  const slug = router.query.slug[0]
 
 
   var settings = {
@@ -65,22 +70,22 @@ const Categories = () => {
   return (
     <Slider {...settings}>
       <div className="col">
-        <button className="d-flex flex-column justify-center px-20 py-15 rounded-4 border-light text-16 lh-14 fw-500 col-12">
+        <Link href={`/destinations/${slug}/tour`} className="d-flex flex-column justify-center px-20 py-15 rounded-4 border-light text-16 lh-14 fw-500 col-12">
           <i className="icon-destination text-25 mb-10" />
           Tour
-        </button>
+        </Link>
       </div>
       <div className="col">
-        <button className="d-flex flex-column justify-center px-20 py-15 rounded-4 border-light text-16 lh-14 fw-500 col-12">
+        <Link href={`/destinations/${slug}/yacht`} className="d-flex flex-column justify-center px-20 py-15 rounded-4 border-light text-16 lh-14 fw-500 col-12">
           <i className="icon-yatch text-25 mb-10" />
           Yacht
-        </button>
+        </Link>
       </div>
       <div className="col">
-        <button className="d-flex flex-column justify-center px-20 py-15 rounded-4 border-light text-16 lh-14 fw-500 col-12">
+        <Link href={`/destinations/${slug}/gulet`} className="d-flex flex-column justify-center px-20 py-15 rounded-4 border-light text-16 lh-14 fw-500 col-12">
           <i className="icon-ski text-25 mb-10" />
           Gulet
-        </button>
+        </Link>
       </div>
     </Slider>
   );

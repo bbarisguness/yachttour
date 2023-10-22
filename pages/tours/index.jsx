@@ -3,11 +3,10 @@ import TopHeaderFilter from "../../components/tour-list/tour-list-v2/TopHeaderFi
 import TourProperties from "../../components/tour-list/tour-list-v2/TourProperties";
 import Pagination from "../../components/tour-list/common/Pagination";
 import Sidebar from "../../components/tour-list/tour-list-v2/Sidebar";
-import { getTours, getToursPagination } from "../../services/tours";
+import { getTourFilter } from "../../services/tours";
 import Seo from "../../components/custom/common/Seo";
 import Header from "../../components/custom/home/headers/header2/header";
 import Footer from "../../components/custom/footers/footer";
-import { useRouter } from 'next/router';
 
 export default function Tours({ tours }) {
     return (
@@ -60,7 +59,7 @@ export default function Tours({ tours }) {
                         {/* End col */}
 
                         <div className="col-xl-9 ">
-                            <TopHeaderFilter />
+                            <TopHeaderFilter data={tours} />
                             <div className="mt-30"></div>
                             {/* End mt--30 */}
                             <div className="row y-gap-30">
@@ -84,6 +83,14 @@ export default function Tours({ tours }) {
 
 export async function getServerSideProps({ query }) {
     const page = query.page
-    const tours = await getToursPagination({ page })
+    const cat = query.cat
+    const dest = query.dest
+    const price = query.p
+    const person = query.e
+    const width = query.w
+    const hp = query.hp
+    const year = query.y
+    const sort = query.sort
+    const tours = await getTourFilter({ page, cat, dest, price, person, width, hp, year, sort })
     return { props: { tours } }
 }

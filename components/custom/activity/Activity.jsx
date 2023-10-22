@@ -76,7 +76,7 @@ const Activity = ({ data }) => {
             data-aos-delay={index * 100}
           >
             <Link
-              href={`/destinations/${item.attributes.destinations.data[0].attributes.slug}#${item?.attributes.categories.data[0].attributes.slug}/${item.attributes.slug}`}
+              href={`/destinations/${item.attributes.destinations.data[0].attributes.slug}/${item?.attributes.category.data.attributes.slug}/${item.attributes.slug}`}
               className="activityCard -type-1 rounded-4 hover-inside-slider"
             >
               <div className="activityCard__image position-relative">

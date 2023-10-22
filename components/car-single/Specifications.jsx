@@ -1,12 +1,12 @@
-const Specifications = () => {
+const Specifications = ({ data }) => {
   const speciContent = [
     { id: 1, name: "Make", content: "Honda" },
     { id: 2, name: "Model", content: "Honda" },
-    { id: 3, name: "Made Year", content: "2022" },
-    { id: 4, name: "Mileage", content: "120,556" },
-    { id: 5, name: "Mileage", content: "120,556" },
+    { id: 3, name: "Made Year", content: data?.data[0]?.attributes?.year },
+    { id: 4, name: "Cabin", content: data?.data[0]?.attributes?.cabin },
+    { id: 5, name: "Width", content: data?.data[0]?.attributes?.width },
     { id: 6, name: "Version", content: "2.0 Turbo" },
-    { id: 7, name: "Horsepower (hp)", content: "200" },
+    { id: 7, name: "Horsepower (hp)", content: data?.data[0]?.attributes?.enginehp },
     { id: 8, name: "Transmission", content: "Auto" },
     { id: 9, name: "Condition", content: "New" },
   ];

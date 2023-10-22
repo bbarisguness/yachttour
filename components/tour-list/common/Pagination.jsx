@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 const Pagination = ({ data }) => {
   const router = useRouter()
   const query = router.query;
+
   const [currentPage, setCurrentPage] = useState(() => {
     if (query?.page && !(query.page <= 0)) {
       return parseInt(query?.page)
@@ -13,19 +14,25 @@ const Pagination = ({ data }) => {
   })
 
   useEffect(() => {
-    if (currentPage !== 1) {
+    if (currentPage !== 1 && parseInt(query?.page) !== 1) {
       if (parseInt(query?.page) !== currentPage && !(parseInt(query?.page) <= 0)) {
         setCurrentPage(`${parseInt(query?.page)}`)
-        router.replace({ query: `page=${currentPage}` })
+        // router.replace({ query: `page=${currentPage}` })
+        router.replace({ query: { ...query, page: currentPage } })
       }
+    } else {
+      setCurrentPage(1)
     }
   }, [query])
 
   useEffect(() => {
     if (currentPage !== 1) {
-      router.replace({ query: `page=${currentPage}` })
+      // router.replace({ query: `page=${currentPage}` })
+      router.replace({ query: { ...query, page: currentPage } })
     } else {
-      router.replace('/tours')
+      // router.replace('/tours')
+      delete router.query.page
+      router.replace({ query: { ...query } })
     }
   }, [currentPage])
 
@@ -100,11 +107,11 @@ const Pagination = ({ data }) => {
             {renderPages()}
           </div>
 
-          <div className="text-center mt-30 md:mt-10">
+          {/* <div className="text-center mt-30 md:mt-10">
             <div className="text-14 text-light-1">
               1 – 20 of 300+ properties found
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className="col-auto md:order-2">

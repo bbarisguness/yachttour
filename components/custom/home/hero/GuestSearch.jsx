@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 const counters = [
   { name: "Person", defaultValue: 1 },
 ];
@@ -15,6 +15,16 @@ const Counter = ({ name, defaultValue, onCounterChange }) => {
       onCounterChange(name, count - 1);
     }
   };
+
+  useEffect(() => {
+    const a = JSON.parse(localStorage.getItem('i')) || '';
+    const object = {
+      l: a.l,
+      c: a.c,
+      p: count
+    }
+    localStorage.setItem('i', JSON.stringify(object));
+  }, [count])
 
   return (
     <>

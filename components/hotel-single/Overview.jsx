@@ -6,7 +6,7 @@ const Overview = ({ data }) => {
     <>
       <h3 className="text-22 fw-500 pt-40 border-top-light">Overview</h3>
       <p style={{ whiteSpace: 'pre-line' }} className="text-dark-1 text-15 mt-20">
-        {data?.data[0].attributes.longText}
+        {data?.data[0]?.attributes.longText}
       </p>
       <div className="pt-40  mb-30">
         <div className="col-auto">
@@ -31,7 +31,7 @@ const Overview = ({ data }) => {
 
       <div>
         <h3 className='text-22 fw-500 pt-30 mt-40 border-top-light'>Specifications</h3>
-        <Specifications />
+        <Specifications data={data} />
       </div>
     </>
   );

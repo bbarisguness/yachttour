@@ -15,6 +15,13 @@ const SearchBar = () => {
   const handleOptionClick = (item) => {
     setSearchValue(item.attributes.name);
     setSelectedItem(item);
+    const a = JSON.parse(localStorage.getItem('i')) || '';
+    const object = {
+      l: item.attributes.slug,
+      c: a.c,
+      p: a.p
+    }
+    localStorage.setItem('i', JSON.stringify(object));
   };
 
   return (
