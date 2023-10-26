@@ -1,44 +1,33 @@
 import Image from "next/image";
 
-const BookingDetails = () => {
+const BookingDetails = ({ dataa, a }) => {
   return (
     <div className="px-30 py-30 border-light rounded-4">
-      <div className="text-20 fw-500 mb-30">Your booking details</div>
+      <div className="text-20 fw-500 mb-30">Your tour details</div>
       <div className="row x-gap-15 y-gap-20">
         <div className="col-auto">
           <Image
             width={140}
             height={140}
-            src="/img/backgrounds/1.png"
+            src={`http://3.74.191.230:1337${dataa?.attributes?.images?.data[0]?.attributes?.formats?.medium?.url}`}
             alt="image"
             className="size-140 rounded-4 object-cover"
           />
         </div>
         {/* End .col */}
         <div className="col">
-          <div className="d-flex x-gap-5 pb-10">
-            <i className="icon-star text-yellow-1 text-10" />
-            <i className="icon-star text-yellow-1 text-10" />
-            <i className="icon-star text-yellow-1 text-10" />
-            <i className="icon-star text-yellow-1 text-10" />
-            <i className="icon-star text-yellow-1 text-10" />
-          </div>
-          {/* End ratings */}
           <div className="lh-17 fw-500">
-            Great Northern Hotel, a Tribute Portfolio Hotel, London
+            {dataa?.attributes?.title}
           </div>
-          <div className="text-14 lh-15 mt-5">Westminster Borough, London</div>
+          <div className="text-14 lh-15 mt-5">{dataa?.attributes?.destinations?.data[0]?.attributes?.name}{dataa?.attributes?.destinations?.data[1]?.attributes?.name && ','} {dataa?.attributes?.destinations?.data[1]?.attributes?.name}</div>
           <div className="row x-gap-10 y-gap-10 items-center pt-10">
             <div className="col-auto">
               <div className="d-flex items-center">
-                <div className="size-30 flex-center bg-blue-1 rounded-4">
-                  <div className="text-12 fw-600 text-white">4.8</div>
-                </div>
-                <div className="text-14 fw-500 ml-10">Exceptional</div>
+                <div className="text-14 fw-400">3,014 reviews</div>
               </div>
             </div>
-            <div className="col-auto">
-              <div className="text-14">3,014 reviews</div>
+            <div style={{ justifyContent: 'space-between' }} className="col-auto">
+              <div className="text-14 fw-500 ml-20">$ {dataa?.attributes?.price}</div>
             </div>
           </div>
         </div>
@@ -47,43 +36,28 @@ const BookingDetails = () => {
       {/* End .row */}
 
       <div className="border-top-light mt-30 mb-20" />
-      <div className="row y-gap-20 justify-between">
+      <div className="row y-gap-20 justify-between items-center">
         <div className="col-auto">
-          <div className="text-15">Check-in</div>
-          <div className="fw-500">Thu 21 Apr 2022</div>
-          <div className="text-15 text-light-1">15:00 – 23:00</div>
+          <div className="text-15">Check in:</div>
+          <div className="fw-400">{a?.m}.{a?.d}.{a?.y}</div>
         </div>
-        <div className="col-auto md:d-none">
-          <div className="h-full w-1 bg-border" />
-        </div>
-        <div className="col-auto text-right md:text-left">
-          <div className="text-15">Check-out</div>
-          <div className="fw-500">Sat 30 Apr 2022</div>
-          <div className="text-15 text-light-1">01:00 – 11:00</div>
+        <div className="col-auto">
+          <div className="text-15">{a?.t}</div>
         </div>
       </div>
       {/* End row */}
 
       <div className="border-top-light mt-30 mb-20" />
       <div>
-        <div className="text-15">Total length of stay:</div>
-        <div className="fw-500">9 nights</div>
-        <a href="#" className="text-15 text-blue-1 underline">
-          Travelling on different dates?
-        </a>
+        <div className="text-15">Person:</div>
+        <div className="fw-500">{a?.p} person</div>
       </div>
 
       <div className="border-top-light mt-30 mb-20" />
       <div className="row y-gap-20 justify-between items-center">
         <div className="col-auto">
-          <div className="text-15">You selected:</div>
-          <div className="fw-500">Superior Double Studio</div>
-          <a href="#" className="text-15 text-blue-1 underline">
-            Change your selection
-          </a>
-        </div>
-        <div className="col-auto">
-          <div className="text-15">1 room, 4 adult</div>
+          <div className="text-15">Total price:</div>
+          <div className="fw-500">${a?.p * dataa?.attributes?.price}</div>
         </div>
       </div>
       {/* End row */}

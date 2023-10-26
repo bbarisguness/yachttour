@@ -47,7 +47,7 @@ const HomeTourList = ({ data }) => {
           data-aos-delay={index * 100}
         >
           <Link
-            href={`/destinations/${item?.attributes.destinations.data[0].attributes.slug}/${item?.attributes.category.data.attributes.slug}/${item?.attributes.slug}`}
+            href={`/destinations/${item?.attributes?.destinations?.data[0]?.attributes?.slug}/${item?.attributes?.category?.data?.attributes?.slug}/${item?.attributes?.slug}`}
             className="hotelsCard -type-1 hover-inside-slider"
           >
             <div className="hotelsCard__image">
@@ -58,14 +58,14 @@ const HomeTourList = ({ data }) => {
                   nextArrow={<ArrowSlick type="next" />}
                   prevArrow={<ArrowSlick type="prev" />}
                 >
-                  {item?.attributes.images?.data.map((slide, i) => (
+                  {item?.attributes?.images?.data.map((slide, i) => (
                     <div className="cardImage ratio ratio-1:1" key={i}>
                       <div className="cardImage__content ">
                         <Image
                           width={300}
                           height={300}
                           className="rounded-4 col-12 js-lazy"
-                          src={`${'http://3.74.191.230:1337'}${slide.attributes.formats.medium.url}`}
+                          src={`${'http://3.74.191.230:1337'}${slide?.attributes?.formats?.medium?.url}`}
                           alt="image"
                         />
                       </div>
@@ -95,21 +95,21 @@ const HomeTourList = ({ data }) => {
             </div>
             <div className="hotelsCard__content mt-10">
               <h4 className="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
-                <span>{item?.attributes.title}</span>
+                <span>{item?.attributes?.title}</span>
               </h4>
               <p className="text-light-1 lh-14 text-14 mt-5">
-                {item?.attributes.destinations?.data[0].attributes.name} {item?.attributes.destinations?.data[1].attributes.name}
+                {item?.attributes?.destinations?.data[0]?.attributes?.name} {item?.attributes?.destinations?.data[1]?.attributes?.name}
               </p>
               <div style={{ justifyContent: 'space-between' }} className="d-flex items-center mt-20">
                 <div className="text-14 text-light-1">
                   3252 reviews
                 </div>
                 <div className="fw-500">
-                  $ {item?.attributes.price}
+                  $ {item?.attributes?.price}
                 </div>
               </div>
               <div className="mt-5">
-                {item?.attributes.shortText}
+                {item?.attributes?.shortText}
               </div>
             </div>
           </Link>

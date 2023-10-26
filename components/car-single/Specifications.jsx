@@ -13,9 +13,9 @@ const Specifications = ({ data }) => {
   return (
     <div className="row y-gap-30 pt-15">
       {speciContent.map((item) => (
-        <div className="col-sm-4" key={item.id}>
-          <div className="fw-500">{item.name}</div>
-          <div className="text-15">{item.content}</div>
+        <div className="col-sm-4" key={item?.id}>
+          <div className="fw-500">{item?.name}</div>
+          <div className="text-15">{item?.content}</div>
         </div>
       ))}
     </div>

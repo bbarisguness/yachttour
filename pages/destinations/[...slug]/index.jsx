@@ -150,7 +150,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                             <div className="row y-gap-20 justify-between items-end">
                                 <div className="col-auto">
                                     <div className="sectionTitle -md">
-                                        <h2 className="sectionTitle__title">Tours in {data?.data[0].attributes?.name}</h2>
+                                        <h2 className="sectionTitle__title">Tours in {data?.data[0]?.attributes?.name}</h2>
                                         <p className=" sectionTitle__text mt-5 sm:mt-0">
                                             Interdum et malesuada fames ac ante ipsum
                                         </p>
@@ -182,7 +182,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                             <div className="row y-gap-20 justify-between items-end">
                                 <div className="col-auto">
                                     <div className="sectionTitle -md">
-                                        <h2 className="sectionTitle__title">Yachts in {data?.data[0].attributes?.name}</h2>
+                                        <h2 className="sectionTitle__title">Yachts in {data?.data[0]?.attributes?.name}</h2>
                                         <p className=" sectionTitle__text mt-5 sm:mt-0">
                                             Interdum et malesuada fames ac ante ipsum
                                         </p>
@@ -553,7 +553,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                     <div className="col-auto">
                                         <div className="d-flex items-center text-15 text-light-1">
                                             <i className="icon-location-2 text-16 mr-5" />
-                                            {tourDetail?.data[0]?.attributes?.destinations.data[0].attributes.name}, {tourDetail?.data[0]?.attributes?.destinations.data[1].attributes.name}
+                                            {tourDetail?.data[0]?.attributes?.destinations?.data[0]?.attributes?.name}{tourDetail?.data[0]?.attributes?.destinations?.data[1]?.attributes?.name && ','} {tourDetail?.data[0]?.attributes?.destinations?.data[1]?.attributes?.name}
                                         </div>
                                     </div>
                                     <div className="col-auto">
@@ -569,7 +569,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                         <div className="text-14">
                                             From{" "}
                                             <span className="text-22 text-dark-1 fw-500">
-                                                US${tourDetail?.data[0]?.attributes.price}
+                                                US${tourDetail?.data[0]?.attributes?.price}
                                             </span>
                                         </div>
                                     </div>
@@ -591,14 +591,14 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                             <div className="galleryGrid -type-1 pt-30">
                                 <div className="galleryGrid__item relative d-flex">
                                     <Item
-                                        original={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[0].attributes?.url}`}
-                                        thumbnail={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[0].attributes?.url}`}
+                                        original={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[0]?.attributes?.url}`}
+                                        thumbnail={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[0]?.attributes?.url}`}
                                         width={660}
                                         height={660}
                                     >
                                         {({ ref, open }) => (
                                             <img
-                                                src={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[0].attributes?.url}`}
+                                                src={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[0]?.attributes?.url}`}
                                                 ref={ref}
                                                 onClick={open}
                                                 alt="image"
@@ -620,8 +620,8 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
 
                                     <div className="galleryGrid__item">
                                         <Item
-                                            original={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[1].attributes?.url}`}
-                                            thumbnail={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[1].attributes?.url}`}
+                                            original={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[1]?.attributes?.url}`}
+                                            thumbnail={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[1]?.attributes?.url}`}
                                             width={450}
                                             height={375}
                                         >
@@ -629,7 +629,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                                 <img
                                                     ref={ref}
                                                     onClick={open}
-                                                    src={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[1].attributes?.url}`}
+                                                    src={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[1]?.attributes?.url}`}
                                                     alt="image"
                                                     className="rounded-4"
                                                     role="button"
@@ -646,8 +646,8 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
 
                                     <div className="galleryGrid__item">
                                         <Item
-                                            original={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[2].attributes?.url}`}
-                                            thumbnail={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[2].attributes?.url}`}
+                                            original={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[2]?.attributes?.url}`}
+                                            thumbnail={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[2]?.attributes?.url}`}
                                             width={450}
                                             height={375}
                                         >
@@ -655,7 +655,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                                 <img
                                                     ref={ref}
                                                     onClick={open}
-                                                    src={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[2].attributes?.url}`}
+                                                    src={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[2]?.attributes?.url}`}
                                                     alt="image"
                                                     className="rounded-4"
                                                     role="button"
@@ -671,8 +671,8 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
 
                                     <div className="galleryGrid__item">
                                         <Item
-                                            original={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[3].attributes?.url}`}
-                                            thumbnail={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[3].attributes?.url}`}
+                                            original={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[3]?.attributes?.url}`}
+                                            thumbnail={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[3]?.attributes?.url}`}
                                             width={450}
                                             height={375}
                                         >
@@ -680,7 +680,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                                 <img
                                                     ref={ref}
                                                     onClick={open}
-                                                    src={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[3].attributes?.url}`}
+                                                    src={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[3]?.attributes?.url}`}
                                                     alt="image"
                                                     className="rounded-4"
                                                     role="button"
@@ -695,14 +695,14 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                     tourDetail?.data[0]?.attributes?.images?.data.length >= 5 &&
                                     <div className="galleryGrid__item relative d-flex">
                                         <img
-                                            src={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[4].attributes?.url}`}
+                                            src={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[4]?.attributes?.url}`}
                                             alt="image"
                                             className={`rounded-4 ${style['customImage']}`}
                                         />
                                         <div className="absolute px-10 py-10 col-12 h-full d-flex justify-end items-end">
                                             <Item
-                                                original={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[4].attributes?.url}`}
-                                                thumbnail={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[4].attributes?.url}`}
+                                                original={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[4]?.attributes?.url}`}
+                                                thumbnail={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[4]?.attributes?.url}`}
                                                 width={450}
                                                 height={375}
                                             >
@@ -722,6 +722,34 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                 }
                                 {/* End .galleryGrid__item */}
                             </div>
+                            {
+                                tourDetail?.data[0]?.attributes?.images?.data.map((item, index) => {
+                                    return (
+                                        <div key={index} style={{ display: 'none' }}>
+                                            {
+                                                index > 4 &&
+                                                <Item
+                                                    original={`${`http://3.74.191.230:1337`}${item?.attributes?.url}`}
+                                                    thumbnail={`${`http://3.74.191.230:1337`}${item?.attributes?.url}`}
+                                                    width={450}
+                                                    height={375}
+                                                >
+                                                    {({ ref, open }) => (
+                                                        <img
+                                                            ref={ref}
+                                                            onClick={open}
+                                                            src={`${`http://3.74.191.230:1337`}${item?.attributes?.url}`}
+                                                            alt="image"
+                                                            className="rounded-4"
+                                                            role="button"
+                                                        />
+                                                    )}
+                                                </Item>
+                                            }
+                                        </div>
+                                    )
+                                })
+                            }
                         </Gallery>
                     </div >
                     {/* End .container */}

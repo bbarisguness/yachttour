@@ -1,7 +1,31 @@
 import Link from "next/link";
 import BookingDetails from "./sidebar/BookingDetails";
+import { useEffect, useState } from "react";
 
-const CustomerInfo = () => {
+const CustomerInfo = ({ dataa, a }) => {
+  const [b, setB] = useState()
+  const [name, setName] = useState('')
+  const [surname, setSurname] = useState('')
+  const [email, setEmail] = useState('')
+  const [phone, setPhone] = useState('')
+  const [note, setNote] = useState('')
+
+  useEffect(() => {
+    setB(JSON.parse(localStorage.getItem('a')))
+
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem('a', JSON.stringify({ n: b?.n, s: b?.s, e: b?.e, p: b?.p, t: b?.t }));
+  }, [b])
+
+  useEffect(() => {
+    if (name || surname || email || phone || note) {
+      localStorage.setItem('a', JSON.stringify({ n: name, s: surname, e: email, p: phone, t: note }));
+    }
+  }, [name, surname, email, phone, note])
+
+
   return (
     <>
       <div className="col-xl-7 col-lg-8 mt-30">
@@ -19,17 +43,24 @@ const CustomerInfo = () => {
         </h2>
 
         <div className="row x-gap-20 y-gap-20 pt-20">
-          <div className="col-12">
+          <div className="col-md-6">
             <div className="form-input ">
-              <input type="text" required />
-              <label className="lh-1 text-16 text-light-1">Full Name</label>
+              <input onChange={(e) => setName(e.target.value)} type="text" required />
+              <label className="lh-1 text-16 text-light-1">Name</label>
+            </div>
+          </div>
+
+          <div className="col-md-6">
+            <div className="form-input ">
+              <input onChange={(e) => setSurname(e.target.value)} type="text" required />
+              <label className="lh-1 text-16 text-light-1">Surname</label>
             </div>
           </div>
           {/* End col-12 */}
 
           <div className="col-md-6">
             <div className="form-input ">
-              <input type="text" required />
+              <input onChange={(e) => setEmail(e.target.value)} type="text" required />
               <label className="lh-1 text-16 text-light-1">Email</label>
             </div>
           </div>
@@ -37,7 +68,7 @@ const CustomerInfo = () => {
 
           <div className="col-md-6">
             <div className="form-input ">
-              <input type="text" required />
+              <input onChange={(e) => setPhone(e.target.value)} type="text" required />
               <label className="lh-1 text-16 text-light-1">Phone Number</label>
             </div>
           </div>
@@ -45,47 +76,7 @@ const CustomerInfo = () => {
 
           <div className="col-12">
             <div className="form-input ">
-              <input type="text" required />
-              <label className="lh-1 text-16 text-light-1">
-                Address line 1
-              </label>
-            </div>
-          </div>
-          {/* End col-12 */}
-
-          <div className="col-12">
-            <div className="form-input ">
-              <input type="text" required />
-              <label className="lh-1 text-16 text-light-1">
-                Address line 2
-              </label>
-            </div>
-          </div>
-          {/* End col-12 */}
-
-          <div className="col-md-6">
-            <div className="form-input ">
-              <input type="text" required />
-              <label className="lh-1 text-16 text-light-1">
-                State/Province/Region
-              </label>
-            </div>
-          </div>
-          {/* End col-12 */}
-
-          <div className="col-md-6">
-            <div className="form-input ">
-              <input type="text" required />
-              <label className="lh-1 text-16 text-light-1">
-                ZIP code/Postal code
-              </label>
-            </div>
-          </div>
-          {/* End col-12 */}
-
-          <div className="col-12">
-            <div className="form-input ">
-              <textarea required rows={6} defaultValue={""} />
+              <textarea onChange={(e) => setNote(e.target.value)} required rows={6} defaultValue={""} />
               <label className="lh-1 text-16 text-light-1">
                 Special Requests
               </label>
@@ -112,7 +103,7 @@ const CustomerInfo = () => {
 
       <div className="col-xl-5 col-lg-4 mt-30">
         <div className="booking-sidebar">
-          <BookingDetails />
+          <BookingDetails a={a} dataa={dataa} />
         </div>
       </div>
       {/*  */}

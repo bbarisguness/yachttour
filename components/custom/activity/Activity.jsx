@@ -76,7 +76,7 @@ const Activity = ({ data }) => {
             data-aos-delay={index * 100}
           >
             <Link
-              href={`/destinations/${item.attributes.destinations.data[0].attributes.slug}/${item?.attributes.category.data.attributes.slug}/${item.attributes.slug}`}
+              href={`/destinations/${item?.attributes?.destinations?.data[0]?.attributes?.slug}/${item?.attributes?.category?.data?.attributes?.slug}/${item?.attributes?.slug}`}
               className="activityCard -type-1 rounded-4 hover-inside-slider"
             >
               <div className="activityCard__image position-relative">
@@ -87,14 +87,14 @@ const Activity = ({ data }) => {
                     nextArrow={<Arrow type="next" />}
                     prevArrow={<Arrow type="prev" />}
                   >
-                    {item?.attributes.images.data.map((slide, i) => (
+                    {item?.attributes?.images?.data.map((slide, i) => (
                       <div className="cardImage ratio ratio-1:1" key={i}>
                         <div className="cardImage__content ">
                           <Image
                             width={300}
                             height={300}
                             className="col-12 js-lazy"
-                            src={`${`http://3.74.191.230:1337`}${slide.attributes.formats.medium.url}`}
+                            src={`${`http://3.74.191.230:1337`}${slide?.attributes?.formats?.medium?.url}`}
                             alt="image"
                           />
                         </div>
@@ -129,10 +129,10 @@ const Activity = ({ data }) => {
                   3+ hours
                 </div> */}
                 <h4 className="activityCard__title lh-16 fw-500 text-dark-1 text-18">
-                  <span>{item?.attributes.title}</span>
+                  <span>{item?.attributes?.title}</span>
                 </h4>
                 <p className="text-light-1 text-14 lh-14 mt-5">
-                  {item?.attributes.destinations.data[0].attributes.name} {item?.attributes.destinations.data[1].attributes.name}
+                  {item?.attributes?.destinations?.data[0]?.attributes?.name} {item?.attributes?.destinations?.data[1]?.attributes?.name}
                 </p>
 
                 <div className="row justify-between items-center pt-10">
@@ -148,12 +148,12 @@ const Activity = ({ data }) => {
                   <div className="col-auto">
                     <div className="text-14 text-light-1">
                       <span className="text-16 fw-500 text-dark-1">
-                        $ {item?.attributes.price}
+                        $ {item?.attributes?.price}
                       </span>
                     </div>
                   </div>
                   <div>
-                    {item?.attributes.shortText}
+                    {item?.attributes?.shortText}
                   </div>
                 </div>
               </div>

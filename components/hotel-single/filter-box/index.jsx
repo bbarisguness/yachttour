@@ -1,19 +1,52 @@
 import GuestSearch from "./GuestSearch";
 import DateSearch from "./DateSearch";
+import { useRouter } from "next/router";
+import HourSearch from "./HourSearch";
+import { useEffect, useState } from "react";
 
-const index = () => {
+const FilterBox = ({ data }) => {
+  const router = useRouter()
+  const [a, setA] = useState()
+  const [e, setE] = useState(false)
+  const [ready, setReady] = useState(false)
+
+  useEffect(() => {
+    if (ready) {
+      if (a?.t !== null) {
+        setReady(false)
+        router.push('/booking-page')
+        setE(false)
+      } else {
+        setReady(false)
+        setE(true)
+      }
+    }
+  }, [ready])
+
+  function checkHandle() {
+    setA(JSON.parse(localStorage.getItem('s')))
+    localStorage.setItem('item', JSON.stringify(data.data[0]));
+    setReady(true)
+  }
+
   return (
     <>
       <div className="col-12">
         <div className="searchMenu-date px-20 py-10 border-light rounded-4 -right js-form-dd js-calendar">
           <div>
-            <h4 className="text-15 fw-500 ls-2 lh-16">Check in - Check out</h4>
+            <h4 className="text-15 fw-500 ls-2 lh-16">Check in</h4>
             <DateSearch />
           </div>
         </div>
         {/* End check-in-out */}
       </div>
       {/* End .col-12 */}
+
+      <div className="col-12">
+        {e && <div className="text-danger fw-400 text-14">Please select time</div>}
+        <HourSearch data={data} />
+        {/* End guest */}
+      </div>
 
       <div className="col-12">
         <GuestSearch />
@@ -23,7 +56,7 @@ const index = () => {
 
       <div className="col-12">
         <div className="button-item h-full">
-          <button className="button -dark-1 px-35 h-60 col-12 bg-blue-1 text-white">
+          <button onClick={() => checkHandle()} className="button -dark-1 px-35 h-60 col-12 bg-blue-1 text-white">
             Check availability
           </button>
         </div>
@@ -34,4 +67,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default FilterBox;

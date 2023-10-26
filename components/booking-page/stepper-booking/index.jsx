@@ -1,10 +1,42 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CustomerInfo from "../CustomerInfo";
 import PaymentInfo from "../PaymentInfo";
 import OrderSubmittedInfo from "../OrderSubmittedInfo";
+import { postReservation, postReservationInfo } from "../../../services/reservation";
 
-const Index = () => {
+const Index = ({ dataa, a }) => {
+  const [c, setC] = useState()
   const [currentStep, setCurrentStep] = useState(0);
+
+  useEffect(() => {
+    setC(JSON.parse(localStorage.getItem('a')))
+  }, [currentStep])
+
+  const [data, setData] = useState({
+    date: "2023-01-20T15:45:21.361Z",
+    amount: dataa?.attributes?.price,
+    qty: a?.p,
+    total: dataa?.attributes?.price * a?.p,
+    paymentType: "Cash",
+    isPaid: false,
+    reservationStatusType: "Reserved",
+    note: c?.t
+  })
+  const [datainfo, setDataInfo] = useState({
+    name: c?.n,
+    surname: c?.s,
+    phone: c?.p,
+    email: c?.e
+  })
+
+  useEffect(() => {
+    setC({
+      name: c?.n,
+      surname: c?.s,
+      phone: c?.p,
+      email: c?.e
+    })
+  }, [currentStep])
   const steps = [
     {
       title: "Personal Details",
@@ -16,7 +48,7 @@ const Index = () => {
           </div>
         </>
       ),
-      content: <CustomerInfo />,
+      content: <CustomerInfo a={a} dataa={dataa} />,
     },
     {
       title: "Payment Details",
@@ -43,9 +75,21 @@ const Index = () => {
     return <>{content}</>;
   };
 
+  useEffect(() => {
+    const local = JSON.parse(localStorage.getItem('a'))
+    if (currentStep == 2) {
+      postReservation({ data }).then((res) => {
+        const id = res?.data?.id
+        postReservationInfo({ data: local, id }).then((res) => {
+        })
+      })
+    }
+  }, [currentStep])
+
   const nextStep = () => {
     if (currentStep < steps.length - 1) {
       setCurrentStep(currentStep + 1);
+
     }
   };
 
