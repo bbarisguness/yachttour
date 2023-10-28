@@ -14,7 +14,8 @@ export default function GuestSearch() {
       m: a.m,
       y: a.y,
       t: a.t,
-      p: person
+      p: person,
+      n: a.n
     }
     localStorage.setItem('s', JSON.stringify(object));
   }, [person])

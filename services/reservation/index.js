@@ -3,7 +3,7 @@ const apiUrl = "http://3.74.191.230:1337/api"
 const qs = require('qs');
 
 
-async function postReservation({ data }) {
+async function postReservation({data}) {
     const response = await fetch(`${apiUrl}/reservations`, {
         method: 'POST',
         headers: {
@@ -25,10 +25,10 @@ async function postReservationInfo({ data, id }) {
         },
         body: JSON.stringify({
             data: {
-                "name": data?.n,
-                "surname": data.s,
-                "email": data.e,
-                "phone": data.p,
+                "name": data?.name,
+                "surname": data.surname,
+                "email": data.email,
+                "phone": data.phone,
                 "reservation": id
             }
         }),

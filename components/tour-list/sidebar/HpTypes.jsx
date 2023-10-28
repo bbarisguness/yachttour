@@ -31,7 +31,7 @@ export default function HpTypes() {
         setC3(true)
         setC4(false)
       }
-      else if (query?.e == '1000') {
+      else if (query?.hp == '1000') {
         setC1(false)
         setC2(false)
         setC3(false)

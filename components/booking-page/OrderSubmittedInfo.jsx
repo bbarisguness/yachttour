@@ -1,4 +1,4 @@
-const OrderSubmittedInfo = () => {
+const OrderSubmittedInfo = ({ rezOpt, dataa, paymentType, userInfo }) => {
   return (
     <>
       <div className="col-xl-8 col-lg-8">
@@ -11,7 +11,7 @@ const OrderSubmittedInfo = () => {
               System, your order was submitted successfully!
             </div>
             <div className="text-15 text-light-1 mt-10">
-              Booking details has been sent to: admin@bookingcore.test
+              Booking details has been sent to: {userInfo?.email}
             </div>
           </div>
           {/* End header */}
@@ -28,21 +28,21 @@ const OrderSubmittedInfo = () => {
               <div className="col-lg-3 col-md-6">
                 <div className="text-15 lh-12">Date</div>
                 <div className="text-15 lh-12 fw-500 text-blue-1 mt-10">
-                  27/07/2021
+                  {rezOpt?.m}.{rezOpt?.d}.{rezOpt?.y}
                 </div>
               </div>
               {/* End .col */}
               <div className="col-lg-3 col-md-6">
                 <div className="text-15 lh-12">Total</div>
                 <div className="text-15 lh-12 fw-500 text-blue-1 mt-10">
-                  $40.10
+                  ${dataa?.attributes?.price * rezOpt?.p}
                 </div>
               </div>
               {/* End .col */}
               <div className="col-lg-3 col-md-6">
                 <div className="text-15 lh-12">Payment Method</div>
                 <div className="text-15 lh-12 fw-500 text-blue-1 mt-10">
-                  Direct Bank Transfer
+                  {paymentType}
                 </div>
               </div>
               {/* End .col */}
@@ -56,14 +56,14 @@ const OrderSubmittedInfo = () => {
               <div className="col-12">
                 <div className="d-flex justify-between ">
                   <div className="text-15 lh-16">First name</div>
-                  <div className="text-15 lh-16 fw-500 text-blue-1">System</div>
+                  <div className="text-15 lh-16 fw-500 text-blue-1">{userInfo?.name}</div>
                 </div>
               </div>
               {/* End .col */}
               <div className="col-12">
                 <div className="d-flex justify-between border-top-light pt-10">
                   <div className="text-15 lh-16">Last name</div>
-                  <div className="text-15 lh-16 fw-500 text-blue-1">Admin</div>
+                  <div className="text-15 lh-16 fw-500 text-blue-1">{userInfo?.surname}</div>
                 </div>
               </div>
               {/* End .col */}
@@ -71,7 +71,7 @@ const OrderSubmittedInfo = () => {
                 <div className="d-flex justify-between border-top-light pt-10">
                   <div className="text-15 lh-16">Email</div>
                   <div className="text-15 lh-16 fw-500 text-blue-1">
-                    admin@bookingcore.test
+                    {userInfo.email}
                   </div>
                 </div>
               </div>
@@ -80,7 +80,7 @@ const OrderSubmittedInfo = () => {
                 <div className="d-flex justify-between border-top-light pt-10">
                   <div className="text-15 lh-16">Phone</div>
                   <div className="text-15 lh-16 fw-500 text-blue-1">
-                    112 666 888
+                    {userInfo.phone}
                   </div>
                 </div>
               </div>

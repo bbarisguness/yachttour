@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-const BookingDetails = ({ dataa, a }) => {
+const BookingDetails = ({ dataa, rezOpt }) => {
   return (
     <div className="px-30 py-30 border-light rounded-4">
       <div className="text-20 fw-500 mb-30">Your tour details</div>
@@ -39,10 +39,10 @@ const BookingDetails = ({ dataa, a }) => {
       <div className="row y-gap-20 justify-between items-center">
         <div className="col-auto">
           <div className="text-15">Check in:</div>
-          <div className="fw-400">{a?.m}.{a?.d}.{a?.y}</div>
+          <div className="fw-400">{rezOpt?.m}.{rezOpt?.d}.{rezOpt?.y}</div>
         </div>
         <div className="col-auto">
-          <div className="text-15">{a?.t}</div>
+          <div className="text-15">{rezOpt?.t}</div>
         </div>
       </div>
       {/* End row */}
@@ -50,14 +50,14 @@ const BookingDetails = ({ dataa, a }) => {
       <div className="border-top-light mt-30 mb-20" />
       <div>
         <div className="text-15">Person:</div>
-        <div className="fw-500">{a?.p} person</div>
+        <div className="fw-500">{rezOpt?.p} person</div>
       </div>
 
       <div className="border-top-light mt-30 mb-20" />
       <div className="row y-gap-20 justify-between items-center">
         <div className="col-auto">
           <div className="text-15">Total price:</div>
-          <div className="fw-500">${a?.p * dataa?.attributes?.price}</div>
+          <div className="fw-500">${rezOpt?.p * dataa?.attributes?.price}</div>
         </div>
       </div>
       {/* End row */}

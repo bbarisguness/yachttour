@@ -20,7 +20,8 @@ const HourSearch = ({ data }) => {
       m: a.m,
       y: a.y,
       t: selectedItem,
-      p: a.p
+      p: a.p,
+      n: a.n
     }
     localStorage.setItem('s', JSON.stringify(object));
   }, [selectedItem])

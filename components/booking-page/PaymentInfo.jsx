@@ -1,16 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import PricingSummary from "./sidebar/PricingSummary";
 import PaymentSchedule from "./sidebar/PaymentSchedule";
 import PromoCode from "./sidebar/PromoCode";
 import RatingInfo from "./RatingInfo";
 
-const PaymentInfo = () => {
+const PaymentInfo = ({ setPaymentType, paymentType }) => {
   const [itemsTabs, setItemsTabs] = useState(1);
   const cardTabs = [
     { id: 1, name: "Credit/Debit Card" },
     { id: 2, name: "Digital Payment" },
+    { id: 3, name: "Cash" },
   ];
+
+  useEffect(() => {
+    if (itemsTabs == 1) {
+      setPaymentType('Credit Card')
+    }
+    else if (itemsTabs == 2) {
+      setPaymentType('Bank Transfer')
+    }
+    else if (itemsTabs == 3) {
+      setPaymentType('Cash')
+    }
+  }, [itemsTabs])
 
   return (
     <>
@@ -125,6 +138,21 @@ const PaymentInfo = () => {
               {/* End mt60 */}
             </TabPanel>
             {/* End digital payment */}
+
+            <TabPanel>
+              <div className="mt-60 md:mt-32">
+                <div className="mt-20">
+                  <ul className="list-disc y-gap-4 text-15 text-light-1">
+                    <li>
+                      You have chosen to pay by PayPal. You will be forwarded to
+                      the PayPal website to proceed with this transaction.
+                    </li>
+                    <li>The total amount you will be charged is: $2,338.01</li>
+                  </ul>
+                </div>
+              </div>
+              {/* End mt60 */}
+            </TabPanel>
           </Tabs>
         </div>
         {/* End mt-40 */}

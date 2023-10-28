@@ -4,39 +4,52 @@ import PaymentInfo from "../PaymentInfo";
 import OrderSubmittedInfo from "../OrderSubmittedInfo";
 import { postReservation, postReservationInfo } from "../../../services/reservation";
 
-const Index = ({ dataa, a }) => {
-  const [c, setC] = useState()
+const Index = ({ dataa, rezOpt }) => {
   const [currentStep, setCurrentStep] = useState(0);
+  const [date, setDate] = useState(new Date('05 October 2011 14:48 GMT+3'))
+  const [paymentType, setPaymentType] = useState('Cash')
+  const [paid, setPaid] = useState(false)
+  const [finish, setFinish] = useState(false)
 
   useEffect(() => {
-    setC(JSON.parse(localStorage.getItem('a')))
-  }, [currentStep])
+    setDate(new Date(`${rezOpt.d} ${rezOpt.n} ${rezOpt.y} ${rezOpt.t} GMT+3`))
+  }, [])
 
-  const [data, setData] = useState({
-    date: "2023-01-20T15:45:21.361Z",
-    amount: dataa?.attributes?.price,
-    qty: a?.p,
-    total: dataa?.attributes?.price * a?.p,
-    paymentType: "Cash",
-    isPaid: false,
+  useEffect(() => {
+    if (paymentType == 'Cash') {
+      setPaid(false)
+    }
+    else if (paymentType == 'Bank Transfer') {
+      setPaid(false)
+    }
+    else if (paymentType == 'Credit Card') {
+      setPaid(true)
+    }
+  }, [paymentType])
+
+
+  const [userInfo, setUserInfo] = useState({
+    name: '',
+    surname: '',
+    email: '',
+    phone: '',
+    note: ''
+  })
+
+  const rezInfo = {
+    note: userInfo.note,
     reservationStatusType: "Reserved",
-    note: c?.t
-  })
-  const [datainfo, setDataInfo] = useState({
-    name: c?.n,
-    surname: c?.s,
-    phone: c?.p,
-    email: c?.e
-  })
+    date: date,
+    amount: dataa?.attributes?.price,
+    qty: rezOpt?.p,
+    total: rezOpt?.p * dataa?.attributes?.price,
+    paymentType: paymentType,
+    isPaid: paid,
+    tour: dataa?.id
+  }
 
-  useEffect(() => {
-    setC({
-      name: c?.n,
-      surname: c?.s,
-      phone: c?.p,
-      email: c?.e
-    })
-  }, [currentStep])
+  const validateEmailRegex = /^\S+@\S+\.\S+$/;
+
   const steps = [
     {
       title: "Personal Details",
@@ -48,7 +61,7 @@ const Index = ({ dataa, a }) => {
           </div>
         </>
       ),
-      content: <CustomerInfo a={a} dataa={dataa} />,
+      content: <CustomerInfo userInfo={userInfo} setUserInfo={setUserInfo} rezOpt={rezOpt} dataa={dataa} />,
     },
     {
       title: "Payment Details",
@@ -60,13 +73,13 @@ const Index = ({ dataa, a }) => {
           </div>
         </>
       ),
-      content: <PaymentInfo />,
+      content: <PaymentInfo setPaymentType={setPaymentType} paymentType={paymentType} />,
     },
     {
       title: "Final Step",
       stepNo: "3",
       stepBar: "",
-      content: <OrderSubmittedInfo />,
+      content: <OrderSubmittedInfo userInfo={userInfo} paymentType={paymentType} dataa={dataa} rezOpt={rezOpt} />,
     },
   ];
 
@@ -76,28 +89,55 @@ const Index = ({ dataa, a }) => {
   };
 
   useEffect(() => {
-    const local = JSON.parse(localStorage.getItem('a'))
     if (currentStep == 2) {
-      postReservation({ data }).then((res) => {
+      postReservation({ data: rezInfo }).then((res) => {
         const id = res?.data?.id
-        postReservationInfo({ data: local, id }).then((res) => {
+        postReservationInfo({ data: userInfo, id }).then((res) => {
+          setFinish(true)
+          localStorage.removeItem('s')
+          localStorage.removeItem('item')
+          localStorage.removeItem('bVal')
         })
       })
+    } else if (currentStep >= 1) {
+      const object = {
+        name: userInfo.name,
+        surname: userInfo.surname,
+        email: userInfo.email,
+        phone: userInfo.phone,
+        note: userInfo.note
+      }
+      localStorage.setItem('bVal', JSON.stringify(object));
     }
   }, [currentStep])
 
   const nextStep = () => {
     if (currentStep < steps.length - 1) {
-      setCurrentStep(currentStep + 1);
-
+      if (userInfo.name && userInfo.surname && userInfo.email && userInfo.phone) {
+        if (validateEmailRegex.test(userInfo.email)) {
+          setCurrentStep(currentStep + 1);
+        }
+      }
     }
   };
 
   const previousStep = () => {
     if (currentStep > 0) {
-      setCurrentStep(currentStep - 1);
+      if (finish === false) {
+        setCurrentStep(currentStep - 1);
+      }
     }
   };
+
+  function changeHandle(index) {
+    if (userInfo.name && userInfo.surname && userInfo.email && userInfo.phone) {
+      if (validateEmailRegex.test(userInfo.email)) {
+        if (finish === false) {
+          setCurrentStep(index)
+        }
+      }
+    }
+  }
 
   return (
     <>
@@ -107,7 +147,7 @@ const Index = ({ dataa, a }) => {
             <div className="col-auto">
               <div
                 className="d-flex items-center cursor-pointer transition"
-                onClick={() => setCurrentStep(index)}
+                onClick={() => changeHandle(index)}
               >
                 <div
                   className={

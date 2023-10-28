@@ -8,25 +8,25 @@ import { useRouter } from 'next/router';
 export default function BookingPage() {
     const router = useRouter()
     const [dataa, setDataa] = useState('')
-    const [a, setA] = useState('')
+    const [rezOpt, setRezOpt] = useState('')
     const [ready, setReady] = useState(false)
 
     useEffect(() => {
         setDataa(JSON.parse(localStorage.getItem('item')))
-        setA(JSON.parse(localStorage.getItem('s')))
+        setRezOpt(JSON.parse(localStorage.getItem('s')))
         setReady(true)
     }, [])
 
     useEffect(() => {
         if (ready) {
-            if (dataa && a && a.d && a.m && a.p && a.t !== null && a.y) {
+            if (dataa && rezOpt && rezOpt?.d && rezOpt?.m && rezOpt?.p && rezOpt?.t !== null && rezOpt?.y) {
             } else {
                 router.push('/tours')
             }
         }
     }, [dataa])
 
-    if (dataa && a && a.d && a.m && a.p && a.t !== null && a.y) {
+    if (dataa && rezOpt && rezOpt?.d && rezOpt?.m && rezOpt?.p && rezOpt?.t !== null && rezOpt?.y) {
         return (
             <>
                 <Seo pageTitle="Tour Booking Page" />
@@ -40,7 +40,7 @@ export default function BookingPage() {
 
                 <section className="pt-40 layout-pb-md">
                     <div className="container">
-                        <StepperBooking a={a} dataa={dataa} />
+                        <StepperBooking rezOpt={rezOpt} dataa={dataa} />
                     </div>
                     {/* End container */}
                 </section>

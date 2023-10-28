@@ -11,7 +11,8 @@ const DateSearch = () => {
       m: dates.month.number,
       y: dates.year,
       t: a.t,
-      p: a.p
+      p: a.p,
+      n: dates.month.name
     }
     localStorage.setItem('s', JSON.stringify(object));
   }, [dates])

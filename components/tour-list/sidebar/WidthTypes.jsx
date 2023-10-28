@@ -31,7 +31,7 @@ export default function WidthTypes() {
         setC3(true)
         setC4(false)
       }
-      else if (query?.e == '40') {
+      else if (query?.w == '40') {
         setC1(false)
         setC2(false)
         setC3(false)
