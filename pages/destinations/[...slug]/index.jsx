@@ -807,7 +807,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                         {/* End review with progress */}
 
                         <div className="pt-40">
-                            <DetailsReview />
+                            <DetailsReview tourDetail={tourDetail} />
                             {/* End review with details */}
                         </div>
 
@@ -840,10 +840,10 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                 </div>
                                 {/* End .row */}
 
-                                <ReplyFormReview />
+                                {/* <ReplyFormReview /> */}
                                 {/* End ReplyFormReview */}
 
-                                <ReplyForm />
+                                <ReplyForm tourDetail={tourDetail} />
                             </div>
                         </div>
                     </div>

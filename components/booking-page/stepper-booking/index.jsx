@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import CustomerInfo from "../CustomerInfo";
 import PaymentInfo from "../PaymentInfo";
 import OrderSubmittedInfo from "../OrderSubmittedInfo";
-import { postReservation, postReservationInfo } from "../../../services/reservation";
+import { postReservation, postReservationInfo, getReservation } from "../../../services/reservation";
 
 const Index = ({ dataa, rezOpt }) => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -10,6 +10,7 @@ const Index = ({ dataa, rezOpt }) => {
   const [paymentType, setPaymentType] = useState('Cash')
   const [paid, setPaid] = useState(false)
   const [finish, setFinish] = useState(false)
+  const [orderNo, setOrderNo] = useState(Math.floor(Math.random() * 5000 + Date.now()))
 
   useEffect(() => {
     setDate(new Date(`${rezOpt.d} ${rezOpt.n} ${rezOpt.y} ${rezOpt.t} GMT+3`))
@@ -45,7 +46,8 @@ const Index = ({ dataa, rezOpt }) => {
     total: rezOpt?.p * dataa?.attributes?.price,
     paymentType: paymentType,
     isPaid: paid,
-    tour: dataa?.id
+    tour: dataa?.id,
+    orderNumber: orderNo
   }
 
   const validateEmailRegex = /^\S+@\S+\.\S+$/;
@@ -73,13 +75,13 @@ const Index = ({ dataa, rezOpt }) => {
           </div>
         </>
       ),
-      content: <PaymentInfo setPaymentType={setPaymentType} paymentType={paymentType} />,
+      content: <PaymentInfo dataa={dataa} rezOpt={rezOpt} setPaymentType={setPaymentType} paymentType={paymentType} />,
     },
     {
       title: "Final Step",
       stepNo: "3",
       stepBar: "",
-      content: <OrderSubmittedInfo userInfo={userInfo} paymentType={paymentType} dataa={dataa} rezOpt={rezOpt} />,
+      content: <OrderSubmittedInfo orderNo={orderNo} userInfo={userInfo} paymentType={paymentType} dataa={dataa} rezOpt={rezOpt} />,
     },
   ];
 
@@ -101,11 +103,11 @@ const Index = ({ dataa, rezOpt }) => {
       })
     } else if (currentStep >= 1) {
       const object = {
-        name: userInfo.name,
-        surname: userInfo.surname,
-        email: userInfo.email,
-        phone: userInfo.phone,
-        note: userInfo.note
+        name: userInfo?.name,
+        surname: userInfo?.surname,
+        email: userInfo?.email,
+        phone: userInfo?.phone,
+        note: userInfo?.note
       }
       localStorage.setItem('bVal', JSON.stringify(object));
     }
@@ -129,15 +131,15 @@ const Index = ({ dataa, rezOpt }) => {
     }
   };
 
-  function changeHandle(index) {
-    if (userInfo.name && userInfo.surname && userInfo.email && userInfo.phone) {
-      if (validateEmailRegex.test(userInfo.email)) {
-        if (finish === false) {
-          setCurrentStep(index)
-        }
-      }
-    }
-  }
+  // function changeHandle(index) {
+  //   if (userInfo.name && userInfo.surname && userInfo.email && userInfo.phone) {
+  //     if (validateEmailRegex.test(userInfo.email)) {
+  //       if (finish === false) {
+  //         setCurrentStep(index)
+  //       }
+  //     }
+  //   }
+  // }
 
   return (
     <>
@@ -147,7 +149,7 @@ const Index = ({ dataa, rezOpt }) => {
             <div className="col-auto">
               <div
                 className="d-flex items-center cursor-pointer transition"
-                onClick={() => changeHandle(index)}
+              // onClick={() => changeHandle(index)}
               >
                 <div
                   className={

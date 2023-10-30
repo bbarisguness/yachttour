@@ -58,7 +58,7 @@ const ContactForm = () => {
         <div style={{ display: 'block' }} className="form-input">
           {
             error &&
-            <div className="text-14 text-danger">lütfen doğrulamayı yapınız!</div>
+            <div className="text-14 text-danger">Please verify!</div>
           }
           <div>
             <ReCAPTCHA

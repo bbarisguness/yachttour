@@ -1,4 +1,4 @@
-const OrderSubmittedInfo = ({ rezOpt, dataa, paymentType, userInfo }) => {
+const OrderSubmittedInfo = ({ rezOpt, dataa, paymentType, userInfo, orderNo }) => {
   return (
     <>
       <div className="col-xl-8 col-lg-8">
@@ -21,7 +21,7 @@ const OrderSubmittedInfo = ({ rezOpt, dataa, paymentType, userInfo }) => {
               <div className="col-lg-3 col-md-6">
                 <div className="text-15 lh-12">Order Number</div>
                 <div className="text-15 lh-12 fw-500 text-blue-1 mt-10">
-                  13119
+                  {orderNo}
                 </div>
               </div>
               {/* End .col */}
@@ -142,6 +142,63 @@ const OrderSubmittedInfo = ({ rezOpt, dataa, paymentType, userInfo }) => {
             {/* End .row */}
           </div>
           {/* End order information */}
+
+          <div className="border-light rounded-8 px-50 py-40 mt-40">
+            <h4 className="text-20 fw-500 mb-30">Tour Information</h4>
+            <div className="row y-gap-10">
+              <div className="col-12">
+                <div className="d-flex justify-between ">
+                  <div className="text-15 lh-16">Tour Title</div>
+                  <div className="text-15 lh-16 fw-500 text-blue-1">{dataa?.attributes?.title}</div>
+                </div>
+              </div>
+              {/* End .col */}
+              <div className="col-12">
+                <div className="d-flex justify-between border-top-light pt-10">
+                  <div className="text-15 lh-16">Destinations</div>
+                  <div className="text-15 lh-16 fw-500 text-blue-1">{dataa?.attributes?.destinations?.data[0]?.attributes?.name}{dataa?.attributes?.destinations?.data[1]?.attributes?.name && ','} {dataa?.attributes?.destinations?.data[1]?.attributes?.name}</div>
+                </div>
+              </div>
+              {/* End .col */}
+              <div className="col-12">
+                <div className="d-flex justify-between border-top-light pt-10">
+                  <div className="text-15 lh-16">Price</div>
+                  <div className="text-15 lh-16 fw-500 text-blue-1">
+                    ${dataa?.attributes?.price}
+                  </div>
+                </div>
+              </div>
+              {/* End .col */}
+              <div className="col-12">
+                <div className="d-flex justify-between border-top-light pt-10">
+                  <div className="text-15 lh-16">Check in</div>
+                  <div className="text-15 lh-16 fw-500 text-blue-1">
+                    {rezOpt?.m}.{rezOpt?.d}.{rezOpt?.y}
+                  </div>
+                </div>
+              </div>
+              {/* End .col */}
+              <div className="col-12">
+                <div className="d-flex justify-between border-top-light pt-10">
+                  <div className="text-15 lh-16">Time</div>
+                  <div className="text-15 lh-16 fw-500 text-blue-1">
+                    {rezOpt?.t}
+                  </div>
+                </div>
+              </div>
+              {/* End .col */}
+              <div className="col-12">
+                <div className="d-flex justify-between border-top-light pt-10">
+                  <div className="text-15 lh-16">Person</div>
+                  <div className="text-15 lh-16 fw-500 text-blue-1">
+                    {rezOpt?.p}
+                  </div>
+                </div>
+              </div>
+              {/* End .col */}
+            </div>
+            {/* End .row */}
+          </div>
         </div>
       </div>
     </>

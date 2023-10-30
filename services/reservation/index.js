@@ -2,8 +2,15 @@ const apiUrl = "http://3.74.191.230:1337/api"
 
 const qs = require('qs');
 
+async function getReservation() {
+    const response = await fetch(`${apiUrl}/reservations?populate=*`, {
+        cache: 'no-store'
+    })
+    const data = await response.json()
+    return data
+}
 
-async function postReservation({data}) {
+async function postReservation({ data }) {
     const response = await fetch(`${apiUrl}/reservations`, {
         method: 'POST',
         headers: {
@@ -37,4 +44,4 @@ async function postReservationInfo({ data, id }) {
     return dataa
 }
 
-export { postReservation, postReservationInfo }
+export { postReservation, postReservationInfo, getReservation }

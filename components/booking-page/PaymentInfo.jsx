@@ -5,7 +5,14 @@ import PaymentSchedule from "./sidebar/PaymentSchedule";
 import PromoCode from "./sidebar/PromoCode";
 import RatingInfo from "./RatingInfo";
 
-const PaymentInfo = ({ setPaymentType, paymentType }) => {
+const PaymentInfo = ({ setPaymentType, paymentType, dataa, rezOpt }) => {
+  const [pVal, setPVal] = useState('')
+
+  useEffect(() => {
+    setPVal(JSON.parse(localStorage.getItem('pVal')))
+  }, [])
+
+
   const [itemsTabs, setItemsTabs] = useState(1);
   const cardTabs = [
     { id: 1, name: "Credit/Debit Card" },
@@ -14,6 +21,16 @@ const PaymentInfo = ({ setPaymentType, paymentType }) => {
   ];
 
   useEffect(() => {
+    if (pVal) {
+      setItemsTabs(pVal.payment)
+    }
+  }, [pVal])
+
+  useEffect(() => {
+    const object = {
+      payment: itemsTabs
+    }
+    localStorage.setItem('pVal', JSON.stringify(object));
     if (itemsTabs == 1) {
       setPaymentType('Credit Card')
     }
@@ -52,7 +69,6 @@ const PaymentInfo = ({ setPaymentType, paymentType }) => {
               ))}
             </TabList>
             {/* End tablist */}
-
             <TabPanel>
               <div className="row x-gap-20 y-gap-20 pt-20">
                 <div className="col-12">
@@ -114,7 +130,6 @@ const PaymentInfo = ({ setPaymentType, paymentType }) => {
               {/* End .row */}
             </TabPanel>
             {/* credit debit info */}
-
             <TabPanel>
               <div className="mt-60 md:mt-32">
                 <div className="mt-20">
@@ -138,7 +153,6 @@ const PaymentInfo = ({ setPaymentType, paymentType }) => {
               {/* End mt60 */}
             </TabPanel>
             {/* End digital payment */}
-
             <TabPanel>
               <div className="mt-60 md:mt-32">
                 <div className="mt-20">
@@ -180,8 +194,8 @@ const PaymentInfo = ({ setPaymentType, paymentType }) => {
 
       <div className="col-xl-5 col-lg-4">
         <div className="booking-sidebar">
-          <PricingSummary />
-          <PaymentSchedule />
+          <PricingSummary dataa={dataa} rezOpt={rezOpt} />
+          {/* <PaymentSchedule /> */}
           <PromoCode />
         </div>
       </div>
