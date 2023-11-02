@@ -18,7 +18,7 @@ import { useEffect, useState } from "react";
 import TopHeaderFilter from "../../../components/tour-list/tour-list-v2/TopHeaderFilter";
 import TourProperties from "../../../components/tour-list/tour-list-v2/TourProperties";
 import Sidebar from "../../../components/tour-list/tour-list-v2/Sidebar";
-import { getTourCategory, getTourDestination, getTourDetail, getTourFilterSlug, getTours } from "../../../services/tours";
+import { getOtherTour, getTourCategory, getTourDestination, getTourDetail, getTourFilterSlug, getTours } from "../../../services/tours";
 // tour detail
 import ModalVideo from "react-modal-video";
 import "photoswipe/dist/photoswipe.css";
@@ -39,7 +39,7 @@ import style from './image.module.css'
 import Sidebar2 from "../../../components/tour-list/tour-list-v2/Sidebar2";
 import Pagination from "../../../components/tour-list/common/Pagination";
 
-export default function DestinationDetail({ data, toursDestination, yachtDestination, guletDestination, destinationsIsNot, tourDetail, filterDestinations }) {
+export default function DestinationDetail({ data, toursDestination, yachtDestination, guletDestination, destinationsIsNot, tourDetail, filterDestinations, otherTours }) {
     const router = useRouter();
     const slug = router.query.slug;
     const path = router.asPath
@@ -245,42 +245,6 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                     </section>
                     {/* Trending Activity Sections */}
 
-                    <section className="layout-pt-md layout-pb-md">
-                        <div className="container">
-                            <div className="row y-gap-20 justify-between items-end">
-                                <div className="col-auto">
-                                    <div className="sectionTitle -md">
-                                        <h2 className="sectionTitle__title">
-                                            Featured Holiday Rentals
-                                        </h2>
-                                        <p className=" sectionTitle__text mt-5 sm:mt-0">
-                                            Interdum et malesuada fames ac ante ipsum
-                                        </p>
-                                    </div>
-                                </div>
-                                {/* End .col */}
-
-                                <div className="col-auto">
-                                    <Link
-                                        href="#"
-                                        className="button -md -blue-1 bg-blue-1-05 text-blue-1"
-                                    >
-                                        More <div className="icon-arrow-top-right ml-15" />
-                                    </Link>
-                                </div>
-                                {/* End .col */}
-                            </div>
-                            {/* End .row */}
-
-                            <div className="y-gap-30 pt-40 sm:pt-20 item_gap-x30">
-                                <Rentals />
-                            </div>
-                            {/* End .row */}
-                        </div>
-                        {/* End .container */}
-                    </section>
-                    {/* Featured Rentals Sections */}
-
                     {/* <section className="layout-pt-md layout-pb-md">
                         <div className="container">
                             <div className="row y-gap-20 justify-between items-end">
@@ -382,38 +346,13 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                         </div>
                     </section> */}
 
-                    <section className="layout-pt-lg layout-pb-md">
-                        <div className="container">
-                            <div className="row y-gap-20">
-                                {/* <div className="col-lg-4">
-                                    <h2 className="text-30 fw-500">
-                                        FAQs about
-                                        <br />
-                                        London
-                                    </h2>
-                                </div> */}
-                                {/* End .col */}
-
-                                <div className="col-lg-12">
-                                    <div className="accordion -simple row y-gap-20 js-accordion">
-                                        <Faq />
-                                    </div>
-                                </div>
-                                {/* End .col-lg-8 */}
-                            </div>
-                            {/* End .row */}
-                        </div>
-                        {/* End .container */}
-                    </section>
-                    {/* End Faq Section */}
-
                     <section className="layout-pt-md layout-pb-lg">
                         <div className="container">
                             <div className="row y-gap-20">
                                 <div className="col-auto">
                                     <div className="sectionTitle -md">
                                         <h2 className="sectionTitle__title">
-                                            Destinations near London
+                                            Other Regions
                                         </h2>
                                         <p className=" sectionTitle__text mt-5 sm:mt-0">
                                             These popular destinations have a lot to offer
@@ -440,9 +379,25 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
 
     if (slug.length == 2) {
         // window.scrollTo(0, 0);
+        const a = slug[0].split('-')
+
+        for (let i = 0; i < a.length; i++) {
+            a[i] = a[i][0].toUpperCase() + a[i].substr(1);
+        }
+
+        const b = a.join(" ")
+
+        const c = slug[1].split('-')
+
+        for (let i = 0; i < c.length; i++) {
+            c[i] = c[i][0].toUpperCase() + c[i].substr(1);
+        }
+
+        const d = c.join(" ")
+
         return (
             <>
-                <Seo pageTitle="Tour List" />
+                <Seo pageTitle={`${b} Tours in All ${d}`} />
                 {/* End Page Title */}
 
                 <div className="header-margin"></div>
@@ -569,7 +524,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                         <div className="text-14">
                                             From{" "}
                                             <span className="text-22 text-dark-1 fw-500">
-                                                US${tourDetail?.data[0]?.attributes?.price}
+                                                ${tourDetail?.data[0]?.attributes?.price}
                                             </span>
                                         </div>
                                     </div>
@@ -771,10 +726,10 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                         <Overview data={tourDetail} />
                                     </div>
 
-                                    <div id="facilities" className="col-12">
+                                    <div id="features" className="col-12">
                                         <h3 className="text-22 fw-500 border-top-light pt-40">Facilities of this Cruise</h3>
                                         <div className="row x-gap-40 y-gap-40 pt-20">
-                                            <Facilities />
+                                            <Facilities tourDetail={tourDetail} />
                                         </div>
                                         {/* End .row */}
                                     </div>
@@ -850,32 +805,14 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                 </section >
                 {/* End Reply Comment box section */}
 
-                < section id="faq" className="pt-40 layout-pb-md" >
-                    <div className="container">
-                        <div className="pt-40">
-                            <div className="row y-gap-20">
-                                <div className="col-lg-12">
-                                    <div className="accordion -simple row y-gap-20 js-accordion">
-                                        <Faq />
-                                    </div>
-                                </div>
-                                {/* End .col */}
-                            </div>
-                            {/* End .row */}
-                        </div>
-                        {/* End .pt-40 */}
-                    </div>
-                    {/* End .container */}
-                </section >
-                {/* End Faq about sections */}
 
                 < section className="layout-pt-md layout-pb-lg" >
                     <div className="container">
                         <div className="row justify-center text-center">
                             <div className="col-auto">
                                 <div className="sectionTitle -md">
-                                    <h2 className="sectionTitle__title">
-                                        Popular properties similar to The Crown Hotel
+                                    <h2 style={{textTransform: 'capitalize'}} className="sectionTitle__title">
+                                        Other {slug[1]}
                                     </h2>
                                     <p className=" sectionTitle__text mt-5 sm:mt-0">
                                         Interdum et malesuada fames ac ante ipsum
@@ -888,7 +825,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                         {/* End .row */}
 
                         <div className="pt-40 sm:pt-20 item_gap-x30">
-                            <Hotels2 />
+                            <Hotels2 otherTours={otherTours} />
                         </div>
                         {/* End slide hotel */}
                     </div>
@@ -922,6 +859,22 @@ export async function getServerSideProps({ params, query }) {
     const guletDestination = await getTourDestination({ rSlug, category: 'gulet' })
     const filterDestinations = await getTourFilterSlug({ rSlug, category: slug[1], page, price, person, width, hp, year, sort })
     const destinationsIsNot = await getDestinationsIsNot({ slug })
+    const otherTours = await getOtherTour({ rSlug, category: slug[1], slug: slug[2] })
     const tourDetail = await getTourDetail({ tourSlug: `${slug[2]}` })
-    return { props: { data, toursDestination, yachtDestination, guletDestination, destinationsIsNot, tourDetail, filterDestinations } }
+    return { props: { data, toursDestination, yachtDestination, guletDestination, destinationsIsNot, tourDetail, filterDestinations, otherTours } }
 }
+
+
+{/* <section id="faq" className="pt-40 layout-pb-md" >
+    <div className="container">
+        <div className="pt-40">
+            <div className="row y-gap-20">
+                <div className="col-lg-12">
+                    <div className="accordion -simple row y-gap-20 js-accordion">
+                        <Faq />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section > */}

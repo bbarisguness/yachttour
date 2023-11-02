@@ -79,13 +79,13 @@ const TourProperties = ({ data }) => {
               </p>
 
               <div className="row justify-between items-center pt-15">
-                <div className="col-auto">
+                {/* <div className="col-auto">
                   <div className="d-flex items-center">
                     <div className="text-14 text-light-1">
-                      3125 reviews
+                      3025 reviews
                     </div>
                   </div>
-                </div>
+                </div> */}
                 <div className="col-auto">
                   <div className="text-14 text-light-1">
                     <span className="text-16 fw-500 text-dark-1">

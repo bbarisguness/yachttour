@@ -7,12 +7,12 @@ const DateSearch = () => {
   useEffect(() => {
     const a = JSON.parse(localStorage.getItem('s')) || '';
     const object = {
-      d: dates.day,
-      m: dates.month.number,
-      y: dates.year,
-      t: a.t,
-      p: a.p,
-      n: dates.month.name
+      d: dates?.day,
+      m: dates?.month.number,
+      y: dates?.year,
+      t: a?.t,
+      p: a?.p,
+      n: dates?.month.name
     }
     localStorage.setItem('s', JSON.stringify(object));
   }, [dates])

@@ -137,9 +137,9 @@ const Hotels2 = ({ data }) => {
                   {/* <div className="text-14 text-dark-1 fw-500 ml-10">
                     Exceptional
                   </div> */}
-                  <div className="text-14 text-light-1 ">
+                  {/* <div className="text-14 text-light-1 ">
                     3256 reviews
-                  </div>
+                  </div> */}
                   <div className="text-dark-1 fw-500">
                     $ {item?.attributes?.price}
                   </div>

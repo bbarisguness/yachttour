@@ -136,13 +136,13 @@ const Activity = ({ data }) => {
                 </p>
 
                 <div className="row justify-between items-center pt-10">
-                  <div className="col-auto">
+                  {/* <div className="col-auto">
                     <div className="d-flex items-center">
                       <div className="text-14 text-light-1">
                         3525 reviews
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                   {/* End .col-auto */}
 
                   <div className="col-auto">

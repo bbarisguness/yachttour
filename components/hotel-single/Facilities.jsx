@@ -1,4 +1,4 @@
-const Facilities = () => {
+const Facilities = ({ tourDetail }) => {
   const facilitiesContent = [
     {
       id: 1,
@@ -115,27 +115,25 @@ const Facilities = () => {
 
   return (
     <>
-      {facilitiesContent.map((item) => (
-        <div className="col-xl-4" key={item.id}>
+      {tourDetail?.data[0]?.attributes?.feature?.features?.data.map((item, index) => (
+        <div className="col-xl-4" key={index}>
           <div className="row y-gap-30">
-            {item?.items?.map((facility) => (
-              <div className="col-12" key={facility.id}>
-                <div>
-                  <div className="d-flex items-center text-16 fw-500">
-                    <i className={`${facility.icon} text-20 mr-10`} />
-                    {facility.title}
-                  </div>
-                  <ul className="text-15 pt-10">
-                    {facility?.facilities?.map((val, i) => (
-                      <li className="d-flex items-center" key={i}>
-                        <i className="icon-check text-10 mr-20" />
-                        {val}
-                      </li>
-                    ))}
-                  </ul>
+            <div className="col-12">
+              <div>
+                <div className="d-flex items-center text-16 fw-500">
+                  <i className={`${item?.icon} text-20 mr-10`} />
+                  {item?.title}
                 </div>
+                <ul className="text-15 pt-10">
+                  {item?.childs?.map((facility, i) => (
+                    <li key={i} className="d-flex items-center">
+                      <i className="icon-check text-10 mr-20" />
+                      {facility}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            ))}
+            </div>
           </div>
         </div>
       ))}

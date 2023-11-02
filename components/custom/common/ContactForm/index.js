@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
+import { postMessage } from "../../../../services/message";
 
 const ContactForm = () => {
+  const [fullName, setFullName] = useState('')
+  const [email, setEmail] = useState('')
+  const [subject, setSubject] = useState('')
+  const [message, setMessage] = useState('')
+
   const [captchaState, setCaptchaState] = useState(false)
   const [error, setError] = useState(false)
   function onChange() {
@@ -9,10 +15,21 @@ const ContactForm = () => {
     setError(false)
   }
 
+  const data = {
+    fullName: fullName,
+    email: email,
+    subject: subject,
+    message: message
+  }
+
   const handleSubmit = (event) => {
     if (captchaState) {
-      setError(false)
-      console.log('gönderildi');
+      if (fullName && email && subject && message) {
+        setError(false)
+        postMessage({ data }).then((res) => {
+          window.location.reload()
+        })
+      }
     } else {
       setError(true)
     }
@@ -24,7 +41,7 @@ const ContactForm = () => {
     <form className="row y-gap-20 pt-20" onSubmit={handleSubmit}>
       <div className="col-12">
         <div className="form-input">
-          <input type="text" id="name" required />
+          <input onChange={(e) => setFullName(e.target.value)} type="text" id="name" required />
           <label htmlFor="name" className="lh-1 text-16 text-light-1">
             Full Name
           </label>
@@ -32,7 +49,7 @@ const ContactForm = () => {
       </div>
       <div className="col-12">
         <div className="form-input">
-          <input type="email" id="email" required />
+          <input onChange={(e) => setEmail(e.target.value)} type="email" id="email" required />
           <label htmlFor="email" className="lh-1 text-16 text-light-1">
             Email
           </label>
@@ -40,7 +57,7 @@ const ContactForm = () => {
       </div>
       <div className="col-12">
         <div className="form-input">
-          <input type="text" id="subject" required />
+          <input onChange={(e) => setSubject(e.target.value)} type="text" id="subject" required />
           <label htmlFor="subject" className="lh-1 text-16 text-light-1">
             Subject
           </label>
@@ -48,7 +65,7 @@ const ContactForm = () => {
       </div>
       <div className="col-12">
         <div className="form-input">
-          <textarea id="message" required rows="4"></textarea>
+          <textarea onChange={(e) => setMessage(e.target.value)} id="message" required rows="4"></textarea>
           <label htmlFor="message" className="lh-1 text-16 text-light-1">
             Your Message
           </label>

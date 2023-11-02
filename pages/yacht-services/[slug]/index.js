@@ -16,6 +16,7 @@ import { getYachtServiceDetail } from "../../../services/yacht-services";
 export default function YachtDetailPage({ data }) {
   const router = useRouter();
   const [notFound, setNotFound] = useState(false)
+  const dataId = data?.data[0]?.id
 
   useEffect(() => {
     if (data?.data.length === 0) {
@@ -52,7 +53,7 @@ export default function YachtDetailPage({ data }) {
             </div>
             <div className="col-12">
               <img
-                src={`${"http://3.74.191.230:1337"}${data?.data[0]?.attributes.image?.data?.attributes?.formats?.large?.url}`}
+                src={`${"http://3.74.191.230:1337"}${data?.data[0]?.attributes.image?.data?.attributes?.url}`}
                 alt={data?.data[0]?.attributes.name}
                 className="col-12 rounded-8 w-100 img_large_details"
               />
@@ -75,7 +76,7 @@ export default function YachtDetailPage({ data }) {
               {/* End YachtNavigator */}
 
               <h2 className="text-22 fw-500 mb-15 pt-30">Guest reviews</h2>
-              <Comments />
+              <Comments data={data} />
               {/* End comments components */}
 
               <div className="border-top-light pt-40 mt-40" />
@@ -90,7 +91,7 @@ export default function YachtDetailPage({ data }) {
               </div>
               {/* End Leave a repy title */}
 
-              <FormReply />
+              <FormReply dataId={dataId} />
             </div>
             {/* End .col */}
           </div>

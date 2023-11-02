@@ -141,7 +141,18 @@ async function getTourFilterSlug({ rSlug, category, page, price, person, width, 
 async function getTourDetail({ tourSlug }) {
     const query = qs.stringify({
         fields: '*',
-        populate: '*',
+        populate: [
+            "itineraries",
+            "itineraries.image",
+            "images",
+            "feature",
+            "metaFields",
+            "destinations",
+            "tag",
+            "category",
+            "reservations",
+            "comments"
+        ],
         filters: {
             slug: {
                 $eq: `${tourSlug}`,
@@ -183,6 +194,34 @@ async function getTourDestination({ rSlug, category }) {
     return data
 }
 
+async function getOtherTour({ rSlug, category, slug }) {
+    const query = qs.stringify({
+        fields: '*',
+        populate: '*',
+        filters: {
+            destinations: {
+                slug: {
+                    $eqi: `${rSlug}`,
+                }
+            },
+            category: {
+                slug: {
+                    $eqi: `${category}`,
+                }
+            },
+            slug: {
+                $nei: `${slug}`,
+            },
+        },
+    }, {
+        encodeValuesOnly: true,
+    });
+    const response = await fetch(`${apiUrl}/tours?${query}`, {
+        cache: 'no-store'
+    })
+    const data = await response.json()
+    return data
+}
 
 async function getTourCategory({ category }) {
     const query = qs.stringify({
@@ -206,4 +245,4 @@ async function getTourCategory({ category }) {
 }
 
 
-export { getTours, getTourDetail, getTourCategory, getTourDestination, getToursPagination, getTourFilter, getTourFilterSlug }
+export { getTours, getTourDetail, getTourCategory, getTourDestination, getToursPagination, getTourFilter, getTourFilterSlug, getOtherTour }

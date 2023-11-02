@@ -15,18 +15,20 @@ const Overview = ({ data }) => {
             Departs from:
           </h5>
           <ul className="list-disc text-15 mt-10">
-            <li>Barcelona</li>
-            <li>Miami</li>
-            <li>New York (Manhattan)</li>
-            <li>Port Canaveral (Orlando)</li>
-            <li>Rome (Civitavecchia)</li>
+            {
+              data?.data[0]?.attributes?.ports?.data.map((item, i) => {
+                return (
+                  <li key={i}>{item?.attributes?.name}</li>
+                )
+              })
+            }
           </ul>
         </div>
       </div>
 
       <div id="itinerary" className="col-12">
         <h3 className="text-22 fw-500 mb-20 border-top-light pt-40">Itinerary</h3>
-        <Itinerary />
+        <Itinerary data={data} />
       </div>
 
       <div>

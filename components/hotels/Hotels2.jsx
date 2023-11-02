@@ -4,31 +4,31 @@ import Slider from "react-slick";
 import { hotelsData } from "../../data/hotels";
 import isTextMatched from "../../utils/isTextMatched";
 
-const Hotels2 = () => {
+const Hotels2 = ({ otherTours }) => {
   var settings = {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4,
+    slidesToShow: otherTours?.data?.length > 4 ? 4 : otherTours?.data?.length,
     slidesToScroll: 1,
     responsive: [
       {
         breakpoint: 992,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: otherTours?.data?.length > 2 ? 2 : otherTours?.data?.length,
         },
       },
 
       {
         breakpoint: 768,
         settings: {
-          slidesToShow: 2,
+          slidesToShow: otherTours?.data?.length > 2 ? 2 : otherTours?.data?.length,
         },
       },
       {
         breakpoint: 520,
         settings: {
-          slidesToShow: 1,
+          slidesToShow: otherTours?.data?.length > 1 ? 1 : otherTours?.data?.length,
         },
       },
     ],
@@ -69,15 +69,15 @@ const Hotels2 = () => {
   return (
     <>
       <Slider {...settings}>
-        {hotelsData.slice(0, 4).map((item) => (
+        {otherTours?.data.slice(0, 4).map((item, index) => (
           <div
             className="col-xl-3 col-lg-3 col-sm-6"
             key={item?.id}
             data-aos="fade"
-            data-aos-delay={item.delayAnimation}
+            data-aos-delay={index * 100}
           >
             <Link
-              href={`/hotel/hotel-single-v1/${item.id}`}
+              href={`/destinations/${item?.attributes?.destinations?.data[0]?.attributes?.slug}/${item?.attributes?.category?.data?.attributes?.slug}/${item?.attributes?.slug}`}
               className="hotelsCard -type-1 hover-inside-slider"
             >
               <div className="hotelsCard__image">
@@ -88,14 +88,14 @@ const Hotels2 = () => {
                     nextArrow={<ArrowSlick type="next" />}
                     prevArrow={<ArrowSlick type="prev" />}
                   >
-                    {item?.slideImg?.map((slide, i) => (
+                    {item?.attributes?.images?.data.map((slide, i) => (
                       <div className="cardImage ratio ratio-1:1" key={i}>
                         <div className="cardImage__content ">
                           <Image
                             width={300}
                             height={300}
-                            className="rounded-4 col-12 js-lazy"
-                            src={slide}
+                            className="col-12 js-lazy"
+                            src={`${`http://3.74.191.230:1337`}${slide?.attributes?.formats?.medium?.url}`}
                             alt="image"
                           />
                         </div>
@@ -103,55 +103,35 @@ const Hotels2 = () => {
                     ))}
                   </Slider>
 
-                  <div className="cardImage__wishlist">
-                    <button className="button -blue-1 bg-white size-30 rounded-full shadow-2">
-                      <i className="icon-heart text-12" />
-                    </button>
-                  </div>
-
                   <div className="cardImage__leftBadge">
                     <div
-                      className={`py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase ${
-                        isTextMatched(item?.tag, "breakfast included")
-                          ? "bg-dark-1 text-white"
-                          : ""
-                      } ${
-                        isTextMatched(item?.tag, "best seller")
-                          ? "bg-blue-1 text-white"
-                          : ""
-                      }  ${
-                        isTextMatched(item?.tag, "top rated")
-                          ? "bg-yellow-1 text-dark-1"
-                          : ""
-                      }`}
+                      className={`py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase ${item?.attributes?.tag == "blackAttr" ? "bg-dark-1 text-white" : ""} ${item?.attributes?.tag == "brownAttr" ? "bg-brown-1 text-white" : ""} ${item?.attributes?.tag == "blueAttr" ? "bg-blue-1 text-white" : ""
+                        }  ${item?.attributes?.tag == "yellowAttr" ? "bg-yellow-1 text-dark-1" : ""}
+                    `}
                     >
-                      {item?.tag}
+                      {`
+                      ${item?.attributes?.tag == "blackAttr" ? "Breakfast included" : ''} ${item?.attributes?.tag == "yellowAttr" ? "Top Rated" : ''} ${item?.attributes?.tag == "blueAttr" ? "Best Seller" : ''} ${item?.attributes?.tag == "brownAttr" ? "-25% Today" : ''}
+                      `
+                      }
                     </div>
                   </div>
                 </div>
               </div>
               <div className="hotelsCard__content mt-10">
                 <h4 className="hotelsCard__title text-dark-1 text-18 lh-16 fw-500">
-                  <span>{item?.title}</span>
+                  <span>{item?.attributes.title}</span>
                 </h4>
                 <p className="text-light-1 lh-14 text-14 mt-5">
-                  {item?.location}
+                  {item?.attributes?.destinations?.data[0]?.attributes?.name} {item?.attributes?.destinations?.data[1]?.attributes?.name}
                 </p>
                 <div className="d-flex items-center mt-20">
-                  <div className="flex-center bg-blue-1 rounded-4 size-30 text-12 fw-600 text-white">
-                    {item?.ratings}
-                  </div>
-                  <div className="text-14 text-dark-1 fw-500 ml-10">
-                    Exceptional
-                  </div>
-                  <div className="text-14 text-light-1 ml-10">
-                    {item?.numberOfReviews} reviews
+                  <div className="text-16 fw-500 text-dark-1">
+                    ${item?.attributes?.price}
                   </div>
                 </div>
                 <div className="mt-5">
-                  <div className="fw-500">
-                    Starting from{" "}
-                    <span className="text-blue-1">US${item?.price}</span>
+                  <div className="fw-400">
+                    {item?.attributes?.shortText}
                   </div>
                 </div>
               </div>

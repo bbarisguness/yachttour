@@ -97,7 +97,7 @@ export default function Home({ destinations, tours }) {
         </div>
       </section>
 
-      <section className="section-bg layout-pt-lg layout-pb-lg">
+      {/* <section className="section-bg layout-pt-lg layout-pb-lg">
         <div className="section-bg__item -mx-20 bg-light-2" />
         <div className="container">
           <div className="row justify-center text-center">
@@ -129,7 +129,7 @@ export default function Home({ destinations, tours }) {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* <section className="layout-pt-md layout-pb-md">
         <div className="container">

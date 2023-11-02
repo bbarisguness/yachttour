@@ -101,9 +101,9 @@ const HomeTourList = ({ data }) => {
                 {item?.attributes?.destinations?.data[0]?.attributes?.name} {item?.attributes?.destinations?.data[1]?.attributes?.name}
               </p>
               <div style={{ justifyContent: 'space-between' }} className="d-flex items-center mt-20">
-                <div className="text-14 text-light-1">
+                {/* <div className="text-14 text-light-1">
                   3252 reviews
-                </div>
+                </div> */}
                 <div className="fw-500">
                   $ {item?.attributes?.price}
                 </div>

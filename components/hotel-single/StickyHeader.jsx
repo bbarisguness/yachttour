@@ -27,16 +27,13 @@ const StickyHeader = ({ tour }) => {
                   <a href="#overview">Overview</a>
                 </div>
                 <div className="col-auto">
-                  <a href="#rooms">Rooms</a>
+                  <a href="#itinerary">Itinerary</a>
+                </div>
+                <div className="col-auto">
+                  <a href="#features">Features</a>
                 </div>
                 <div className="col-auto">
                   <a href="#reviews">Reviews</a>
-                </div>
-                <div className="col-auto">
-                  <a href="#facilities">Facilities</a>
-                </div>
-                <div className="col-auto">
-                  <a href="#faq">Faq</a>
                 </div>
               </div>
             </div>
@@ -48,7 +45,7 @@ const StickyHeader = ({ tour }) => {
                   <div className="text-14">
                     From{" "}
                     <span className="text-22 text-dark-1 fw-500">
-                      US${tour?.data[0]?.attributes?.price}
+                      ${tour?.data[0]?.attributes?.price}
                     </span>
                   </div>
                 </div>

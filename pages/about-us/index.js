@@ -69,30 +69,6 @@ export default function About({ data }) {
       </section>
       {/* End counter Section */}
 
-      <section className="section-bg layout-pt-lg layout-pb-md">
-        <div className="section-bg__item -mx-20 bg-light-2" />
-        <div className="container">
-          <div className="row justify-center text-center">
-            <div className="col-auto">
-              <div className="sectionTitle -md">
-                <h2 className="sectionTitle__title">Why Choose Us</h2>
-                <p className=" sectionTitle__text mt-5 sm:mt-0">
-                  These popular destinations have a lot to offer
-                </p>
-              </div>
-            </div>
-          </div>
-          {/* End .row */}
-
-          <div className="row y-gap-40 justify-between pt-50">
-            <WhyChoose />
-          </div>
-          {/* End .row */}
-        </div>
-        {/* End .container */}
-      </section>
-      {/* End Why Choose Us section */}
-
       <Footer />
       {/* End Call To Actions Section */}
     </>
