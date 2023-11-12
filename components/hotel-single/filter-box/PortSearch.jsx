@@ -1,16 +1,18 @@
 import { useEffect, useState } from "react";
 import { getSearchCategory } from "../../../services/category";
 
-const HourSearch = ({ data }) => {
+const PortSearch = ({ data }) => {
   const [selectedItem, setSelectedItem] = useState(null);
+  const [selectedId, setSelectedId] = useState(null)
   const [categories, setCategories] = useState([])
 
   useEffect(() => {
-    setCategories(data?.data[0]?.attributes?.hours?.hours)
+    setCategories(data?.data[0]?.attributes?.ports)
   }, [])
 
   const handleOptionClick = (item) => {
-    setSelectedItem(item.hour);
+    setSelectedItem(item.attributes.name);
+    setSelectedId(item.id)
   };
 
   useEffect(() => {
@@ -19,9 +21,9 @@ const HourSearch = ({ data }) => {
       d: a.d,
       m: a.m,
       y: a.y,
-      t: selectedItem,
-      l: a.l,
-      i: a.i,
+      t: a.t,
+      l: selectedItem,
+      i: selectedId,
       p: a.p,
       n: a.n
     }
@@ -36,9 +38,9 @@ const HourSearch = ({ data }) => {
           data-bs-auto-close="true"
           data-bs-offset="0,22"
         >
-          <h4 className="text-15 fw-500 ls-2 lh-16">Time</h4>
+          <h4 className="text-15 fw-500 ls-2 lh-16">Port</h4>
           <div className="text-15 text-light-1 ls-2 lh-16">
-            <div>{selectedItem == null && 'Select Time'} {selectedItem !== null && selectedItem}</div>
+            <div>{selectedItem == null && 'Select Port'} {selectedItem !== null && selectedItem}</div>
           </div>
         </div>
         {/* End location Field */}
@@ -58,7 +60,7 @@ const HourSearch = ({ data }) => {
                     <div className="icon-location-2 text-light-1 text-20 pt-4" />
                     <div className="ml-10">
                       <div className="text-15 lh-0 fw-500 js-search-option-target">
-                        {item.hour}
+                        {item.attributes.name}
                       </div>
 
                     </div>
@@ -73,4 +75,4 @@ const HourSearch = ({ data }) => {
   );
 };
 
-export default HourSearch;
+export default PortSearch;

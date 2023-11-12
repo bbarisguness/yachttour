@@ -36,7 +36,8 @@ async function postReservationInfo({ data, id }) {
                 "surname": data.surname,
                 "email": data.email,
                 "phone": data.phone,
-                "reservation": id
+                "reservation": id,
+                "port": data?.port
             }
         }),
     })

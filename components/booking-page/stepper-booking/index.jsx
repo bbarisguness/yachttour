@@ -3,6 +3,7 @@ import CustomerInfo from "../CustomerInfo";
 import PaymentInfo from "../PaymentInfo";
 import OrderSubmittedInfo from "../OrderSubmittedInfo";
 import { postReservation, postReservationInfo, getReservation } from "../../../services/reservation";
+import emailjs from '@emailjs/browser';
 
 const Index = ({ dataa, rezOpt }) => {
   const [currentStep, setCurrentStep] = useState(0);
@@ -34,7 +35,8 @@ const Index = ({ dataa, rezOpt }) => {
     surname: '',
     email: '',
     phone: '',
-    note: ''
+    note: '',
+    port: rezOpt?.i
   })
 
   const rezInfo = {
@@ -90,11 +92,32 @@ const Index = ({ dataa, rezOpt }) => {
     return <>{content}</>;
   };
 
+  const emailData = {
+    email: userInfo?.email,
+    from_name: userInfo?.name,
+    port: rezOpt?.l,
+    date: `${rezOpt?.m}.${rezOpt?.d}.${rezOpt?.y}`,
+    qty: rezInfo?.qty,
+    total: rezInfo?.total,
+    orderNumber: rezInfo?.orderNumber,
+    paymentType: rezInfo?.paymentType
+  }
+
+  const sendEmail = (e) => {
+    emailjs.send('service_933gt9l', 'template_o1oz11h', emailData, '6N_ClLffsmQBOhi1U')
+      .then((result) => {
+        
+      }, (error) => {
+        console.log(error.text);
+      });
+  };
+
   useEffect(() => {
     if (currentStep == 2) {
       postReservation({ data: rezInfo }).then((res) => {
         const id = res?.data?.id
         postReservationInfo({ data: userInfo, id }).then((res) => {
+          sendEmail()
           setFinish(true)
           localStorage.removeItem('s')
           localStorage.removeItem('item')

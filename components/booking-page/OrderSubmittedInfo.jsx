@@ -196,6 +196,14 @@ const OrderSubmittedInfo = ({ rezOpt, dataa, paymentType, userInfo, orderNo }) =
                 </div>
               </div>
               {/* End .col */}
+              <div className="col-12">
+                <div className="d-flex justify-between border-top-light pt-10">
+                  <div className="text-15 lh-16">Port</div>
+                  <div className="text-15 lh-16 fw-500 text-blue-1">
+                    {rezOpt?.l}
+                  </div>
+                </div>
+              </div>
             </div>
             {/* End .row */}
           </div>

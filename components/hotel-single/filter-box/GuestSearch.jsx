@@ -14,6 +14,8 @@ export default function GuestSearch() {
       m: a.m,
       y: a.y,
       t: a.t,
+      l: a.l,
+      i: a.i,
       p: person,
       n: a.n
     }

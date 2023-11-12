@@ -45,11 +45,7 @@ export default function YachtDetailPage({ data }) {
         <div className="container">
           <div className="row y-gap-40 justify-center text-center">
             <div className="col-auto">
-              <div className="text-15 fw-500 text-blue-1 mb-8 text-capitalize">
-                Adventure
-              </div>
               <h1 className="text-30 fw-600">{data?.data[0]?.attributes.name}</h1>
-              <div className="text-15 text-light-1 mt-10">Jan 06, 2023</div>
             </div>
             <div className="col-12">
               <img
@@ -75,7 +71,8 @@ export default function YachtDetailPage({ data }) {
               </div>
               {/* End YachtNavigator */}
 
-              <h2 className="text-22 fw-500 mb-15 pt-30">Guest reviews</h2>
+              {/* <h2 className="text-22 fw-500 mb-15 pt-30">Guest reviews</h2> */}
+              <div style={{ marginTop: '3rem' }}></div>
               <Comments data={data} />
               {/* End comments components */}
 

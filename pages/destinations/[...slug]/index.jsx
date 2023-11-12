@@ -397,7 +397,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
 
         return (
             <>
-                <Seo pageTitle={`${b} Tours in All ${d}`} />
+                <Seo pageTitle={`${b} in All ${d}`} />
                 {/* End Page Title */}
 
                 <div className="header-margin"></div>
@@ -445,7 +445,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                             {/* End col */}
 
                             <div className="col-xl-9 ">
-                                <TopHeaderFilter />
+                                <TopHeaderFilter b={b} d={d} />
                                 <div className="mt-30"></div>
                                 {/* End mt--30 */}
                                 <div className="row y-gap-30">
@@ -758,7 +758,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                         </div>
                         {/* End .row */}
 
-                        <ReviewProgress />
+                        {/* <ReviewProgress /> */}
                         {/* End review with progress */}
 
                         <div className="pt-40">
@@ -766,15 +766,15 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                             {/* End review with details */}
                         </div>
 
-                        <div className="row pt-30">
+                        {/* <div className="row pt-30">
                             <div className="col-auto">
                                 <a href="#" className="button -md -outline-blue-1 text-blue-1">
                                     Show all 116 reviews{" "}
                                     <div className="icon-arrow-top-right ml-15"></div>
                                 </a>
                             </div>
-                        </div>
-                        {/* End .row */}
+                        </div> */}
+                        
                     </div>
                     {/* End .container */}
                     {/* End container */}

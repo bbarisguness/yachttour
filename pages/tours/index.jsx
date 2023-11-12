@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import TopHeaderFilter from "../../components/tour-list/tour-list-v2/TopHeaderFilter";
 import TourProperties from "../../components/tour-list/tour-list-v2/TourProperties";
 import Pagination from "../../components/tour-list/common/Pagination";
 import Sidebar from "../../components/tour-list/tour-list-v2/Sidebar";
@@ -7,6 +6,7 @@ import { getTourFilter } from "../../services/tours";
 import Seo from "../../components/custom/common/Seo";
 import Header from "../../components/custom/home/headers/header2/header";
 import Footer from "../../components/custom/footers/footer";
+import TopHeaderFilter2 from '../../components/tour-list/tour-list-v2/TopHeaderFilter2';
 
 export default function Tours({ tours }) {
     return (
@@ -59,7 +59,7 @@ export default function Tours({ tours }) {
                         {/* End col */}
 
                         <div className="col-xl-9 ">
-                            <TopHeaderFilter data={tours} />
+                            <TopHeaderFilter2 data={tours} />
                             <div className="mt-30"></div>
                             {/* End mt--30 */}
                             <div className="row y-gap-30">

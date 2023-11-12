@@ -19,14 +19,14 @@ export default function BookingPage() {
 
     useEffect(() => {
         if (ready) {
-            if (dataa && rezOpt && rezOpt?.d && rezOpt?.m && rezOpt?.p && rezOpt?.t !== null && rezOpt?.y) {
+            if (dataa && rezOpt && rezOpt?.d && rezOpt?.m && rezOpt?.p && rezOpt?.t !== null && rezOpt?.l !== null && rezOpt?.y) {
             } else {
                 router.push('/tours')
             }
         }
     }, [dataa])
 
-    if (dataa && rezOpt && rezOpt?.d && rezOpt?.m && rezOpt?.p && rezOpt?.t !== null && rezOpt?.y) {
+    if (dataa && rezOpt && rezOpt?.d && rezOpt?.m && rezOpt?.p && rezOpt?.t !== null && rezOpt?.l !== null && rezOpt?.y) {
         return (
             <>
                 <Seo pageTitle="Tour Booking Page" />

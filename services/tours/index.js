@@ -151,7 +151,8 @@ async function getTourDetail({ tourSlug }) {
             "tag",
             "category",
             "reservations",
-            "comments"
+            "comments",
+            "ports"
         ],
         filters: {
             slug: {

@@ -3,22 +3,33 @@ import DateSearch from "./DateSearch";
 import { useRouter } from "next/router";
 import HourSearch from "./HourSearch";
 import { useEffect, useState } from "react";
+import PortSearch from "./PortSearch";
 
 const FilterBox = ({ data }) => {
   const router = useRouter()
   const [a, setA] = useState()
   const [e, setE] = useState(false)
+  const [c, setC] = useState(false)
   const [ready, setReady] = useState(false)
 
   useEffect(() => {
     if (ready) {
-      if (a?.t !== null) {
+      if (a?.t !== null && a?.l !== null) {
         setReady(false)
         router.push('/booking-page')
         setE(false)
       } else {
+        if (a?.t == null && a?.l == null) {
+          setE(true)
+          setC(true)
+        } else if (a?.l == null) {
+          setC(true)
+          setE(false)
+        } else if (a?.t == null) {
+          setE(true)
+          setC(false)
+        }
         setReady(false)
-        setE(true)
       }
     }
   }, [ready])
@@ -45,6 +56,12 @@ const FilterBox = ({ data }) => {
       <div className="col-12">
         {e && <div className="text-danger fw-400 text-14">Please select time</div>}
         <HourSearch data={data} />
+        {/* End guest */}
+      </div>
+
+      <div className="col-12">
+        {c && <div className="text-danger fw-400 text-14">Please select port</div>}
+        <PortSearch data={data} />
         {/* End guest */}
       </div>
 

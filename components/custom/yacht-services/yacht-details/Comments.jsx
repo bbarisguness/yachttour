@@ -56,11 +56,11 @@ const Comments = ({ data }) => {
           }
         })
       }
-      <div className="col-auto">
+      {/* <div className="col-auto">
         <a href="#" className="button -md -outline-blue-1 text-blue-1">
           Show all 116 reviews <div className="icon-arrow-top-right ml-15" />
         </a>
-      </div>
+      </div> */}
     </div>
   );
 };

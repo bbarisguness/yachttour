@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-const TopHeaderFilter = ({ data, b, d }) => {
+const TopHeaderFilter2 = ({ data }) => {
   const router = useRouter()
   const query = router.query
   const [sort, setSort] = useState(false)
@@ -39,8 +39,7 @@ const TopHeaderFilter = ({ data, b, d }) => {
       <div className="row y-gap-10 items-center justify-between">
         <div className="col-auto">
           <div className="text-18">
-            {/* <span className="fw-500">{data?.meta?.pagination?.total} Tours</span> in <span style={{ textTransform: "capitalize" }}>{query?.dest ? query.dest.replace(/-/g, " ") : 'All Tour'}</span> */}
-            <span className="fw-500">{`${b} in All ${d}`}</span>
+            <span className="fw-500">{data?.meta?.pagination?.total} Tours</span> in <span style={{ textTransform: "capitalize" }}>{query?.dest ? query.dest.replace(/-/g, " ") : 'All Tour'}</span>
           </div>
         </div>
         {/* End .col */}
@@ -76,4 +75,4 @@ const TopHeaderFilter = ({ data, b, d }) => {
   );
 };
 
-export default TopHeaderFilter;
+export default TopHeaderFilter2;

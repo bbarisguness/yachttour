@@ -21,13 +21,13 @@ const BookingDetails = ({ dataa, rezOpt }) => {
           </div>
           <div className="text-14 lh-15 mt-5">{dataa?.attributes?.destinations?.data[0]?.attributes?.name}{dataa?.attributes?.destinations?.data[1]?.attributes?.name && ','} {dataa?.attributes?.destinations?.data[1]?.attributes?.name}</div>
           <div className="row x-gap-10 y-gap-10 items-center pt-10">
-            <div className="col-auto">
+            {/* <div className="col-auto">
               <div className="d-flex items-center">
                 <div className="text-14 fw-400">3,014 reviews</div>
               </div>
-            </div>
+            </div> */}
             <div style={{ justifyContent: 'space-between' }} className="col-auto">
-              <div className="text-14 fw-500 ml-20">$ {dataa?.attributes?.price}</div>
+              <div className="text-14 fw-500">$ {dataa?.attributes?.price}</div>
             </div>
           </div>
         </div>
@@ -51,6 +51,12 @@ const BookingDetails = ({ dataa, rezOpt }) => {
       <div>
         <div className="text-15">Person:</div>
         <div className="fw-500">{rezOpt?.p} person</div>
+      </div>
+
+      <div className="border-top-light mt-30 mb-20" />
+      <div>
+        <div className="text-15">Port:</div>
+        <div className="fw-500">{rezOpt?.l}</div>
       </div>
 
       <div className="border-top-light mt-30 mb-20" />

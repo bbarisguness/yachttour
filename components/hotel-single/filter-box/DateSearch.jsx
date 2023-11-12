@@ -11,6 +11,8 @@ const DateSearch = () => {
       m: dates?.month.number,
       y: dates?.year,
       t: a?.t,
+      l: a?.l,
+      i: a?.i,
       p: a?.p,
       n: dates?.month.name
     }

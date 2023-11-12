@@ -32,7 +32,7 @@ const TourProperties = ({ data }) => {
                       }}
                       navigation={true}
                     >
-                      {item?.attributes?.images?.data.map((slide, i) => (
+                      {item?.attributes?.images?.data?.map((slide, i) => (
                         <SwiperSlide key={i}>
                           <Image
                             width={300}
