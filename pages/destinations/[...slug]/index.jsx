@@ -85,7 +85,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
         if (path === `/destinations/${slug[0]}` && data.data.length !== 0) {
             return (
                 <>
-                    <Seo pageTitle={data?.data[0]?.attributes.metaFields?.metaTitle} />
+                    <Seo pageDesc={data?.data[0]?.attributes?.metaFields?.metaDescription} pageTitle={data?.data[0]?.attributes.metaFields?.metaTitle} />
                     {/* End Page Title */}
 
                     <div className="header-margin"></div>
@@ -397,7 +397,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
 
         return (
             <>
-                <Seo pageTitle={`${b} in All ${d}`} />
+                <Seo pageDesc={`${b} in All ${d}`} pageTitle={`${b} in All ${d}`} />
                 {/* End Page Title */}
 
                 <div className="header-margin"></div>
@@ -478,7 +478,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                     onClose={() => setOpen(false)}
                 />
 
-                <Seo pageTitle={tourDetail?.data[0]?.attributes?.metaFields?.metaTitle} />
+                <Seo pageDesc={tourDetail?.data[0]?.attributes?.metaFields?.metaDescription} pageTitle={tourDetail?.data[0]?.attributes?.metaFields?.metaTitle} />
                 {/* End Page Title */}
 
                 <div className="header-margin"></div>
@@ -774,7 +774,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                 </a>
                             </div>
                         </div> */}
-                        
+
                     </div>
                     {/* End .container */}
                     {/* End container */}
@@ -811,7 +811,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                         <div className="row justify-center text-center">
                             <div className="col-auto">
                                 <div className="sectionTitle -md">
-                                    <h2 style={{textTransform: 'capitalize'}} className="sectionTitle__title">
+                                    <h2 style={{ textTransform: 'capitalize' }} className="sectionTitle__title">
                                         Other {slug[1]}
                                     </h2>
                                     <p className=" sectionTitle__text mt-5 sm:mt-0">

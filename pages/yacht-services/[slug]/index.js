@@ -29,7 +29,7 @@ export default function YachtDetailPage({ data }) {
 
   return (
     <>
-      <Seo pageTitle={data?.data[0]?.attributes.metaFields?.metaTitle} />
+      <Seo pageDesc={data?.data[0]?.attributes?.metaFields?.metaDescription} pageTitle={data?.data[0]?.attributes.metaFields?.metaTitle} />
       {/* End Page Title */}
 
       <div className="header-margin"></div>
