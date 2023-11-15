@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 export default function About({ data }) {
   return (
     <>
-      <Seo pageTitle={data?.data?.attributes.metaFields?.metaTitle} />
+      <Seo pageDesc={data?.data?.attributes.metaFields?.metaDescription} pageTitle={data?.data?.attributes.metaFields?.metaTitle} />
       {/* End Page Title */}
 
       <div className="header-margin"></div>

@@ -14,12 +14,12 @@ import { getDestinations } from "../services/destination";
 import { getBlogs } from "../services/blog";
 import { getTours } from "../services/tours";
 import { getYachtServices } from "../services/yacht-services";
+import { getHomePage } from "../services/homepage"
 
-export default function Home({ destinations, tours }) {
-
+export default function Home({ destinations, tours, homepage }) {
   return (
     <>
-      <Seo pageTitle="Home-1" />
+      <Seo pageDesc={homepage?.data?.attributes?.metaFields?.metaDescription} pageTitle={homepage?.data?.attributes?.metaFields?.metaTitle} />
 
       <Header />
 
@@ -161,5 +161,6 @@ export default function Home({ destinations, tours }) {
 export async function getServerSideProps() {
   const destinations = await getDestinations()
   const tours = await getTours()
-  return { props: { destinations, tours } }
+  const homepage = await getHomePage()
+  return { props: { destinations, tours, homepage } }
 }
