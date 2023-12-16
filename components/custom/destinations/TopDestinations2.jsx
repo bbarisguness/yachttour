@@ -42,10 +42,10 @@ const TopDestinations2 = ({ data }) => {
             >
               <div className="citiesCard__image rounded-4 ratio ratio-1:1">
                 <Image
-                  width={191}
-                  height={191}
+                  width={600}
+                  height={600}
                   className="img-ratio rounded-4 js-lazy"
-                  src={`${`http://3.74.191.230:1337`}${item?.attributes?.image?.data[0].attributes?.formats?.medium?.url}`}
+                  src={`${`http://3.74.191.230:1337`}${item?.attributes?.image?.data[0].attributes?.formats?.large?.url}`}
                   alt="image"
                 />
               </div>

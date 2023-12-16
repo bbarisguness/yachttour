@@ -34,14 +34,15 @@ const TourProperties = ({ data }) => {
                     >
                       {item?.attributes?.images?.data?.map((slide, i) => (
                         <SwiperSlide key={i}>
-                          <Image
+                          {/* <Image
                             width={300}
                             height={300}
                             className={`rounded-4 col-12 js-lazy`}
                             style={{ height: '100%' }}
                             src={`${"http://3.74.191.230:1337"}${slide?.attributes?.formats?.medium?.url}`}
                             alt="image"
-                          />
+                          /> */}
+                          <img style={{ height: '100%' }} width={800} height={800} className="rounded-4 col-12 js-lazy" src={`${'http://3.74.191.230:1337'}${slide?.attributes?.formats?.large?.url}`} alt="image" />
                         </SwiperSlide>
                       ))}
                     </Swiper>

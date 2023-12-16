@@ -23,7 +23,7 @@ const TopDestinations = ({ home, data }) => {
             className="citiesCard -type-3 d-block h-full rounded-4 "
           >
             <div className="citiesCard__image ratio ratio-1:1">
-              <img className="col-12 js-lazy" src={`${"http://3.74.191.230:1337"}${item?.attributes?.image?.data[0]?.attributes?.formats?.medium?.url}`} alt="image" />
+              <img className="col-12 js-lazy" src={`${"http://3.74.191.230:1337"}${item?.attributes?.image?.data[0]?.attributes?.formats?.large?.url}`} alt="image" />
             </div>
             <div className="citiesCard__content px-30 py-30">
               <h4 className="text-26 fw-600 text-white text-capitalize">
