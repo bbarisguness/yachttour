@@ -32,9 +32,12 @@ const TourProperties = ({ data }) => {
                       }}
                       navigation={true}
                     >
-                      {item?.attributes?.images?.data?.map((slide, i) => (
-                        <SwiperSlide key={i}>
-                          {/* <Image
+                      {
+                        item?.attributes?.images?.data.map((slide, i) => {
+                          if (i < 4) {
+                            return (
+                              <SwiperSlide key={i}>
+                                {/* <Image
                             width={300}
                             height={300}
                             className={`rounded-4 col-12 js-lazy`}
@@ -42,9 +45,12 @@ const TourProperties = ({ data }) => {
                             src={`${"http://3.74.191.230:1337"}${slide?.attributes?.formats?.medium?.url}`}
                             alt="image"
                           /> */}
-                          <img style={{ height: '100%' }} width={800} height={800} className="rounded-4 col-12 js-lazy" src={`${'http://3.74.191.230:1337'}${slide?.attributes?.formats?.large?.url}`} alt="image" />
-                        </SwiperSlide>
-                      ))}
+                                <img style={{ height: '100%' }} width={800} height={800} className="rounded-4 col-12 js-lazy" src={`${'http://3.74.191.230:1337'}${slide?.attributes?.formats?.large?.url}`} alt="image" />
+                              </SwiperSlide>
+                            )
+                          }
+                        })
+                      }
                     </Swiper>
                   </div>
                 </div>

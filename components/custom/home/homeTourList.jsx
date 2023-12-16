@@ -58,20 +58,26 @@ const HomeTourList = ({ data }) => {
                   nextArrow={<ArrowSlick type="next" />}
                   prevArrow={<ArrowSlick type="prev" />}
                 >
-                  {item?.attributes?.images?.data.map((slide, i) => (
-                    <div className="cardImage ratio ratio-1:1" key={i}>
-                      <div className="cardImage__content ">
-                        {/* <Image
-                          width={800}
-                          height={800}
-                          className="rounded-4 col-12 js-lazy"
-                          src={`${'http://3.74.191.230:1337'}${slide?.attributes?.url}`}
-                          alt="image"
-                        /> */}
-                        <img width={800} height={800} className="rounded-4 col-12 js-lazy" src={`${'http://3.74.191.230:1337'}${slide?.attributes?.formats?.large?.url}`} alt="image" />
-                      </div>
-                    </div>
-                  ))}
+                  {
+                    item?.attributes?.images?.data.map((slide, i) => {
+                      if (i < 4) {
+                        return (
+                          <div className="cardImage ratio ratio-1:1" key={i}>
+                            <div className="cardImage__content ">
+                              {/* <Image
+                            width={800}
+                            height={800}
+                            className="rounded-4 col-12 js-lazy"
+                            src={`${'http://3.74.191.230:1337'}${slide?.attributes?.url}`}
+                            alt="image"
+                          /> */}
+                              <img width={800} height={800} className="rounded-4 col-12 js-lazy" src={`${'http://3.74.191.230:1337'}${slide?.attributes?.formats?.large?.url}`} alt="image" />
+                            </div>
+                          </div>
+                        )
+                      }
+                    })
+                  }
                 </Slider>
 
                 {/* <div className="cardImage__wishlist">
