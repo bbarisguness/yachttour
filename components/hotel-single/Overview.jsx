@@ -31,10 +31,10 @@ const Overview = ({ data }) => {
         <Itinerary data={data} />
       </div>
 
-      <div>
+      {/* <div>
         <h3 className='text-22 fw-500 pt-30 mt-40 border-top-light'>Specifications</h3>
         <Specifications data={data} />
-      </div>
+      </div> */}
     </>
   );
 };

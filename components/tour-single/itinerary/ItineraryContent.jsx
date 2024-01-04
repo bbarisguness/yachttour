@@ -48,7 +48,7 @@ const ItineraryContent = ({ data }) => {
             <div className="accordion__item ">
               <div className="d-flex">
                 <div className="accordion__icon size-40 flex-center bg-blue-2 text-blue-1 rounded-full">
-                  <div className="text-14 fw-500">{item?.id}</div>
+                  <div className="text-14 fw-500">{i + 1}</div>
                 </div>
                 {/* End item number */}
 

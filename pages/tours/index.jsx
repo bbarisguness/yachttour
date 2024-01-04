@@ -87,10 +87,12 @@ export async function getServerSideProps({ query }) {
     const dest = query.dest
     const price = query.p
     const person = query.e
-    const width = query.w
-    const hp = query.hp
-    const year = query.y
+
+    // const width = query.w
+    // const hp = query.hp
+    // const year = query.y
+
     const sort = query.sort
-    const tours = await getTourFilter({ page, cat, dest, price, person, width, hp, year, sort })
+    const tours = await getTourFilter({ page, cat, dest, price, person, sort })
     return { props: { tours } }
 }

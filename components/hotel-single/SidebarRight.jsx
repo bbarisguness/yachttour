@@ -7,7 +7,7 @@ const SidebarRight = ({ data }) => {
         <div className="d-flex items-center justify-between">
           <div>
             <span className="text-20 fw-500">${data?.data[0]?.attributes?.price}</span>
-            <span className="text-14 text-light-1 ml-5">nights</span>
+            {/* <span className="text-14 text-light-1 ml-5">for</span> */}
           </div>
           <div className="d-flex items-center">
             <div className="text-14 text-right mr-10">

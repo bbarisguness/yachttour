@@ -74,7 +74,7 @@ const FilterBox = ({ data }) => {
       <div className="col-12">
         <div className="button-item h-full">
           <button onClick={() => checkHandle()} className="button -dark-1 px-35 h-60 col-12 bg-blue-1 text-white">
-            Check availability
+            Check Out
           </button>
         </div>
         {/* End search button_item */}

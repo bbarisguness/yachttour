@@ -28,14 +28,14 @@ async function getToursPagination({ page }) {
     return data
 }
 
-async function getTourFilter({ page, cat, dest, price, person, width, hp, year, sort }) {
+async function getTourFilter({ page, cat, dest, price, person, sort }) {
     const splitCat = cat?.split(",");
     const splitDest = dest?.split(",");
     const splitPrice = price?.split(',') || '';
     const splitPerson = person?.split('-') || '';
-    const splitWidth = width?.split('-') || '';
-    const splitHp = hp?.split('-') || '';
-    const splitYear = year?.split(',') || '';
+    // const splitWidth = width?.split('-') || '';
+    // const splitHp = hp?.split('-') || '';
+    // const splitYear = year?.split(',') || '';
     const query = qs.stringify({
         fields: '*',
         populate: '*',
@@ -59,15 +59,15 @@ async function getTourFilter({ page, cat, dest, price, person, width, hp, year, 
             person: {
                 $between: [parseInt(splitPerson[0]) == 20 ? 0 : parseInt(splitPerson[0]) || 0, parseInt(splitPerson[1]) || 100000],
             },
-            width: {
-                $between: [parseInt(splitWidth[0]) == 40 ? 0 : parseInt(splitWidth[0]) || 0, parseInt(splitWidth[1]) || 100000],
-            },
-            enginehp: {
-                $between: [parseInt(splitHp[0]) == 1000 ? 0 : parseInt(splitHp[0]) || 0, parseInt(splitHp[1]) || 100000],
-            },
-            year: {
-                $between: [parseInt(splitYear[0]?.slice(4, splitYear[0].length)) || 1956, parseInt(splitYear[1]?.slice(4, splitYear[1].length)) || 2024],
-            },
+            // width: {
+            //     $between: [parseInt(splitWidth[0]) == 40 ? 0 : parseInt(splitWidth[0]) || 0, parseInt(splitWidth[1]) || 100000],
+            // },
+            // enginehp: {
+            //     $between: [parseInt(splitHp[0]) == 1000 ? 0 : parseInt(splitHp[0]) || 0, parseInt(splitHp[1]) || 100000],
+            // },
+            // year: {
+            //     $between: [parseInt(splitYear[0]?.slice(4, splitYear[0].length)) || 1956, parseInt(splitYear[1]?.slice(4, splitYear[1].length)) || 2024],
+            // },
         },
         pagination: {
             pageSize: 9,
@@ -83,12 +83,14 @@ async function getTourFilter({ page, cat, dest, price, person, width, hp, year, 
     return data
 }
 
-async function getTourFilterSlug({ rSlug, category, page, price, person, width, hp, year, sort }) {
+async function getTourFilterSlug({ rSlug, category, page, price, person,sort }) {
     const splitPrice = price?.split(',') || '';
     const splitPerson = person?.split('-') || '';
-    const splitWidth = width?.split('-') || '';
-    const splitHp = hp?.split('-') || '';
-    const splitYear = year?.split(',') || '';
+
+    // const splitWidth = width?.split('-') || '';
+    // const splitHp = hp?.split('-') || '';
+    // const splitYear = year?.split(',') || '';
+
     const sorting = sort?.toUpperCase()
     const filterSort = sorting == 'ASC' || sorting == 'DESC' ? sorting : 'ASC'
     const query = qs.stringify({
@@ -114,15 +116,15 @@ async function getTourFilterSlug({ rSlug, category, page, price, person, width, 
             person: {
                 $between: [parseInt(splitPerson[0]) == 20 ? 0 : parseInt(splitPerson[0]) || 0, parseInt(splitPerson[1]) || 100000],
             },
-            width: {
-                $between: [parseInt(splitWidth[0]) == 40 ? 0 : parseInt(splitWidth[0]) || 0, parseInt(splitWidth[1]) || 100000],
-            },
-            enginehp: {
-                $between: [parseInt(splitHp[0]) == 1000 ? 0 : parseInt(splitHp[0]) || 0, parseInt(splitHp[1]) || 100000],
-            },
-            year: {
-                $between: [parseInt(splitYear[0]?.slice(4, splitYear[0].length)) || 1956, parseInt(splitYear[1]?.slice(4, splitYear[1].length)) || 2024],
-            },
+            // width: {
+            //     $between: [parseInt(splitWidth[0]) == 40 ? 0 : parseInt(splitWidth[0]) || 0, parseInt(splitWidth[1]) || 100000],
+            // },
+            // enginehp: {
+            //     $between: [parseInt(splitHp[0]) == 1000 ? 0 : parseInt(splitHp[0]) || 0, parseInt(splitHp[1]) || 100000],
+            // },
+            // year: {
+            //     $between: [parseInt(splitYear[0]?.slice(4, splitYear[0].length)) || 1956, parseInt(splitYear[1]?.slice(4, splitYear[1].length)) || 2024],
+            // },
         },
         pagination: {
             pageSize: 9,

@@ -93,7 +93,7 @@ const GuestSearch = () => {
       </div>
       {/* End guest */}
 
-      <div className="shadow-2 dropdown-menu min-width-400">
+      <div style={{ minWidth: '280px' }} className="shadow-2 dropdown-menu min-width-400">
         <div className="bg-white px-30 py-30 rounded-4 counter-box">
           {counters.map((counter) => (
             <Counter

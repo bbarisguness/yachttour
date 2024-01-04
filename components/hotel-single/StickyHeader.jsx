@@ -43,7 +43,6 @@ const StickyHeader = ({ tour }) => {
               <div className="row x-gap-15 y-gap-15 items-center">
                 <div className="col-auto">
                   <div className="text-14">
-                    From{" "}
                     <span className="text-22 text-dark-1 fw-500">
                       ${tour?.data[0]?.attributes?.price}
                     </span>

@@ -59,32 +59,29 @@ const Sidebar = () => {
       </div>
       {/* End popular filter */}
 
-      <div className="sidebar__item ">
+      {/* <div className="sidebar__item ">
         <h5 className="text-18 fw-500 mb-10">Width</h5>
         <div className="sidebar-checkbox">
           <WidthTypes />
         </div>
-        {/* End Sidebar-checkbox */}
-      </div>
-      {/* End popular filter */}
-
-      <div className="sidebar__item ">
+      </div> */}
+      
+      {/* <div className="sidebar__item ">
         <h5 className="text-18 fw-500 mb-10">Hp</h5>
         <div className="sidebar-checkbox">
           <HpTypes />
         </div>
-        {/* End Sidebar-checkbox */}
-      </div>
-      {/* End popular filter */}
+      </div> */}
 
-      <div className="sidebar__item pb-30">
+      {/* <div className="sidebar__item pb-30">
         <h5 className="text-18 fw-500 mb-10">Year</h5>
         <div className="row x-gap-10 y-gap-30">
           <div className="col-12">
             <YearSlider />
           </div>
         </div>
-      </div>
+      </div> */}
+      
     </>
   );
 };

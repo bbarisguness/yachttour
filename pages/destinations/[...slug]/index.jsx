@@ -522,7 +522,6 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                 <div className="row x-gap-15 y-gap-15 items-center">
                                     <div className="col-auto">
                                         <div className="text-14">
-                                            From{" "}
                                             <span className="text-22 text-dark-1 fw-500">
                                                 ${tourDetail?.data[0]?.attributes?.price}
                                             </span>
@@ -848,16 +847,18 @@ export async function getServerSideProps({ params, query }) {
     const page = query.page
     const price = query.p
     const person = query.e
-    const width = query.w
-    const hp = query.hp
-    const year = query.y
+
+    // const width = query.w
+    // const hp = query.hp
+    // const year = query.y
+
     const sort = query.sort
 
     const data = await getDestinationDetail({ slug })
     const toursDestination = await getTourDestination({ rSlug, category: 'tour' })
     const yachtDestination = await getTourDestination({ rSlug, category: 'yacht' })
     const guletDestination = await getTourDestination({ rSlug, category: 'gulet' })
-    const filterDestinations = await getTourFilterSlug({ rSlug, category: slug[1], page, price, person, width, hp, year, sort })
+    const filterDestinations = await getTourFilterSlug({ rSlug, category: slug[1], page, price, person, sort })
     const destinationsIsNot = await getDestinationsIsNot({ slug })
     const otherTours = await getOtherTour({ rSlug, category: slug[1], slug: slug[2] })
     const tourDetail = await getTourDetail({ tourSlug: `${slug[2]}` })
