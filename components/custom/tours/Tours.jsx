@@ -76,7 +76,7 @@ const Tours = ({ data }) => {
             data-aos-delay={index * 100}
           >
             <Link
-              href={`/destinations/${item?.attributes?.destinations?.data[0]?.attributes?.slug}/${item?.attributes?.category?.data?.attributes?.slug}/${item?.attributes?.slug}`}
+              href={`/${item?.attributes?.destinations?.data[0]?.attributes?.slug}/${item?.attributes?.category?.data?.attributes?.slug}/${item?.attributes?.slug}`}
               className="tourCard -type-1 rounded-4 hover-inside-slider"
             >
               <div className="tourCard__image position-relative">
@@ -139,7 +139,7 @@ const Tours = ({ data }) => {
                   <div className="size-3 bg-light-1 rounded-full ml-10 mr-10" />
                   <div className="text-14 text-light-1">{item?.attributes.categories.data[0].attributes.name}</div>
                 </div> */}
-                <h4 className="tourCard__title text-dark-1 text-18 lh-16 fw-500">
+                <h4 className="tourCard__title text-dark-1 text-18 lh-16 fw-500 text-uppercase">
                   <span>{item?.attributes?.title}</span>
                 </h4>
                 <p className="text-light-1 lh-14 text-14 mt-5">

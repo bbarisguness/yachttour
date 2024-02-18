@@ -19,7 +19,7 @@ const TopDestinations = ({ home, data }) => {
           data-aos-delay={(index + 1) * 100}
         >
           <Link
-            href={`/destinations/${item.attributes.slug}`}
+            href={`/${item.attributes.slug}`}
             className="citiesCard -type-3 d-block h-full rounded-4 "
           >
             <div className="citiesCard__image ratio ratio-1:1">

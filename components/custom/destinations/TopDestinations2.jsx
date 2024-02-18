@@ -35,7 +35,7 @@ const TopDestinations2 = ({ data }) => {
         {data?.data?.map((item, index) => (
           <SwiperSlide key={item.id}>
             <Link
-              href={`/destinations/${item?.attributes?.slug}`}
+              href={`/${item?.attributes?.slug}`}
               className="citiesCard -type-2"
               data-aos="fade"
               data-aos-delay={index * 100}

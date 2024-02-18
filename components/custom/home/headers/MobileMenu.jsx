@@ -31,7 +31,7 @@ const MobileMenu = () => {
     <>
       <div className="pro-header d-flex align-items-center justify-between border-bottom-light">
         <Link href="/">
-          <img src="/img/general/logo-dark.svg" alt="brand" />
+          <img style={{ width: '120px', height: '42px' }} src="/img/logo/logo-dark2.svg" alt="brand" />
         </Link>
         {/* End logo */}
 
@@ -100,16 +100,16 @@ const MobileMenu = () => {
             <MenuItem
               component={
                 <Link
-                  href="/about-us"
+                  href="/tours"
                   className={
-                    router.pathname === "/aboutus"
+                    router.pathname === "/tours"
                       ? "menu-active-link"
                       : ""
                   }
                 />
               }
             >
-              About Us
+              Tours
             </MenuItem>
             {/* End About Us Menu */}
 

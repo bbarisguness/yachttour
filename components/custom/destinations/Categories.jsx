@@ -70,19 +70,19 @@ const Categories = () => {
   return (
     <Slider {...settings}>
       <div className="col">
-        <Link href={`/destinations/${slug}/tour`} className="d-flex flex-column justify-center px-20 py-15 rounded-4 border-light text-16 lh-14 fw-500 col-12">
+        <Link href={`/${slug}/tour`} className="d-flex flex-column justify-center px-20 py-15 rounded-4 border-light text-16 lh-14 fw-500 col-12">
           <i className="icon-destination text-25 mb-10" />
           Tour
         </Link>
       </div>
       <div className="col">
-        <Link href={`/destinations/${slug}/yacht`} className="d-flex flex-column justify-center px-20 py-15 rounded-4 border-light text-16 lh-14 fw-500 col-12">
+        <Link href={`/${slug}/yacht`} className="d-flex flex-column justify-center px-20 py-15 rounded-4 border-light text-16 lh-14 fw-500 col-12">
           <i className="icon-yatch text-25 mb-10" />
           Yacht
         </Link>
       </div>
       <div className="col">
-        <Link href={`/destinations/${slug}/gulet`} className="d-flex flex-column justify-center px-20 py-15 rounded-4 border-light text-16 lh-14 fw-500 col-12">
+        <Link href={`/${slug}/gulet`} className="d-flex flex-column justify-center px-20 py-15 rounded-4 border-light text-16 lh-14 fw-500 col-12">
           <i className="icon-ski text-25 mb-10" />
           Gulet
         </Link>

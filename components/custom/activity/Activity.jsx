@@ -76,7 +76,7 @@ const Activity = ({ data }) => {
             data-aos-delay={index * 100}
           >
             <Link
-              href={`/destinations/${item?.attributes?.destinations?.data[0]?.attributes?.slug}/${item?.attributes?.category?.data?.attributes?.slug}/${item?.attributes?.slug}`}
+              href={`/${item?.attributes?.destinations?.data[0]?.attributes?.slug}/${item?.attributes?.category?.data?.attributes?.slug}/${item?.attributes?.slug}`}
               className="activityCard -type-1 rounded-4 hover-inside-slider"
             >
               <div className="activityCard__image position-relative">
@@ -135,7 +135,7 @@ const Activity = ({ data }) => {
                 {/* <div className="text-14 lh-14 text-light-1 mb-5">
                   3+ hours
                 </div> */}
-                <h4 className="activityCard__title lh-16 fw-500 text-dark-1 text-18">
+                <h4 className="activityCard__title lh-16 fw-500 text-dark-1 text-18 text-uppercase">
                   <span>{item?.attributes?.title}</span>
                 </h4>
                 <p className="text-light-1 text-14 lh-14 mt-5">

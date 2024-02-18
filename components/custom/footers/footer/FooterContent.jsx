@@ -8,7 +8,7 @@ export default function FooterContent({ data, yacht }) {
         <div className="col-lg-4 col-sm-6" key={item.id}>
           <h5 className="text-16 fw-500 mb-30">{item.title}</h5>
           <div className="d-flex y-gap-10 flex-column">
-            {item.menuList.map((menu, i) => (
+            {item.menuList.slice(0, 8).map((menu, i) => (
               <Link href={menu.routerPath} key={i}>
                 {menu.name}
               </Link>
@@ -20,8 +20,8 @@ export default function FooterContent({ data, yacht }) {
         <h5 className="text-16 fw-500 mb-30">Destinations</h5>
         <div className="d-flex y-gap-10 flex-column">
 
-          {data?.data?.map((menu, i) => (
-            <Link href={`/destinations/${menu?.attributes?.slug}`} key={i}>
+          {data?.data?.slice(0, 8).map((menu, i) => (
+            <Link href={`/${menu?.attributes?.slug}`} key={i}>
               {menu?.attributes?.name}
             </Link>
           ))}
@@ -32,7 +32,7 @@ export default function FooterContent({ data, yacht }) {
         <h5 className="text-16 fw-500 mb-30">Yacht Services</h5>
         <div className="d-flex y-gap-10 flex-column">
 
-          {yacht?.data?.map((menu, i) => (
+          {yacht?.data?.slice(0, 8).map((menu, i) => (
             <Link href={`/yacht-services/${menu?.attributes?.slug}`} key={i}>
               {menu?.attributes?.name}
             </Link>

@@ -46,7 +46,7 @@ const SearchBar = () => {
         </div>
         {/* End location Field */}
 
-        <div style={{ minWidth: '280px', maxHeight: '300px', overflowY: 'scroll' }} className="shadow-2 dropdown-menu min-width-400">
+        <div style={{ minWidth: '280px', maxHeight: '300px', overflowY: 'auto' }} className="shadow-2 dropdown-menu min-width-400">
           <div className="bg-white px-20 py-20 sm:px-0 sm:py-15 rounded-4">
             <ul className="y-gap-5 js-results">
               {locations?.data?.length !== 0 ? locations?.data?.map((item) => (

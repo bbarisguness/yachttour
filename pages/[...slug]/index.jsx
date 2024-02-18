@@ -1,43 +1,43 @@
-import Seo from "../../../components/custom/common/Seo";
-import Header from "../../../components/custom/home/headers/header2/header";
-import Footer from "../../../components/custom/footers/footer";
-import TopDestinations2 from "../../../components/custom/destinations/TopDestinations2";
-import Faq from "../../../components/custom/destinations/Faq";
+import Seo from "../../components/custom/common/Seo";
+import Header from "../../components/custom/home/headers/header2/header";
+import Footer from "../../components/custom/footers/footer";
+import TopDestinations2 from "../../components/custom/destinations/TopDestinations2";
+import Faq from "../../components/custom/destinations/Faq";
 import Link from "next/link";
-import Banner from "../../../components/custom/destinations/Banner";
-import Categories from "../../../components/custom/destinations/Categories";
-import IntroTown from "../../../components/custom/destinations/IntroTown";
-import Tours from "../../../components/custom/tours/Tours";
-import Activity from "../../../components/custom/activity/Activity";
-import Rentals from "../../../components/custom/rentals/Rentals";
-import Hotels from "../../../components/custom/hotels/Hotels2";
+import Banner from "../../components/custom/destinations/Banner";
+import Categories from "../../components/custom/destinations/Categories";
+import IntroTown from "../../components/custom/destinations/IntroTown";
+import Tours from "../../components/custom/tours/Tours";
+import Activity from "../../components/custom/activity/Activity";
+import Rentals from "../../components/custom/rentals/Rentals";
+import Hotels from "../../components/custom/hotels/Hotels2";
 import { useRouter } from "next/router";
-import { getDestinationDetail, getDestinationsIsNot } from "../../../services/destination";
+import { getDestinationDetail, getDestinationsIsNot } from "../../services/destination";
 import { useEffect, useState } from "react";
 // tour list
-import TopHeaderFilter from "../../../components/tour-list/tour-list-v2/TopHeaderFilter";
-import TourProperties from "../../../components/tour-list/tour-list-v2/TourProperties";
-import Sidebar from "../../../components/tour-list/tour-list-v2/Sidebar";
-import { getOtherTour, getTourCategory, getTourDestination, getTourDetail, getTourFilterSlug, getTours } from "../../../services/tours";
+import TopHeaderFilter from "../../components/tour-list/tour-list-v2/TopHeaderFilter";
+import TourProperties from "../../components/tour-list/tour-list-v2/TourProperties";
+import Sidebar from "../../components/tour-list/tour-list-v2/Sidebar";
+import { getOtherTour, getTourCategory, getTourDestination, getTourDetail, getTourFilterSlug, getTours } from "../../services/tours";
 // tour detail
 import ModalVideo from "react-modal-video";
 import "photoswipe/dist/photoswipe.css";
 import { Gallery, Item } from "react-photoswipe-gallery";
-import { hotelsData } from "../../../data/hotels";
-import Overview from "../../../components/hotel-single/Overview";
-import StickyHeader from "../../../components/hotel-single/StickyHeader";
-import SidebarRight from "../../../components/hotel-single/SidebarRight";
-import ReviewProgress from "../../../components/hotel-single/guest-reviews/ReviewProgress";
-import DetailsReview from "../../../components/hotel-single/guest-reviews/DetailsReview";
-import ReplyForm from "../../../components/hotel-single/ReplyForm";
-import ReplyFormReview from "../../../components/hotel-single/ReplyFormReview";
-import Facilities from "../../../components/hotel-single/Facilities";
-import Hotels2 from "../../../components/hotels/Hotels2";
-import TourSnapShot from "../../../components/tour-single/TourSnapShot";
+import { hotelsData } from "../../data/hotels";
+import Overview from "../../components/hotel-single/Overview";
+import StickyHeader from "../../components/hotel-single/StickyHeader";
+import SidebarRight from "../../components/hotel-single/SidebarRight";
+import ReviewProgress from "../../components/hotel-single/guest-reviews/ReviewProgress";
+import DetailsReview from "../../components/hotel-single/guest-reviews/DetailsReview";
+import ReplyForm from "../../components/hotel-single/ReplyForm";
+import ReplyFormReview from "../../components/hotel-single/ReplyFormReview";
+import Facilities from "../../components/hotel-single/Facilities";
+import Hotels2 from "../../components/hotels/Hotels2";
+import TourSnapShot from "../../components/tour-single/TourSnapShot";
 
 import style from './image.module.css'
-import Sidebar2 from "../../../components/tour-list/tour-list-v2/Sidebar2";
-import Pagination from "../../../components/tour-list/common/Pagination";
+import Sidebar2 from "../../components/tour-list/tour-list-v2/Sidebar2";
+import Pagination from "../../components/tour-list/common/Pagination";
 
 export default function DestinationDetail({ data, toursDestination, yachtDestination, guletDestination, destinationsIsNot, tourDetail, filterDestinations, otherTours }) {
     const router = useRouter();
@@ -82,7 +82,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
 
 
     if (slug[0] && slug.length == 1) {
-        if (path === `/destinations/${slug[0]}` && data.data.length !== 0) {
+        if (path === `/${slug[0]}` && data.data.length !== 0) {
             return (
                 <>
                     <Seo pageDesc={data?.data[0]?.attributes?.metaFields?.metaDescription} pageTitle={data?.data[0]?.attributes.metaFields?.metaTitle} />
@@ -160,7 +160,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
 
                                 <div className="col-auto">
                                     <Link
-                                        href={`/destinations/${slug[0]}/tour`}
+                                        href={`/${slug[0]}/tour`}
                                         className="button -md -blue-1 bg-blue-1-05 text-blue-1"
                                     >
                                         More <div className="icon-arrow-top-right ml-15" />
@@ -192,7 +192,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
 
                                 <div className="col-auto">
                                     <Link
-                                        href={`/destinations/${slug[0]}/yacht`}
+                                        href={`/${slug[0]}/yacht`}
                                         className="button -md -blue-1 bg-blue-1-05 text-blue-1"
                                     >
                                         More <div className="icon-arrow-top-right ml-15" />
@@ -226,7 +226,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
 
                                 <div className="col-auto">
                                     <Link
-                                        href={`/destinations/${slug}/gulet`}
+                                        href={`/${slug}/gulet`}
                                         className="button -md -blue-1 bg-blue-1-05 text-blue-1"
                                     >
                                         More <div className="icon-arrow-top-right ml-15" />
@@ -543,167 +543,111 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
 
                         <Gallery>
                             <div className="galleryGrid -type-1 pt-30">
-                                <div className="galleryGrid__item relative d-flex">
-                                    <Item
-                                        original={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[0]?.attributes?.url}`}
-                                        thumbnail={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[0]?.attributes?.url}`}
-                                        width={660}
-                                        height={660}
-                                    >
-                                        {({ ref, open }) => (
-                                            <img
-                                                src={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[0]?.attributes?.url}`}
-                                                ref={ref}
-                                                onClick={open}
-                                                alt="image"
-                                                role="button"
-                                                className="rounded-4"
-                                            />
-                                        )}
-                                    </Item>
-                                    {/* <div className="absolute px-20 py-20 col-12 d-flex justify-end">
-                                        <button className="button -blue-1 size-40 rounded-full flex-center bg-white text-dark-1">
-                                            <i className="icon-heart text-16" />
-                                        </button>
-                                    </div> */}
-                                </div>
-                                {/* End .galleryGrid__item */}
-
                                 {
-                                    tourDetail?.data[0]?.attributes?.images?.data.length >= 2 &&
-
-                                    <div className="galleryGrid__item">
-                                        <Item
-                                            original={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[1]?.attributes?.url}`}
-                                            thumbnail={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[1]?.attributes?.url}`}
-                                            width={450}
-                                            height={375}
-                                        >
-                                            {({ ref, open }) => (
-                                                <img
-                                                    ref={ref}
-                                                    onClick={open}
-                                                    src={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[1]?.attributes?.url}`}
-                                                    alt="image"
-                                                    className="rounded-4"
-                                                    role="button"
-                                                />
-                                            )}
-                                        </Item>
-                                    </div>
-                                }
-
-                                {/* End .galleryGrid__item */}
-
-                                {
-                                    tourDetail?.data[0]?.attributes?.images?.data.length >= 3 &&
-
-                                    <div className="galleryGrid__item">
-                                        <Item
-                                            original={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[2]?.attributes?.url}`}
-                                            thumbnail={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[2]?.attributes?.url}`}
-                                            width={450}
-                                            height={375}
-                                        >
-                                            {({ ref, open }) => (
-                                                <img
-                                                    ref={ref}
-                                                    onClick={open}
-                                                    src={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[2]?.attributes?.url}`}
-                                                    alt="image"
-                                                    className="rounded-4"
-                                                    role="button"
-                                                />
-                                            )}
-                                        </Item>
-                                    </div>
-                                }
-                                {/* End .galleryGrid__item */}
-
-                                {
-                                    tourDetail?.data[0]?.attributes?.images?.data.length >= 4 &&
-
-                                    <div className="galleryGrid__item">
-                                        <Item
-                                            original={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[3]?.attributes?.url}`}
-                                            thumbnail={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[3]?.attributes?.url}`}
-                                            width={450}
-                                            height={375}
-                                        >
-                                            {({ ref, open }) => (
-                                                <img
-                                                    ref={ref}
-                                                    onClick={open}
-                                                    src={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[3]?.attributes?.url}`}
-                                                    alt="image"
-                                                    className="rounded-4"
-                                                    role="button"
-                                                />
-                                            )}
-                                        </Item>
-                                    </div>
-                                }
-                                {/* End .galleryGrid__item */}
-
-                                {
-                                    tourDetail?.data[0]?.attributes?.images?.data.length >= 5 &&
-                                    <div className="galleryGrid__item relative d-flex">
-                                        <img
-                                            src={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[4]?.attributes?.url}`}
-                                            alt="image"
-                                            className={`rounded-4 ${style['customImage']}`}
-                                        />
-                                        <div className="absolute px-10 py-10 col-12 h-full d-flex justify-end items-end">
-                                            <Item
-                                                original={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[4]?.attributes?.url}`}
-                                                thumbnail={`${`http://3.74.191.230:1337`}${tourDetail?.data[0]?.attributes?.images?.data[4]?.attributes?.url}`}
-                                                width={450}
-                                                height={375}
-                                            >
-                                                {({ ref, open }) => (
-                                                    <div
-                                                        className="button -blue-1 px-24 py-15 bg-white text-dark-1 js-gallery"
-                                                        ref={ref}
-                                                        onClick={open}
-                                                        role="button"
+                                    tourDetail?.data[0]?.attributes?.images?.data.map((item, index) => {
+                                        if (index === 0) {
+                                            return (
+                                                <div className="galleryGrid__item relative d-flex">
+                                                    <Item
+                                                        original={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
+                                                        thumbnail={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
+                                                        width={960}
+                                                        height={640}
                                                     >
-                                                        See All Photos
+                                                        {({ ref, open }) => (
+                                                            <img
+                                                                src={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
+                                                                ref={ref}
+                                                                onClick={open}
+                                                                alt="image"
+                                                                role="button"
+                                                                className="rounded-4"
+                                                            />
+                                                        )}
+                                                    </Item>
+                                                </div>
+                                            )
+                                        } else if (index === 4) {
+                                            return (
+                                                <div className="galleryGrid__item relative d-flex">
+                                                    <img
+                                                        src={`${`http://3.74.191.230:1337`}${item.attributes?.formats?.small?.url}`}
+                                                        alt="image"
+                                                        className={`rounded-4 ${style['customImage']}`}
+                                                    />
+                                                    <div className="absolute px-10 py-10 col-12 h-full d-flex justify-end items-end">
+                                                        <Item
+                                                            original={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
+                                                            thumbnail={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
+                                                            width={960}
+                                                            height={640}
+                                                        >
+                                                            {({ ref, open }) => (
+                                                                <div
+                                                                    className="button -blue-1 px-24 py-15 bg-white text-dark-1 js-gallery"
+                                                                    ref={ref}
+                                                                    onClick={open}
+                                                                    role="button"
+                                                                >
+                                                                    See All Photos
+                                                                </div>
+                                                            )}
+                                                        </Item>
                                                     </div>
-                                                )}
-                                            </Item>
-                                        </div>
-                                    </div>
+                                                </div>
+                                            )
+                                        } else if (index > 4) {
+                                            return (
+                                                <div key={index} style={{ display: 'none' }}>
+                                                    {
+                                                        index > 4 &&
+                                                        <Item
+                                                            original={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
+                                                            thumbnail={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
+                                                            width={960}
+                                                            height={640}
+                                                        >
+                                                            {({ ref, open }) => (
+                                                                <img
+                                                                    ref={ref}
+                                                                    onClick={open}
+                                                                    src={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
+                                                                    alt="image"
+                                                                    className="rounded-4"
+                                                                    role="button"
+                                                                />
+                                                            )}
+                                                        </Item>
+                                                    }
+                                                </div>
+                                            )
+                                        }
+                                        else {
+                                            return (
+                                                <div className="galleryGrid__item">
+                                                    <Item
+                                                        original={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
+                                                        thumbnail={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
+                                                        width={960}
+                                                        height={640}
+                                                    >
+                                                        {({ ref, open }) => (
+                                                            <img
+                                                                ref={ref}
+                                                                onClick={open}
+                                                                src={`${`http://3.74.191.230:1337`}${item.attributes?.formats?.small?.url}`}
+                                                                alt="image"
+                                                                className="rounded-4"
+                                                                role="button"
+                                                            />
+                                                        )}
+                                                    </Item>
+                                                </div>
+                                            )
+                                        }
+                                    })
                                 }
-                                {/* End .galleryGrid__item */}
                             </div>
-                            {
-                                tourDetail?.data[0]?.attributes?.images?.data.map((item, index) => {
-                                    return (
-                                        <div key={index} style={{ display: 'none' }}>
-                                            {
-                                                index > 4 &&
-                                                <Item
-                                                    original={`${`http://3.74.191.230:1337`}${item?.attributes?.url}`}
-                                                    thumbnail={`${`http://3.74.191.230:1337`}${item?.attributes?.url}`}
-                                                    width={450}
-                                                    height={375}
-                                                >
-                                                    {({ ref, open }) => (
-                                                        <img
-                                                            ref={ref}
-                                                            onClick={open}
-                                                            src={`${`http://3.74.191.230:1337`}${item?.attributes?.url}`}
-                                                            alt="image"
-                                                            className="rounded-4"
-                                                            role="button"
-                                                        />
-                                                    )}
-                                                </Item>
-                                            }
-                                        </div>
-                                    )
-                                })
-                            }
                         </Gallery>
                     </div >
                     {/* End .container */}
@@ -854,7 +798,7 @@ export async function getServerSideProps({ params, query }) {
 
     const sort = query.sort
 
-    const data = await getDestinationDetail({ slug })
+    const data = await getDestinationDetail({ slug: slug })
     const toursDestination = await getTourDestination({ rSlug, category: 'tour' })
     const yachtDestination = await getTourDestination({ rSlug, category: 'yacht' })
     const guletDestination = await getTourDestination({ rSlug, category: 'gulet' })

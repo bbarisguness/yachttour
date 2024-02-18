@@ -28,8 +28,8 @@ const MainMenu = ({ style = "" }) => {
         </li> */}
         {/* End Blog single menu */}
 
-        <li className={router.pathname === "/about-us" ? "current" : ""}>
-          <Link href="/about-us">About Us</Link>
+        <li className={router.pathname === "/tours" ? "current" : ""}>
+          <Link href="/tours">Tours</Link>
         </li>
         {/* End About Us single menu */}
 
