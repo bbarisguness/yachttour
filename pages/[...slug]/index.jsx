@@ -547,7 +547,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                     tourDetail?.data[0]?.attributes?.images?.data.map((item, index) => {
                                         if (index === 0) {
                                             return (
-                                                <div className="galleryGrid__item relative d-flex">
+                                                <div key={index} className="galleryGrid__item relative d-flex">
                                                     <Item
                                                         original={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
                                                         thumbnail={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
@@ -569,7 +569,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                             )
                                         } else if (index === 4) {
                                             return (
-                                                <div className="galleryGrid__item relative d-flex">
+                                                <div key={index} className="galleryGrid__item relative d-flex">
                                                     <img
                                                         src={`${`http://3.74.191.230:1337`}${item.attributes?.formats?.small?.url}`}
                                                         alt="image"
@@ -624,7 +624,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                         }
                                         else {
                                             return (
-                                                <div className="galleryGrid__item">
+                                                <div key={index} className="galleryGrid__item">
                                                     <Item
                                                         original={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
                                                         thumbnail={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
