@@ -551,8 +551,6 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                                     <Item
                                                         original={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
                                                         thumbnail={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
-                                                        width={960}
-                                                        height={640}
                                                     >
                                                         {({ ref, open }) => (
                                                             <img
