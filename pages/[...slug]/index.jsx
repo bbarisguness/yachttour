@@ -571,7 +571,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                             return (
                                                 <div key={index} className="galleryGrid__item relative d-flex">
                                                     <img
-                                                        src={`${`http://3.74.191.230:1337`}${item.attributes?.formats?.small?.url}`}
+                                                        src={`${`http://3.74.191.230:1337`}${item.attributes?.formats?.medium?.url}`}
                                                         alt="image"
                                                         className={`rounded-4 ${style['customImage']}`}
                                                     />
@@ -635,7 +635,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                                             <img
                                                                 ref={ref}
                                                                 onClick={open}
-                                                                src={`${`http://3.74.191.230:1337`}${item.attributes?.formats?.small?.url}`}
+                                                                src={`${`http://3.74.191.230:1337`}${item.attributes?.formats?.medium?.url}`}
                                                                 alt="image"
                                                                 className="rounded-4"
                                                                 role="button"
