@@ -19,7 +19,7 @@ import { getHomePage } from "../services/homepage"
 export default function Home({ destinations, tours, homepage }) {
   return (
     <>
-      <Seo pageDesc={homepage?.data?.attributes?.metaFields?.metaDescription} pageTitle={homepage?.data?.attributes?.metaFields?.metaTitle} />
+      <Seo canonical="/" pageDesc={homepage?.data?.attributes?.metaFields?.metaDescription} pageTitle={homepage?.data?.attributes?.metaFields?.metaTitle} />
 
       <Header />
 

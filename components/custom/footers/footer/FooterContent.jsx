@@ -9,7 +9,7 @@ export default function FooterContent({ data, yacht }) {
           <h5 className="text-16 fw-500 mb-30">{item.title}</h5>
           <div className="d-flex y-gap-10 flex-column">
             {item.menuList.slice(0, 8).map((menu, i) => (
-              <Link href={menu.routerPath} key={i}>
+              <Link rel={i === 0 ? 'search,nofollow' : 'nofollow'} href={menu.routerPath} key={i}>
                 {menu.name}
               </Link>
             ))}
@@ -33,7 +33,7 @@ export default function FooterContent({ data, yacht }) {
         <div className="d-flex y-gap-10 flex-column">
 
           {yacht?.data?.slice(0, 8).map((menu, i) => (
-            <Link href={`/yacht-services/${menu?.attributes?.slug}`} key={i}>
+            <Link rel="nofollow" href={`/yacht-services/${menu?.attributes?.slug}`} key={i}>
               {menu?.attributes?.name}
             </Link>
           ))}

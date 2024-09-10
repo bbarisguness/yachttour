@@ -12,7 +12,7 @@ import {
 import Social from "../../../common/social/Social";
 import ContactInfo from "./ContactInfo";
 
-const MobileMenu = () => {
+const MobileMenu = ({ destinations }) => {
   const router = useRouter();
 
   return (
@@ -36,7 +36,7 @@ const MobileMenu = () => {
 
       <ProSidebarProvider>
         <Sidebar width="400" backgroundColor="#fff">
-          <Menu>
+          {/* <Menu>
             <MenuItem
               component={
                 <Link
@@ -51,23 +51,7 @@ const MobileMenu = () => {
             >
               Destinations
             </MenuItem>
-            {/* End  Destinations Menu */}
-
-            {/* <MenuItem
-              component={
-                <Link
-                  href="/services"
-                  className={
-                    router.pathname === "/services"
-                      ? "menu-active-link"
-                      : ""
-                  }
-                />
-              }
-            >
-              Services
-            </MenuItem>
-            End  Services Menu */}
+           
 
             <MenuItem
               component={
@@ -83,9 +67,7 @@ const MobileMenu = () => {
             >
               Yacht Services
             </MenuItem>
-            {/* End  Yacht Services Menu */}
-
-            {/* End  Blog Menu */}
+            
 
             <MenuItem
               component={
@@ -101,7 +83,7 @@ const MobileMenu = () => {
             >
               Tours
             </MenuItem>
-            {/* End About Us Menu */}
+           
 
             <MenuItem
               component={
@@ -115,7 +97,32 @@ const MobileMenu = () => {
             >
               Contact
             </MenuItem>
-            {/* End Contact  Menu */}
+        
+          </Menu> */}
+          <Menu>
+            {
+              destinations.map((item, i) => {
+                return (
+                  <MenuItem
+                    key={i}
+                    component={
+                      <Link
+                        href={`/${item.attributes.slug}`}
+                        className={
+                          router.asPath === `/${item.attributes.slug}`
+                            ? "menu-active-link"
+                            : ""
+                        }
+                      />
+                    }
+                  >
+                    {item.attributes.name}
+                  </MenuItem>
+                )
+              })
+            }
+
+
           </Menu>
         </Sidebar>
       </ProSidebarProvider>
@@ -132,6 +139,7 @@ const MobileMenu = () => {
         </div>
         <div className="mt-20">
           <Link
+            rel="nofollow"
             className=" button -dark-1 px-30 fw-400 text-14 bg-blue-1 h-50 text-white"
             href="/others-pages/login"
           >

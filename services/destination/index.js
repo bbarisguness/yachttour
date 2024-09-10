@@ -10,6 +10,15 @@ async function getDestinations() {
     return data
 }
 
+
+async function getDestinationsJustName() {
+    const response = await fetch(`${apiUrl}/destinations?fields[0]=name&fields[1]=slug`, {
+        cache: 'no-store'
+    })
+    const data = await response.json()
+    return data
+}
+
 async function getDestinationsIsNot({ slug }) {
     const query = qs.stringify({
         fields: '*',
@@ -68,4 +77,4 @@ async function getSearchDestination({ searchValue }) {
 }
 
 
-export { getDestinations, getDestinationDetail, getSearchDestination, getDestinationsIsNot }
+export { getDestinations, getDestinationDetail, getSearchDestination, getDestinationsIsNot, getDestinationsJustName }

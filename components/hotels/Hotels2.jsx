@@ -77,6 +77,7 @@ const Hotels2 = ({ otherTours }) => {
             data-aos-delay={index * 100}
           >
             <Link
+              rel="nofollow"
               href={`/${item?.attributes?.destinations?.data[0]?.attributes?.slug}/${item?.attributes?.category?.data?.attributes?.slug}/${item?.attributes?.slug}`}
               className="hotelsCard -type-1 hover-inside-slider"
             >

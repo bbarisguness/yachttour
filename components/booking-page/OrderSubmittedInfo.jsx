@@ -1,13 +1,13 @@
 const OrderSubmittedInfo = ({ rezOpt, dataa, paymentType, userInfo, orderNo }) => {
   return (
     <>
-      <div className="col-xl-8 col-lg-8">
+      <div className="col-xl-12 col-lg-12">
         <div className="order-completed-wrapper">
           <div className="d-flex flex-column items-center mt-40 lg:md-40 sm:mt-24">
-            <div className="size-80 flex-center rounded-full bg-dark-3">
+            {/* <div className="size-80 flex-center rounded-full bg-dark-3">
               <i className="icon-check text-30 text-white" />
-            </div>
-            <div className="text-30 lh-1 fw-600 mt-20">
+            </div> */}
+            <div className="text-30 lh-1 fw-600 mt-20 text-center">
               System, your order was submitted successfully!
             </div>
             <div className="text-15 text-light-1 mt-10">

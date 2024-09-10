@@ -11,7 +11,7 @@ import TopHeaderFilter2 from '../../components/tour-list/tour-list-v2/TopHeaderF
 export default function Tours({ tours }) {
     return (
         <>
-            <Seo pageTitle="Tour List" />
+            <Seo searchPage={true} pageTitle="Tour List" />
             {/* End Page Title */}
 
             <div className="header-margin"></div>

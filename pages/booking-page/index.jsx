@@ -29,16 +29,18 @@ export default function BookingPage() {
     if (dataa && rezOpt && rezOpt?.d && rezOpt?.m && rezOpt?.p && rezOpt?.t !== null && rezOpt?.l !== null && rezOpt?.y) {
         return (
             <>
-                <Seo pageTitle="Tour Booking Page" />
+                <Seo nofollow={true} pageTitle="Tour Booking Page" />
                 {/* End Page Title */}
 
-                <div className="header-margin"></div>
+                {/* <div className="header-margin"></div> */}
                 {/* header top margin */}
-
-                <Header />
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center',marginTop: '20px',borderBottom: '1px solid #ccc',paddingBottom: '20px' }}>
+                    <img width={180} src="/img/logo/logo-dark2.svg" alt="" />
+                </div>
+                {/* <Header /> */}
                 {/* End Header 1 */}
 
-                <section className="pt-40 layout-pb-md">
+                <section className="pt-30 layout-pb-md">
                     <div className="container">
                         <StepperBooking rezOpt={rezOpt} dataa={dataa} />
                     </div>
@@ -46,7 +48,7 @@ export default function BookingPage() {
                 </section>
                 {/* End stepper */}
 
-                <Footer />
+                {/* <Footer /> */}
             </>
         )
     }

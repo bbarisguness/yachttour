@@ -2,9 +2,11 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import MainMenu from "./MainMenu";
 import MobileMenu from "./MobileMenu";
+import { getDestinationsJustName } from "../../../../services/destination";
 
 const Header = () => {
   const [navbar, setNavbar] = useState(false);
+  const [destinations, setDestinations] = useState([])
 
   const changeBackground = () => {
     if (window.scrollY >= 10) {
@@ -16,6 +18,9 @@ const Header = () => {
 
   useEffect(() => {
     window.addEventListener("scroll", changeBackground);
+    getDestinationsJustName().then((res) => {
+      setDestinations(res?.data)
+    })
   }, []);
 
   return (
@@ -40,7 +45,7 @@ const Header = () => {
               <div className="d-flex items-center">
                 <div className="header-menu">
                   <div className="header-menu__content">
-                    <MainMenu style="text-white" />
+                    <MainMenu destinations={destinations} style="text-white" />
                   </div>
                 </div>
                 {/* End header-menu */}
@@ -48,6 +53,7 @@ const Header = () => {
                 {/* Start btn-group */}
                 <div className="d-flex items-center ml-20 is-menu-opened-hide md:d-none">
                   <Link
+                  rel="nofollow"
                     href="/others-pages/login"
                     className="button px-30 fw-400 text-14 -blue-1 bg-white h-50 text-dark-1"
                   >
@@ -58,7 +64,7 @@ const Header = () => {
 
                 {/* Start mobile menu icon */}
                 <div className="d-none xl:d-flex x-gap-20 items-center pl-30 text-white">
-                 
+
                   <div>
                     <button
                       className="d-flex items-center icon-menu text-inherit text-20"
@@ -74,7 +80,7 @@ const Header = () => {
                       aria-labelledby="offcanvasMenuLabel"
                       data-bs-scroll="true"
                     >
-                      <MobileMenu />
+                      <MobileMenu destinations={destinations}/>
                       {/* End MobileMenu */}
                     </div>
                   </div>

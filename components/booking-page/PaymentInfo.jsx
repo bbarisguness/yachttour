@@ -15,8 +15,8 @@ const PaymentInfo = ({ setPaymentType, paymentType, dataa, rezOpt }) => {
 
   const [itemsTabs, setItemsTabs] = useState(1);
   const cardTabs = [
-    { id: 1, name: "Credit/Debit Card" },
-    { id: 2, name: "Digital Payment" },
+    { id: 1, name: "Credit Card" },
+    { id: 2, name: "Crypto" },
     { id: 3, name: "Cash" },
   ];
 

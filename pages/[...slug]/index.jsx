@@ -85,7 +85,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
         if (path === `/${slug[0]}` && data.data.length !== 0) {
             return (
                 <>
-                    <Seo pageDesc={data?.data[0]?.attributes?.metaFields?.metaDescription} pageTitle={data?.data[0]?.attributes.metaFields?.metaTitle} />
+                    <Seo canonical={`/${slug[0]}`} pageDesc={data?.data[0]?.attributes?.metaFields?.metaDescription} pageTitle={data?.data[0]?.attributes.metaFields?.metaTitle} />
                     {/* End Page Title */}
 
                     <div className="header-margin"></div>
@@ -144,106 +144,113 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                         {/* End .container */}
                     </section>
                     {/* End Top Banner,categorie,intro,weather, generic info section */}
+                    {
+                        toursDestination?.data?.length !== 0 &&
+                        <section className="layout-pt-md layout-pb-md">
+                            <div className="container">
+                                <div className="row y-gap-20 justify-between items-end">
+                                    <div className="col-auto">
+                                        <div className="sectionTitle -md">
+                                            <h2 className="sectionTitle__title">Tours in {data?.data[0]?.attributes?.name}</h2>
+                                            <p className=" sectionTitle__text mt-5 sm:mt-0">
+                                                Interdum et malesuada fames ac ante ipsum
+                                            </p>
+                                        </div>
+                                    </div>
+                                    {/* End .col */}
 
-                    <section className="layout-pt-md layout-pb-md">
-                        <div className="container">
-                            <div className="row y-gap-20 justify-between items-end">
-                                <div className="col-auto">
-                                    <div className="sectionTitle -md">
-                                        <h2 className="sectionTitle__title">Tours in {data?.data[0]?.attributes?.name}</h2>
-                                        <p className=" sectionTitle__text mt-5 sm:mt-0">
-                                            Interdum et malesuada fames ac ante ipsum
-                                        </p>
+                                    <div className="col-auto">
+                                        <Link
+                                            rel="nofollow"
+                                            href={`/${slug[0]}/tour`}
+                                            className="button -md -blue-1 bg-blue-1-05 text-blue-1"
+                                        >
+                                            More <div className="icon-arrow-top-right ml-15" />
+                                        </Link>
                                     </div>
                                 </div>
-                                {/* End .col */}
+                                {/* End .row */}
 
-                                <div className="col-auto">
-                                    <Link
-                                        href={`/${slug[0]}/tour`}
-                                        className="button -md -blue-1 bg-blue-1-05 text-blue-1"
-                                    >
-                                        More <div className="icon-arrow-top-right ml-15" />
-                                    </Link>
+                                <div className="row y-gap-30 pt-40 sm:pt-20 item_gap-x30">
+                                    <Hotels data={toursDestination} />
                                 </div>
+                                {/* End relative */}
                             </div>
-                            {/* End .row */}
+                        </section>
+                    }
 
-                            <div className="row y-gap-30 pt-40 sm:pt-20 item_gap-x30">
-                                <Hotels data={toursDestination} />
-                            </div>
-                            {/* End relative */}
-                        </div>
-                    </section>
-                    {/* End  Hotel sections */}
-
-                    <section className="layout-pt-md layout-pb-md">
-                        <div className="container">
-                            <div className="row y-gap-20 justify-between items-end">
-                                <div className="col-auto">
-                                    <div className="sectionTitle -md">
-                                        <h2 className="sectionTitle__title">Yachts in {data?.data[0]?.attributes?.name}</h2>
-                                        <p className=" sectionTitle__text mt-5 sm:mt-0">
-                                            Interdum et malesuada fames ac ante ipsum
-                                        </p>
+                    {
+                        yachtDestination?.data?.length !== 0 &&
+                        <section className="layout-pt-md layout-pb-md">
+                            <div className="container">
+                                <div className="row y-gap-20 justify-between items-end">
+                                    <div className="col-auto">
+                                        <div className="sectionTitle -md">
+                                            <h2 className="sectionTitle__title">Yachts in {data?.data[0]?.attributes?.name}</h2>
+                                            <p className=" sectionTitle__text mt-5 sm:mt-0">
+                                                Interdum et malesuada fames ac ante ipsum
+                                            </p>
+                                        </div>
                                     </div>
-                                </div>
-                                {/* End .col */}
+                                    {/* End .col */}
 
-                                <div className="col-auto">
-                                    <Link
-                                        href={`/${slug[0]}/yacht`}
-                                        className="button -md -blue-1 bg-blue-1-05 text-blue-1"
-                                    >
-                                        More <div className="icon-arrow-top-right ml-15" />
-                                    </Link>
-                                </div>
-                                {/* End .col */}
-                            </div>
-                            {/* End .row */}
-
-                            <div className="row y-gap-30 pt-40 sm:pt-20 item_gap-x30">
-                                <Tours data={yachtDestination} />
-                            </div>
-                            {/* End .row */}
-                        </div>
-                        {/* End .container */}
-                    </section>
-                    {/* End Tours Sections */}
-
-                    <section className="layout-pt-md layout-pb-md">
-                        <div className="container">
-                            <div className="row y-gap-20 justify-between items-end">
-                                <div className="col-auto">
-                                    <div className="sectionTitle -md">
-                                        <h2 className="sectionTitle__title">Gulets in {data?.data[0].attributes?.name}</h2>
-                                        <p className=" sectionTitle__text mt-5 sm:mt-0">
-                                            Interdum et malesuada fames ac ante ipsum
-                                        </p>
+                                    <div className="col-auto">
+                                        <Link
+                                            rel="nofollow"
+                                            href={`/${slug[0]}/yacht`}
+                                            className="button -md -blue-1 bg-blue-1-05 text-blue-1"
+                                        >
+                                            More <div className="icon-arrow-top-right ml-15" />
+                                        </Link>
                                     </div>
+                                    {/* End .col */}
                                 </div>
-                                {/* End .col */}
+                                {/* End .row */}
 
-                                <div className="col-auto">
-                                    <Link
-                                        href={`/${slug}/gulet`}
-                                        className="button -md -blue-1 bg-blue-1-05 text-blue-1"
-                                    >
-                                        More <div className="icon-arrow-top-right ml-15" />
-                                    </Link>
+                                <div className="row y-gap-30 pt-40 sm:pt-20 item_gap-x30">
+                                    <Tours data={yachtDestination} />
                                 </div>
-                                {/* End .col */}
+                                {/* End .row */}
                             </div>
-                            {/* End .row */}
+                            {/* End .container */}
+                        </section>
+                    }
+                    {
+                        guletDestination?.data?.length !== 0 &&
+                        <section className="layout-pt-md layout-pb-md">
+                            <div className="container">
+                                <div className="row y-gap-20 justify-between items-end">
+                                    <div className="col-auto">
+                                        <div className="sectionTitle -md">
+                                            <h2 className="sectionTitle__title">Gulets in {data?.data[0].attributes?.name}</h2>
+                                            <p className=" sectionTitle__text mt-5 sm:mt-0">
+                                                Interdum et malesuada fames ac ante ipsum
+                                            </p>
+                                        </div>
+                                    </div>
+                                    {/* End .col */}
 
-                            <div className="row y-gap-30 pt-40 sm:pt-20 item_gap-x30">
-                                <Activity data={guletDestination} />
+                                    <div className="col-auto">
+                                        <Link
+                                            rel="nofollow"
+                                            href={`/${slug}/gulet`}
+                                            className="button -md -blue-1 bg-blue-1-05 text-blue-1"
+                                        >
+                                            More <div className="icon-arrow-top-right ml-15" />
+                                        </Link>
+                                    </div>
+                                    {/* End .col */}
+                                </div>
+                                {/* End .row */}
+
+                                <div className="row y-gap-30 pt-40 sm:pt-20 item_gap-x30">
+                                    <Activity data={guletDestination} />
+                                </div>
+                                {/* End .row */}
                             </div>
-                            {/* End .row */}
-                        </div>
-                        {/* End .container */}
-                    </section>
-                    {/* Trending Activity Sections */}
+                            {/* End .container */}
+                        </section>
+                    }
 
                     {/* <section className="layout-pt-md layout-pb-md">
                         <div className="container">
@@ -580,7 +587,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                                             original={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
                                                             thumbnail={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
                                                             width={640}
-                                                        height={640}
+                                                            height={640}
                                                         >
                                                             {({ ref, open }) => (
                                                                 <div
@@ -605,7 +612,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                                             original={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
                                                             thumbnail={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
                                                             width={640}
-                                                        height={640}
+                                                            height={640}
                                                         >
                                                             {({ ref, open }) => (
                                                                 <img

@@ -14,37 +14,41 @@ import {
 } from "../../../../utils/linkActiveChecker";
 import { useRouter } from "next/router";
 
-const MainMenu = ({ style = "" }) => {
+const MainMenu = ({ style = "", destinations }) => {
   const router = useRouter();
 
   return (
     <nav className="menu js-navList">
-      <ul className={`menu__nav ${style} -is-active`}>
+      {/* <ul className={`menu__nav ${style} -is-active`}>
         <li className={router.pathname === "/destinations" ? "current" : ""}>
           <Link href="/destinations">Destinations</Link>
         </li>
-        {/* End Destinatinos single menu */}
-
-        {/* <li className={router.pathname === "/services" ? "current" : ""}>
-          <Link href="/services">Services</Link>
-        </li>
-         End Services single menu  */}
 
         <li className={router.pathname === "/yacht-services" ? "current" : ""}>
           <Link href="/yacht-services">Yacht Services</Link>
         </li>
-        {/* End Yacht Services single menu */}
-
-        {/* End Blog single menu */}
+       
 
         <li className={router.pathname === "/tours" ? "current" : ""}>
           <Link href="/tours">Tours</Link>
         </li>
-        {/* End About Us single menu */}
+       
 
         <li className={router.pathname === "/contact" ? "current" : ""}>
           <Link href="/contact">Contact</Link>
         </li>
+      </ul> */}
+      <ul className={`menu__nav ${style} -is-active`}>
+        {
+          destinations.map((item, i) => {
+            return (
+              <li key={i} className={router.asPath === `/${item.attributes.slug}` ? "current" : ""}>
+                <Link href={`/${item.attributes.slug}`}>{item.attributes.name}</Link>
+              </li>
+            )
+          })
+        }
+
       </ul>
     </nav>
   );

@@ -4,8 +4,10 @@ import PaymentInfo from "../PaymentInfo";
 import OrderSubmittedInfo from "../OrderSubmittedInfo";
 import { postReservation, postReservationInfo, getReservation } from "../../../services/reservation";
 import emailjs from '@emailjs/browser';
+import { useRouter } from "next/router";
 
 const Index = ({ dataa, rezOpt }) => {
+  const router = useRouter()
   const [currentStep, setCurrentStep] = useState(0);
   const [date, setDate] = useState(new Date('05 October 2011 14:48 GMT+3'))
   const [paymentType, setPaymentType] = useState('Cash')
@@ -55,8 +57,8 @@ const Index = ({ dataa, rezOpt }) => {
   const validateEmailRegex = /^\S+@\S+\.\S+$/;
 
   const steps = [
-    {
-      title: "Personal Details",
+    { 
+      title: currentStep === 0 ? 'Personal Details' : '',
       stepNo: "1",
       stepBar: (
         <>
@@ -68,7 +70,7 @@ const Index = ({ dataa, rezOpt }) => {
       content: <CustomerInfo userInfo={userInfo} setUserInfo={setUserInfo} rezOpt={rezOpt} dataa={dataa} />,
     },
     {
-      title: "Payment Details",
+      title: currentStep === 1 ? 'Payment Details' : '',
       stepNo: "2",
       stepBar: (
         <>
@@ -80,7 +82,7 @@ const Index = ({ dataa, rezOpt }) => {
       content: <PaymentInfo dataa={dataa} rezOpt={rezOpt} setPaymentType={setPaymentType} paymentType={paymentType} />,
     },
     {
-      title: "Final Step",
+      title: currentStep === 2 ? 'Final' : '',
       stepNo: "3",
       stepBar: "",
       content: <OrderSubmittedInfo orderNo={orderNo} userInfo={userInfo} paymentType={paymentType} dataa={dataa} rezOpt={rezOpt} />,
@@ -106,7 +108,7 @@ const Index = ({ dataa, rezOpt }) => {
   const sendEmail = (e) => {
     emailjs.send('service_933gt9l', 'template_o1oz11h', emailData, '6N_ClLffsmQBOhi1U')
       .then((result) => {
-        
+
       }, (error) => {
         console.log(error.text);
       });
@@ -151,6 +153,8 @@ const Index = ({ dataa, rezOpt }) => {
       if (finish === false) {
         setCurrentStep(currentStep - 1);
       }
+    } else {
+      router.replace('/')
     }
   };
 
@@ -166,7 +170,7 @@ const Index = ({ dataa, rezOpt }) => {
 
   return (
     <>
-      <div className="row x-gap-40 y-gap-30 items-center">
+      <div className="row x-gap-40 y-gap-30 items-center justify-center">
         {steps.map((step, index) => (
           <React.Fragment key={index}>
             <div className="col-auto">
@@ -210,7 +214,7 @@ const Index = ({ dataa, rezOpt }) => {
         <div className="col-auto">
           <button
             className="button h-60 px-24 -blue-1 bg-light-2"
-            disabled={currentStep === 0}
+            // disabled={currentStep === 0}
             onClick={previousStep}
           >
             Previous
