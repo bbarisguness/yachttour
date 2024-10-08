@@ -5,8 +5,9 @@ const Pagination = ({ data }) => {
   const router = useRouter()
   const query = router.query;
 
+
   const [currentPage, setCurrentPage] = useState(() => {
-    if (query?.page && !(query.page <= 0)) {
+    if (query?.page && !(query.page <= 0) && parseInt(query?.page)) {
       return parseInt(query?.page)
     } else {
       return 1
@@ -26,14 +27,23 @@ const Pagination = ({ data }) => {
   }, [query])
 
   useEffect(() => {
-    if (currentPage !== 1) {
-      // router.replace({ query: `page=${currentPage}` })
-      router.replace({ query: { ...query, page: currentPage } })
-    } else {
-      // router.replace('/tours')
-      delete router.query.page
-      router.replace({ query: { ...query } })
+
+    async function change() {
+      if (currentPage !== 1) {
+        // router.replace({ query: `page=${currentPage}` })
+        await router.replace({ query: { ...query, page: currentPage } })
+      } else {
+        // router.replace('/tours')
+        delete router.query.page
+        await router.replace({ query: { ...query } })
+      }
     }
+    const changeTime = setTimeout(() => {
+      change()
+    }, 250);
+
+    return () => clearTimeout(changeTime)
+
   }, [currentPage])
 
   const totalPages = data?.pagination?.pageCount;

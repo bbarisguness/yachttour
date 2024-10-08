@@ -3,8 +3,28 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
 import { destinations4 } from "../../../data/desinations";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const TopDestinations2 = ({ data }) => {
+  const [loading, setLoading] = useState(true)
+  const [mobile, setMobile] = useState(false)
+
+  useEffect(() => {
+    const changePhoto = () => {
+      if (window.innerWidth > 980) {
+        setMobile(false);
+      } else {
+        setMobile(true);
+      }
+    };
+    changePhoto()
+    setLoading(false)
+    window.addEventListener("resize", changePhoto);
+    return () => {
+      window.removeEventListener('resize', changePhoto)
+    }
+  }, []);
+
   return (
     <>
       <Swiper
@@ -41,13 +61,17 @@ const TopDestinations2 = ({ data }) => {
               data-aos-delay={index * 100}
             >
               <div className="citiesCard__image rounded-4 ratio ratio-1:1">
-                <Image
-                  width={600}
-                  height={600}
-                  className="img-ratio rounded-4 js-lazy"
-                  src={`${`http://3.74.191.230:1337`}${item?.attributes?.image?.data[0].attributes?.formats?.large?.url}`}
-                  alt="image"
-                />
+                {
+                  !loading &&
+                  <Image
+                    width={600}
+                    height={600}
+                    className="img-ratio rounded-4 js-lazy"
+                    src={`${`http://3.74.191.230:1337`}${mobile ? item?.attributes?.image?.data[0].attributes?.formats?.medium?.url : item?.attributes?.image?.data[0].attributes?.formats?.large?.url}`}
+                    alt="image"
+                  />
+                }
+
               </div>
               <div className="citiesCard__content mt-10">
                 <h4 className="text-18 lh-13 fw-500 text-dark-1 text-capitalize">

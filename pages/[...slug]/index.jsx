@@ -153,7 +153,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                         <div className="sectionTitle -md">
                                             <h2 className="sectionTitle__title">Tours in {data?.data[0]?.attributes?.name}</h2>
                                             <p className=" sectionTitle__text mt-5 sm:mt-0">
-                                                Interdum et malesuada fames ac ante ipsum
+                                                {data?.data[0]?.attributes?.tourText}
                                             </p>
                                         </div>
                                     </div>
@@ -188,7 +188,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                         <div className="sectionTitle -md">
                                             <h2 className="sectionTitle__title">Yachts in {data?.data[0]?.attributes?.name}</h2>
                                             <p className=" sectionTitle__text mt-5 sm:mt-0">
-                                                Interdum et malesuada fames ac ante ipsum
+                                                {data?.data[0]?.attributes?.yachtText}
                                             </p>
                                         </div>
                                     </div>
@@ -224,7 +224,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                         <div className="sectionTitle -md">
                                             <h2 className="sectionTitle__title">Gulets in {data?.data[0].attributes?.name}</h2>
                                             <p className=" sectionTitle__text mt-5 sm:mt-0">
-                                                Interdum et malesuada fames ac ante ipsum
+                                                {data?.data[0]?.attributes?.guletText}
                                             </p>
                                         </div>
                                     </div>
@@ -459,7 +459,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                     <TourProperties data={filterDestinations} />
                                 </div>
                                 {/* End .row */}
-                                {/* <Pagination data={filterDestinations?.meta} /> */}
+                                 <Pagination data={filterDestinations?.meta} /> 
                             </div>
                             {/* End .col for right content */}
                         </div>

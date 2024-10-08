@@ -54,7 +54,10 @@ export default function CategoryTypes() {
       }
     } else {
       delete router.query.cat
-      router.replace({ query: { ...query } })
+      var result = Object.keys(query).map((key) => [key, query[key]]);
+      if (result.length !== 0) {
+        router.replace({ query: { ...query } })
+      }
     }
   }, [filterCat])
 

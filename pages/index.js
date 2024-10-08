@@ -49,6 +49,7 @@ export default function Home({ destinations, tours, homepage }) {
               <div className="col-auto">
                 <Link
                   href="/tours"
+                  rel="nofollow"
                   className="button px-40 h-50 -outline-blue-1 text-blue-1"
                 >
                   View All <div className="icon-arrow-top-right ml-15" />

@@ -59,13 +59,11 @@ const SearchBar = () => {
                 >
                   <div className="d-flex">
                     <div className="icon-location-2 text-light-1 text-20 pt-4" />
-                    <div className="ml-10">
+                    <div className="ml-10 d-flex justify-center items-center">
                       <div className="text-15 lh-12 fw-500 js-search-option-target">
                         {item.attributes.name}
                       </div>
-                      <div className="text-14 lh-12 text-light-1 mt-5">
-                        Turkey
-                      </div>
+                      
                     </div>
                   </div>
                 </li>

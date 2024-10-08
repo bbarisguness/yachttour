@@ -15,6 +15,10 @@ import ContactInfo from "./ContactInfo";
 const MobileMenu = ({ destinations }) => {
   const router = useRouter();
 
+  const handleNavigate = (slug) => {
+    router.push(`/${slug}`)
+  }
+
   return (
     <>
       <div className="pro-header d-flex align-items-center justify-between border-bottom-light">
@@ -107,7 +111,11 @@ const MobileMenu = ({ destinations }) => {
                     key={i}
                     component={
                       <Link
+                        data-bs-toggle="offcanvas"
+                        aria-controls="mobile-sidebar_menu"
+                        data-bs-target="#mobile-sidebar_menu"
                         href={`/${item.attributes.slug}`}
+                        onClick={() => handleNavigate(item.attributes.slug)}
                         className={
                           router.asPath === `/${item.attributes.slug}`
                             ? "menu-active-link"
