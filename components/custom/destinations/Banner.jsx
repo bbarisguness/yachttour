@@ -35,7 +35,7 @@ const Banner = ({ data }) => {
         }
         <div className="absolute z-2 px-50 py-60 md:py-20 md:px-30">
           <h1 className="text-50 fw-600 text-white lg:text-40 md:text-30">
-            Explore {data?.data[0]?.attributes?.name}
+            {data?.data[0]?.attributes?.destinationTitle} {data?.data[0]?.attributes?.name}
           </h1>
           <div className="text-white">
             {data?.data[0]?.attributes?.shortText}
