@@ -54,7 +54,7 @@ const Header = () => {
                 <div className="d-flex items-center ml-20 is-menu-opened-hide md:d-none">
                   <Link
                     rel="nofollow"
-                    href="/others-pages/login"
+                    href="https://wa.me/905382403883"
                     className="button px-30 fw-400 text-14 -blue-1 bg-white h-50 text-dark-1"
                   >
                     WhatsApp

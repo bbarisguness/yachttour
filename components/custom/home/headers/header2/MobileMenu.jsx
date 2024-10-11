@@ -149,7 +149,7 @@ const MobileMenu = ({ destinations }) => {
           <Link
             rel="nofollow"
             className=" button -dark-1 px-30 fw-400 text-14 bg-blue-1 h-50 text-white"
-            href="/others-pages/login"
+            href="https://wa.me/905382403883"
           >
             WhatsApp
           </Link>

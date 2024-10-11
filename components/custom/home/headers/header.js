@@ -53,8 +53,8 @@ const Header = () => {
                 {/* Start btn-group */}
                 <div className="d-flex items-center ml-20 is-menu-opened-hide md:d-none">
                   <Link
-                  rel="nofollow"
-                    href="/others-pages/login"
+                    rel="nofollow"
+                    href="https://wa.me/905382403883"
                     className="button px-30 fw-400 text-14 -blue-1 bg-white h-50 text-dark-1"
                   >
                     WhatsApp
@@ -80,7 +80,7 @@ const Header = () => {
                       aria-labelledby="offcanvasMenuLabel"
                       data-bs-scroll="true"
                     >
-                      <MobileMenu destinations={destinations}/>
+                      <MobileMenu destinations={destinations} />
                       {/* End MobileMenu */}
                     </div>
                   </div>
