@@ -83,7 +83,7 @@ async function getTourFilter({ page, cat, dest, price, person, sort }) {
     return data
 }
 
-async function getTourFilterSlug({ rSlug, category, page, price, person,sort }) {
+async function getTourFilterSlug({ rSlug, category, page, price, person, sort }) {
     const splitPrice = price?.split(',') || '';
     const splitPerson = person?.split('-') || '';
 
@@ -154,7 +154,12 @@ async function getTourDetail({ tourSlug }) {
             "category",
             "reservations",
             "comments",
-            "ports"
+            "ports",
+            "highlights",
+            "includes",
+            "notSuitableFor",
+            "meetingPoint",
+            "importantInformation.article"
         ],
         filters: {
             slug: {

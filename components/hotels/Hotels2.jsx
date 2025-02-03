@@ -138,7 +138,7 @@ const Hotels2 = ({ otherTours }) => {
                   </div>
                 </div>
                 <div className="mt-5">
-                  <div className="fw-400">
+                  <div style={{ display: '-webkit-box', WebkitLineClamp: '1', WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis' }} className="fw-400">
                     {item?.attributes?.shortText}
                   </div>
                 </div>

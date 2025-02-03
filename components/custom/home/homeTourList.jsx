@@ -72,7 +72,7 @@ const HomeTourList = ({ data }) => {
                             src={`${'http://3.74.191.230:1337'}${slide?.attributes?.url}`}
                             alt="image"
                           /> */}
-                              <img className="rounded-4 col-12 js-lazy" src={`${'http://3.74.191.230:1337'}${slide?.attributes?.formats?.medium?.url}`} alt="image" />
+                              <img style={{ aspectRatio: '1/1' }} className="rounded-4 col-12 js-lazy" src={`${'http://3.74.191.230:1337'}${slide?.attributes?.formats?.medium?.url}`} alt="image" />
                             </div>
                           </div>
                         )
@@ -116,7 +116,7 @@ const HomeTourList = ({ data }) => {
                   $ {item?.attributes?.price}
                 </div>
               </div>
-              <div className="mt-5">
+              <div style={{ display: '-webkit-box', WebkitLineClamp: '1', WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis' }} className="mt-5">
                 {item?.attributes?.shortText}
               </div>
             </div>

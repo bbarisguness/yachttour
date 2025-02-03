@@ -11,7 +11,7 @@ const Social = () => {
         <a
           href={item.link}
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener noreferrer nofollow"
           key={item.id}
         >
           <i className={`${item.icon} text-14`} />

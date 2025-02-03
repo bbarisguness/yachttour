@@ -46,7 +46,7 @@ const TourProperties = ({ data }) => {
                             src={`${"http://3.74.191.230:1337"}${slide?.attributes?.formats?.medium?.url}`}
                             alt="image"
                           /> */}
-                                <img className="rounded-4 col-12 js-lazy" src={`${'http://3.74.191.230:1337'}${slide?.attributes?.formats?.medium?.url}`} alt="image" />
+                                <img style={{ aspectRatio: '1/1' }} className="rounded-4 col-12 js-lazy" src={`${'http://3.74.191.230:1337'}${slide?.attributes?.formats?.medium?.url}`} alt="image" />
                               </SwiperSlide>
                             )
                           }
@@ -101,7 +101,7 @@ const TourProperties = ({ data }) => {
                     </span>
                   </div>
                 </div>
-                <div>
+                <div style={{ display: '-webkit-box', WebkitLineClamp: '1', WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                   {item?.attributes?.shortText}
                 </div>
               </div>

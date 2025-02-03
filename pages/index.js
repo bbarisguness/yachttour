@@ -23,7 +23,7 @@ export default function Home({ destinations, tours, homepage }) {
 
       <Header />
 
-      <Hero />
+      <Hero slider={homepage?.data?.attributes?.slider?.data?.attributes} />
 
       <section className="layout-pt-md layout-pb-lg mt-60">
         <div className="container">

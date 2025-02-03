@@ -162,7 +162,7 @@ const Tours = ({ data }) => {
                       </span>
                     </div>
                   </div>
-                  <div>
+                  <div style={{ display: '-webkit-box', WebkitLineClamp: '1', WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                     {item?.attributes?.shortText}
                   </div>
                 </div>

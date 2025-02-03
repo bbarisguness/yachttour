@@ -46,6 +46,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
 
     const [ready, setReady] = useState(false)
     const [isOpen, setOpen] = useState(false);
+    // const [mobile, setMobile] = useState(false)
 
     useEffect(() => {
         if (slug.length == 1) {
@@ -80,6 +81,24 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
         }
     }, [ready])
 
+    // useEffect(() => {
+    //     const handleResize = () => {
+    //         if (window.innerWidth < 768) {
+    //             setMobile(true)
+    //         } else {
+    //             setMobile(false)
+    //         }
+    //     };
+
+    //     handleResize()
+
+    //     window.addEventListener('resize', handleResize);
+
+    //     return () => {
+    //         window.removeEventListener('resize', handleResize);
+    //     };
+    // }, []);
+
 
     if (slug[0] && slug.length == 1) {
         if (path === `/${slug[0]}` && data.data.length !== 0) {
@@ -105,19 +124,23 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                             </div>
                             {/* End .row */}
 
-                            <div className="row x-gap-20 y-gap-20 items-center pt-20 item_gap-x10">
+                            {/* <div className="row x-gap-20 y-gap-20 items-center pt-20 item_gap-x10">
                                 <Categories />
-                            </div>
+                            </div> */}
                             {/* End .row */}
 
-                            <div className="row y-gap-20 pt-40">
-                                <div className="col-auto">
-                                    <h2>What to know before visiting {data?.data[0]?.attributes.name}</h2>
-                                </div>
-                                {/* End .col-auto */}
 
-                                <IntroTown data={data} />
-                            </div>
+
+                            {/* <>
+                                    <div className="row y-gap-20 pt-40">
+                                        <div className="col-auto">
+                                            <h2>What to know before visiting {data?.data[0]?.attributes.name}</h2>
+                                        </div>
+                                        <IntroTown data={data} />
+                                    </div>
+                                    <div className="mt-30 border-top-light" />
+                                </> */}
+
                             {/* End .row */}
 
                             {/* border separation */}
@@ -138,47 +161,11 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                             </div> */}
 
                             {/* End .row */}
-                            <div className="mt-30 border-top-light" />
                             {/* border separation */}
                         </div>
                         {/* End .container */}
                     </section>
                     {/* End Top Banner,categorie,intro,weather, generic info section */}
-                    {
-                        toursDestination?.data?.length !== 0 &&
-                        <section className="layout-pt-md layout-pb-md">
-                            <div className="container">
-                                <div className="row y-gap-20 justify-between items-end">
-                                    <div className="col-auto">
-                                        <div className="sectionTitle -md">
-                                            <h2 className="sectionTitle__title">Tours in {data?.data[0]?.attributes?.name}</h2>
-                                            <p className=" sectionTitle__text mt-5 sm:mt-0">
-                                                {data?.data[0]?.attributes?.tourText}
-                                            </p>
-                                        </div>
-                                    </div>
-                                    {/* End .col */}
-
-                                    <div className="col-auto">
-                                        <Link
-                                            rel="nofollow"
-                                            href={`/${slug[0]}/tour`}
-                                            className="button -md -blue-1 bg-blue-1-05 text-blue-1"
-                                        >
-                                            More <div className="icon-arrow-top-right ml-15" />
-                                        </Link>
-                                    </div>
-                                </div>
-                                {/* End .row */}
-
-                                <div className="row y-gap-30 pt-40 sm:pt-20 item_gap-x30">
-                                    <Hotels data={toursDestination} />
-                                </div>
-                                {/* End relative */}
-                            </div>
-                        </section>
-                    }
-
                     {
                         yachtDestination?.data?.length !== 0 &&
                         <section className="layout-pt-md layout-pb-md">
@@ -249,6 +236,41 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                 {/* End .row */}
                             </div>
                             {/* End .container */}
+                        </section>
+                    }
+
+                    {
+                        toursDestination?.data?.length !== 0 &&
+                        <section className="layout-pt-md layout-pb-md">
+                            <div className="container">
+                                <div className="row y-gap-20 justify-between items-end">
+                                    <div className="col-auto">
+                                        <div className="sectionTitle -md">
+                                            <h2 className="sectionTitle__title">Tours in {data?.data[0]?.attributes?.name}</h2>
+                                            <p className=" sectionTitle__text mt-5 sm:mt-0">
+                                                {data?.data[0]?.attributes?.tourText}
+                                            </p>
+                                        </div>
+                                    </div>
+                                    {/* End .col */}
+
+                                    <div className="col-auto">
+                                        <Link
+                                            rel="nofollow"
+                                            href={`/${slug[0]}/tour`}
+                                            className="button -md -blue-1 bg-blue-1-05 text-blue-1"
+                                        >
+                                            More <div className="icon-arrow-top-right ml-15" />
+                                        </Link>
+                                    </div>
+                                </div>
+                                {/* End .row */}
+
+                                <div className="row y-gap-30 pt-40 sm:pt-20 item_gap-x30">
+                                    <Hotels data={toursDestination} />
+                                </div>
+                                {/* End relative */}
+                            </div>
                         </section>
                     }
 
@@ -375,6 +397,21 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                         </div>
                         {/* End .container */}
                     </section>
+
+                    {/* <section className="layout-pb-md">
+                        <div className="container">
+                            {
+                                mobile &&
+                                <div className="row y-gap-20 pt-40">
+                                    <div className="col-auto">
+                                        <h2>What to know before visiting {data?.data[0]?.attributes.name}</h2>
+                                    </div>
+                                    <IntroTown data={data} />
+                                </div>
+                            }
+                        </div>
+                    </section> */}
+
                     {/* End top destinations */}
 
                     <Footer />
@@ -404,7 +441,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
 
         return (
             <>
-                <Seo pageDesc={`${b} in All ${d}`} pageTitle={`${b} in All ${d}`} />
+                <Seo pageDesc={`${b} in All ${d}`} pageTitle={`All ${d} in ${b}`} />
                 {/* End Page Title */}
 
                 <div className="header-margin"></div>
@@ -459,7 +496,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                     <TourProperties data={filterDestinations} />
                                 </div>
                                 {/* End .row */}
-                                 <Pagination data={filterDestinations?.meta} /> 
+                                <Pagination data={filterDestinations?.meta} />
                             </div>
                             {/* End .col for right content */}
                         </div>
@@ -580,7 +617,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                                     <img
                                                         src={`${`http://3.74.191.230:1337`}${item.attributes?.formats?.medium?.url}`}
                                                         alt="image"
-                                                        className={`rounded-4 ${style['customImage']}`}
+                                                        className={`rounded-4`}
                                                     />
                                                     <div className="absolute px-10 py-10 col-12 h-full d-flex justify-end items-end">
                                                         <Item
@@ -698,37 +735,29 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                     {/* End container */}
                 </section >
                 {/* End single page content */}
+                {
+                    tourDetail?.data[0]?.attributes?.comments?.data.find((itm) => itm?.attributes?.publish === true) &&
 
-                < section className="pt-40" id="reviews" >
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-12">
-                                <h3 className="text-22 fw-500">Guest reviews</h3>
+                    < section className="pt-40" id="reviews" >
+                        <div className="container">
+                            <div className="row">
+                                <div className="col-12">
+                                    <h3 className="text-22 fw-500">Guest reviews</h3>
+                                </div>
                             </div>
-                        </div>
-                        {/* End .row */}
 
-                        {/* <ReviewProgress /> */}
-                        {/* End review with progress */}
 
-                        <div className="pt-40">
-                            <DetailsReview tourDetail={tourDetail} />
-                            {/* End review with details */}
-                        </div>
+                            <div className="pt-40">
+                                <DetailsReview tourDetail={tourDetail} />
 
-                        {/* <div className="row pt-30">
-                            <div className="col-auto">
-                                <a href="#" className="button -md -outline-blue-1 text-blue-1">
-                                    Show all 116 reviews{" "}
-                                    <div className="icon-arrow-top-right ml-15"></div>
-                                </a>
                             </div>
-                        </div> */}
 
-                    </div>
-                    {/* End .container */}
-                    {/* End container */}
-                </section >
+
+
+                        </div>
+
+                    </section >
+                }
                 {/* End Review section */}
 
                 < section className="pt-40" >
