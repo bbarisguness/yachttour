@@ -45,6 +45,15 @@ export default function CategoryTypes() {
     }
   }
 
+  function changePrivateOrPublic({ e, value }) {
+    if (value === 1) {
+      router.replace({ query: { ...query, publicTour: e.target.checked, page: '1' } })
+    }
+    if (value === 2) {
+      router.replace({ query: { ...query, privateTour: e.target.checked, page: '1' } })
+    }
+  }
+
   useEffect(() => {
     if (filterCat && filterCat !== '') {
       if (parseInt(router?.query?.page) !== 1) {
@@ -66,7 +75,7 @@ export default function CategoryTypes() {
     <>
       {categories.map((category, index) => (
         <div
-          className="row y-gap-10 items-center justify-between"
+          className="row y-gap-10 justify-between"
           key={index}
         >
           <div className="col-auto">
@@ -77,6 +86,25 @@ export default function CategoryTypes() {
               </div>
               <div className="text-15 ml-10">{category.attributes.name}</div>
             </div>
+            {
+              category?.attributes?.slug === "tour" &&
+              <>
+                <div className="form-checkbox d-flex items-center pl-20">
+                  <input defaultChecked={searchParams.get('publicTour') === "true"} onClick={(e) => changePrivateOrPublic({ e, value: 1 })} type="checkbox" />
+                  <div className="form-checkbox__mark">
+                    <div className="form-checkbox__icon icon-check" />
+                  </div>
+                  <div className="text-15 ml-10">Public</div>
+                </div>
+                <div className="form-checkbox d-flex items-center pl-20">
+                  <input defaultChecked={searchParams.get('privateTour') === "true"} onClick={(e) => changePrivateOrPublic({ e, value: 2 })} type="checkbox" />
+                  <div className="form-checkbox__mark">
+                    <div className="form-checkbox__icon icon-check" />
+                  </div>
+                  <div className="text-15 ml-10">Private</div>
+                </div>
+              </>
+            }
           </div>
           <div className="col-auto">
             <div className="text-15 text-light-1">{category.attributes.tours?.data?.length}</div>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import TourProperties from "../../components/tour-list/tour-list-v2/TourProperties";
 import Pagination from "../../components/tour-list/common/Pagination";
 import Sidebar from "../../components/tour-list/tour-list-v2/Sidebar";
@@ -87,12 +87,14 @@ export async function getServerSideProps({ query }) {
     const dest = query.dest
     const price = query.p
     const person = query.e
+    const privateTour = query.privateTour
+    const publicTour = query.publicTour
 
     // const width = query.w
     // const hp = query.hp
     // const year = query.y
 
     const sort = query.sort
-    const tours = await getTourFilter({ page, cat, dest, price, person, sort })
+    const tours = await getTourFilter({ page, cat, dest, price, person, sort, privateTour, publicTour })
     return { props: { tours } }
 }

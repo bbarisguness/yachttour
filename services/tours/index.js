@@ -28,7 +28,8 @@ async function getToursPagination({ page }) {
     return data
 }
 
-async function getTourFilter({ page, cat, dest, price, person, sort }) {
+async function getTourFilter({ page, cat, dest, price, person, sort, publicTour = "false", privateTour = "false" }) {
+
     const splitCat = cat?.split(",");
     const splitDest = dest?.split(",");
     const splitPrice = price?.split(',') || '';
@@ -36,46 +37,140 @@ async function getTourFilter({ page, cat, dest, price, person, sort }) {
     // const splitWidth = width?.split('-') || '';
     // const splitHp = hp?.split('-') || '';
     // const splitYear = year?.split(',') || '';
-    const query = qs.stringify({
-        fields: '*',
-        populate: '*',
-        sort: {
-            price: sort
-        },
-        filters: {
-            category: {
-                slug: {
-                    $in: splitCat,
+    let query = ""
+
+    if ((publicTour === "true" && privateTour === "false")) {
+        query = qs.stringify({
+            fields: '*',
+            populate: '*',
+            sort: {
+                price: sort
+            },
+            filters: {
+                category: {
+                    slug: {
+                        $in: splitCat,
+                    },
                 },
-            },
-            destinations: {
-                slug: {
-                    $in: splitDest,
+                destinations: {
+                    slug: {
+                        $in: splitDest,
+                    },
                 },
+                private: {
+                    $eq: false
+                },
+                price: {
+                    $between: [parseInt(splitPrice[0]?.slice(4, splitPrice[0].length)) || 0, parseInt(splitPrice[1]?.slice(4, splitPrice[1].length)) || 20000],
+                },
+                person: {
+                    $between: [parseInt(splitPerson[0]) == 20 ? 0 : parseInt(splitPerson[0]) || 0, parseInt(splitPerson[1]) || 100000],
+                },
+                // width: {
+                //     $between: [parseInt(splitWidth[0]) == 40 ? 0 : parseInt(splitWidth[0]) || 0, parseInt(splitWidth[1]) || 100000],
+                // },
+                // enginehp: {
+                //     $between: [parseInt(splitHp[0]) == 1000 ? 0 : parseInt(splitHp[0]) || 0, parseInt(splitHp[1]) || 100000],
+                // },
+                // year: {
+                //     $between: [parseInt(splitYear[0]?.slice(4, splitYear[0].length)) || 1956, parseInt(splitYear[1]?.slice(4, splitYear[1].length)) || 2024],
+                // },
             },
-            price: {
-                $between: [parseInt(splitPrice[0]?.slice(4, splitPrice[0].length)) || 0, parseInt(splitPrice[1]?.slice(4, splitPrice[1].length)) || 20000],
+            pagination: {
+                pageSize: 9,
+                page: page,
             },
-            person: {
-                $between: [parseInt(splitPerson[0]) == 20 ? 0 : parseInt(splitPerson[0]) || 0, parseInt(splitPerson[1]) || 100000],
+        }, {
+            encodeValuesOnly: true,
+        });
+    } else if ((publicTour === "false" && privateTour === "true")) {
+        query = qs.stringify({
+            fields: '*',
+            populate: '*',
+            sort: {
+                price: sort
             },
-            // width: {
-            //     $between: [parseInt(splitWidth[0]) == 40 ? 0 : parseInt(splitWidth[0]) || 0, parseInt(splitWidth[1]) || 100000],
-            // },
-            // enginehp: {
-            //     $between: [parseInt(splitHp[0]) == 1000 ? 0 : parseInt(splitHp[0]) || 0, parseInt(splitHp[1]) || 100000],
-            // },
-            // year: {
-            //     $between: [parseInt(splitYear[0]?.slice(4, splitYear[0].length)) || 1956, parseInt(splitYear[1]?.slice(4, splitYear[1].length)) || 2024],
-            // },
-        },
-        pagination: {
-            pageSize: 9,
-            page: page,
-        },
-    }, {
-        encodeValuesOnly: true,
-    });
+            filters: {
+                category: {
+                    slug: {
+                        $in: splitCat,
+                    },
+                },
+                destinations: {
+                    slug: {
+                        $in: splitDest,
+                    },
+                },
+                private: {
+                    $eq: true
+                },
+                price: {
+                    $between: [parseInt(splitPrice[0]?.slice(4, splitPrice[0].length)) || 0, parseInt(splitPrice[1]?.slice(4, splitPrice[1].length)) || 20000],
+                },
+                person: {
+                    $between: [parseInt(splitPerson[0]) == 20 ? 0 : parseInt(splitPerson[0]) || 0, parseInt(splitPerson[1]) || 100000],
+                },
+                // width: {
+                //     $between: [parseInt(splitWidth[0]) == 40 ? 0 : parseInt(splitWidth[0]) || 0, parseInt(splitWidth[1]) || 100000],
+                // },
+                // enginehp: {
+                //     $between: [parseInt(splitHp[0]) == 1000 ? 0 : parseInt(splitHp[0]) || 0, parseInt(splitHp[1]) || 100000],
+                // },
+                // year: {
+                //     $between: [parseInt(splitYear[0]?.slice(4, splitYear[0].length)) || 1956, parseInt(splitYear[1]?.slice(4, splitYear[1].length)) || 2024],
+                // },
+            },
+            pagination: {
+                pageSize: 9,
+                page: page,
+            },
+        }, {
+            encodeValuesOnly: true,
+        });
+    }
+    else {
+        query = qs.stringify({
+            fields: '*',
+            populate: '*',
+            sort: {
+                price: sort
+            },
+            filters: {
+                category: {
+                    slug: {
+                        $in: splitCat,
+                    },
+                },
+                destinations: {
+                    slug: {
+                        $in: splitDest,
+                    },
+                },
+                price: {
+                    $between: [parseInt(splitPrice[0]?.slice(4, splitPrice[0].length)) || 0, parseInt(splitPrice[1]?.slice(4, splitPrice[1].length)) || 20000],
+                },
+                person: {
+                    $between: [parseInt(splitPerson[0]) == 20 ? 0 : parseInt(splitPerson[0]) || 0, parseInt(splitPerson[1]) || 100000],
+                },
+                // width: {
+                //     $between: [parseInt(splitWidth[0]) == 40 ? 0 : parseInt(splitWidth[0]) || 0, parseInt(splitWidth[1]) || 100000],
+                // },
+                // enginehp: {
+                //     $between: [parseInt(splitHp[0]) == 1000 ? 0 : parseInt(splitHp[0]) || 0, parseInt(splitHp[1]) || 100000],
+                // },
+                // year: {
+                //     $between: [parseInt(splitYear[0]?.slice(4, splitYear[0].length)) || 1956, parseInt(splitYear[1]?.slice(4, splitYear[1].length)) || 2024],
+                // },
+            },
+            pagination: {
+                pageSize: 9,
+                page: page,
+            },
+        }, {
+            encodeValuesOnly: true,
+        });
+    }
+
     const response = await fetch(`${apiUrl}/tours?${query}`, {
         cache: 'no-store'
     })
