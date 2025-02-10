@@ -40,7 +40,7 @@ const TopHeaderFilter = ({ data, b, d }) => {
         <div className="col-auto">
           <div className="text-18">
             {/* <span className="fw-500">{data?.meta?.pagination?.total} Tours</span> in <span style={{ textTransform: "capitalize" }}>{query?.dest ? query.dest.replace(/-/g, " ") : 'All Tour'}</span> */}
-            <span className="fw-500">{`All ${d} in ${b}`}</span>
+            <span className="fw-500">{`All ${d}s in ${b}`}</span>
           </div>
         </div>
         {/* End .col */}

@@ -38,6 +38,7 @@ import TourSnapShot from "../../components/tour-single/TourSnapShot";
 import style from './image.module.css'
 import Sidebar2 from "../../components/tour-list/tour-list-v2/Sidebar2";
 import Pagination from "../../components/tour-list/common/Pagination";
+import { photoFormatsDetect } from "../../utils/photoFormatsDetect";
 
 export default function DestinationDetail({ data, toursDestination, yachtDestination, guletDestination, destinationsIsNot, tourDetail, filterDestinations, otherTours }) {
     const router = useRouter();
@@ -183,7 +184,6 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
 
                                     <div className="col-auto">
                                         <Link
-                                            rel="nofollow"
                                             href={`/${slug[0]}/yacht`}
                                             className="button -md -blue-1 bg-blue-1-05 text-blue-1"
                                         >
@@ -219,7 +219,6 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
 
                                     <div className="col-auto">
                                         <Link
-                                            rel="nofollow"
                                             href={`/${slug}/gulet`}
                                             className="button -md -blue-1 bg-blue-1-05 text-blue-1"
                                         >
@@ -256,7 +255,6 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
 
                                     <div className="col-auto">
                                         <Link
-                                            rel="nofollow"
                                             href={`/${slug[0]}/tour`}
                                             className="button -md -blue-1 bg-blue-1-05 text-blue-1"
                                         >
@@ -441,7 +439,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
 
         return (
             <>
-                <Seo pageDesc={`${b} in All ${d}`} pageTitle={`All ${d} in ${b}`} />
+                <Seo pageDesc={`${b}s in All ${d}`} pageTitle={`All ${d}s in ${b}`} />
                 {/* End Page Title */}
 
                 <div className="header-margin"></div>
@@ -566,7 +564,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                 <div className="row x-gap-15 y-gap-15 items-center">
                                     <div className="col-auto">
                                         <div className="text-14">
-                                            <span className="rounded-100 py-4 px-10 text-center text-14 fw-500 bg-blue-1-05 text-blue-1">{tourDetail?.data[0]?.attributes?.private === true ? 'Private' : 'Public'}</span>
+                                            <span className="rounded-100 py-4 px-10 text-center text-14 fw-500 bg-blue-1-05 text-blue-1">{tourDetail?.data[0]?.attributes?.private === true ? 'Private' : 'Shared'}</span>
                                             <span className="text-22 text-dark-1 fw-500">
                                                 ${tourDetail?.data[0]?.attributes?.price}
                                             </span>
@@ -593,15 +591,28 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                         if (index === 0) {
                                             return (
                                                 <div key={index} className="galleryGrid__item relative d-flex">
+                                                    <div className="cardImage__leftBadge">
+                                                        <div
+                                                            className={`py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase ${tourDetail?.data[0]?.attributes?.tag == "blackAttr" ? "bg-dark-1 text-white" : ""} ${tourDetail?.data[0]?.attributes?.tag == "brownAttr" ? "bg-brown-1 text-white" : ""} ${tourDetail?.data[0]?.attributes?.tag == "blueAttr" ? "bg-blue-1 text-white" : ""
+                                                                }  ${tourDetail?.data[0]?.attributes?.tag == "yellowAttr" ? "bg-yellow-1 text-dark-1" : ""}
+                    `}
+                                                        >
+                                                            {`
+                      ${tourDetail?.data[0]?.attributes?.tag == "blackAttr" ? "Breakfast included" : ''} ${tourDetail?.data[0]?.attributes?.tag == "yellowAttr" ? "Top Rated" : ''} ${tourDetail?.data[0]?.attributes?.tag == "blueAttr" ? "Best Seller" : ''} ${tourDetail?.data[0]?.attributes?.tag == "brownAttr" ? "-25% Today" : ''}
+                      `
+                                                            }
+                                                        </div>
+                                                    </div>
+
                                                     <Item
-                                                        original={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.medium?.url : item?.attributes?.url}`}
-                                                        thumbnail={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.medium?.url : item?.attributes?.url}`}
-                                                        width={640}
-                                                        height={640}
+                                                        original={`${`http://3.74.191.230:1337`}${photoFormatsDetect(item, 'large')?.url}`}
+                                                        thumbnail={`${`http://3.74.191.230:1337`}${photoFormatsDetect(item, 'large')?.url}`}
+                                                        width={photoFormatsDetect(item, 'large')?.width}
+                                                        height={photoFormatsDetect(item, 'large')?.height}
                                                     >
                                                         {({ ref, open }) => (
                                                             <img
-                                                                src={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
+                                                                src={`${`http://3.74.191.230:1337`}${photoFormatsDetect(item, 'large')?.url}`}
                                                                 ref={ref}
                                                                 onClick={open}
                                                                 alt="image"
@@ -616,16 +627,16 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                             return (
                                                 <div key={index} className="galleryGrid__item relative d-flex">
                                                     <img
-                                                        src={`${`http://3.74.191.230:1337`}${item.attributes?.formats?.medium?.url}`}
+                                                        src={`${`http://3.74.191.230:1337`}${photoFormatsDetect(item, 'medium')?.url}`}
                                                         alt="image"
                                                         className={`rounded-4`}
                                                     />
                                                     <div className="absolute px-10 py-10 col-12 h-full d-flex justify-end items-end">
                                                         <Item
-                                                            original={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
-                                                            thumbnail={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
-                                                            width={640}
-                                                            height={640}
+                                                            original={`${`http://3.74.191.230:1337`}${photoFormatsDetect(item, 'large')?.url}`}
+                                                            thumbnail={`${`http://3.74.191.230:1337`}${photoFormatsDetect(item, 'large')?.url}`}
+                                                            width={photoFormatsDetect(item, 'large')?.width}
+                                                            height={photoFormatsDetect(item, 'large')?.height}
                                                         >
                                                             {({ ref, open }) => (
                                                                 <div
@@ -647,16 +658,16 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                                     {
                                                         index > 4 &&
                                                         <Item
-                                                            original={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
-                                                            thumbnail={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
-                                                            width={640}
-                                                            height={640}
+                                                            original={`${`http://3.74.191.230:1337`}${photoFormatsDetect(item, 'large')?.url}`}
+                                                            thumbnail={`${`http://3.74.191.230:1337`}${photoFormatsDetect(item, 'large')?.url}`}
+                                                            width={photoFormatsDetect(item, 'large')?.width}
+                                                            height={photoFormatsDetect(item, 'large')?.height}
                                                         >
                                                             {({ ref, open }) => (
                                                                 <img
                                                                     ref={ref}
                                                                     onClick={open}
-                                                                    src={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
+                                                                    src={`${`http://3.74.191.230:1337`}${photoFormatsDetect(item, 'large')?.url}`}
                                                                     alt="image"
                                                                     className="rounded-4"
                                                                     role="button"
@@ -671,16 +682,16 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                             return (
                                                 <div key={index} className="galleryGrid__item">
                                                     <Item
-                                                        original={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
-                                                        thumbnail={`${`http://3.74.191.230:1337`}${item?.attributes?.formats?.large?.url ? item?.attributes?.formats?.large?.url : item?.attributes?.url}`}
-                                                        width={640}
-                                                        height={640}
+                                                        original={`${`http://3.74.191.230:1337`}${photoFormatsDetect(item, 'large')?.url}`}
+                                                        thumbnail={`${`http://3.74.191.230:1337`}${photoFormatsDetect(item, 'large')?.url}`}
+                                                        width={photoFormatsDetect(item, 'large')?.width}
+                                                        height={photoFormatsDetect(item, 'large')?.height}
                                                     >
                                                         {({ ref, open }) => (
                                                             <img
                                                                 ref={ref}
                                                                 onClick={open}
-                                                                src={`${`http://3.74.191.230:1337`}${item.attributes?.formats?.medium?.url}`}
+                                                                src={`${`http://3.74.191.230:1337`}${photoFormatsDetect(item, 'medium')?.url}`}
                                                                 alt="image"
                                                                 className="rounded-4"
                                                                 role="button"

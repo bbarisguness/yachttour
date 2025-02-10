@@ -70,9 +70,9 @@
     }
   }
 
-  &:hover input ~ .form-checkbox__mark {
-    background-color: var(--color-blue-1);
-  }
+  // &:hover input ~ .form-checkbox__mark {
+  //   background-color: var(--color-blue-1);
+  // }
 
   &:hover input:checked ~ .form-checkbox__mark {
     background-color: var(--color-blue-1);

@@ -102,7 +102,7 @@ const HomeTourList = ({ data }) => {
               </div>
             </div>
             <div className="hotelsCard__content mt-10">
-              <h4 className="hotelsCard__title text-dark-1 text-18 lh-16 fw-500 text-uppercase">
+              <h4 style={{ display: '-webkit-box', WebkitLineClamp: '1', WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis' }} className="hotelsCard__title text-dark-1 text-18 lh-16 fw-500 text-uppercase">
                 <span>{item?.attributes?.title}</span>
               </h4>
               <p className="text-light-1 lh-14 text-14 mt-5">
@@ -113,7 +113,7 @@ const HomeTourList = ({ data }) => {
                   3252 reviews
                 </div> */}
                 <div className="fw-500">
-                  $ {item?.attributes?.price}
+                € {item?.attributes?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span style={{position: 'relative', top: '-1px' }} className="fw-400 text-15">{item?.attributes?.private ? 'daily/hourly' : 'per person'}</span>
                 </div>
               </div>
               <div style={{ display: '-webkit-box', WebkitLineClamp: '1', WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis' }} className="mt-5">

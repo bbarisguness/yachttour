@@ -140,7 +140,7 @@ const Tours = ({ data }) => {
                   <div className="size-3 bg-light-1 rounded-full ml-10 mr-10" />
                   <div className="text-14 text-light-1">{item?.attributes.categories.data[0].attributes.name}</div>
                 </div> */}
-                <h4 className="tourCard__title text-dark-1 text-18 lh-16 fw-500 text-uppercase">
+                <h4 style={{ display: '-webkit-box', WebkitLineClamp: '1', WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis' }} className="tourCard__title text-dark-1 text-18 lh-16 fw-500 text-uppercase">
                   <span>{item?.attributes?.title}</span>
                 </h4>
                 <p className="text-light-1 lh-14 text-14 mt-5">
@@ -158,7 +158,7 @@ const Tours = ({ data }) => {
                   <div className="col-auto">
                     <div className="text-14 text-light-1">
                       <span className="text-16 fw-500 text-dark-1">
-                        $ {item?.attributes?.price}
+                      € {item?.attributes?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span style={{position: 'relative', top: '-1px' }} className="fw-400 text-15">{item?.attributes?.private ? 'daily/hourly' : 'per person'}</span>
                       </span>
                     </div>
                   </div>
