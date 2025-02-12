@@ -146,7 +146,7 @@ const PaymentInfo = ({ setPaymentType, paymentType, dataa, rezOpt }) => {
                       You have chosen to pay by PayPal. You will be forwarded to
                       the PayPal website to proceed with this transaction.
                     </li>
-                    <li>The total amount you will be charged is: $2,338.01</li>
+                    <li>The total amount you will be charged is: €2,338.01</li>
                   </ul>
                 </div>
               </div>
@@ -161,7 +161,7 @@ const PaymentInfo = ({ setPaymentType, paymentType, dataa, rezOpt }) => {
                       You have chosen to pay by PayPal. You will be forwarded to
                       the PayPal website to proceed with this transaction.
                     </li>
-                    <li>The total amount you will be charged is: $2,338.01</li>
+                    <li>The total amount you will be charged is: €2,338.01</li>
                   </ul>
                 </div>
               </div>

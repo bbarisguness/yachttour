@@ -35,7 +35,7 @@ const OrderSubmittedInfo = ({ rezOpt, dataa, paymentType, userInfo, orderNo }) =
               <div className="col-lg-3 col-md-6">
                 <div className="text-15 lh-12">Total</div>
                 <div className="text-15 lh-12 fw-500 text-blue-1 mt-10">
-                  ${dataa?.attributes?.price * rezOpt?.p}
+                  €{dataa?.attributes?.price * rezOpt?.p}
                 </div>
               </div>
               {/* End .col */}
@@ -164,7 +164,7 @@ const OrderSubmittedInfo = ({ rezOpt, dataa, paymentType, userInfo, orderNo }) =
                 <div className="d-flex justify-between border-top-light pt-10">
                   <div className="text-15 lh-16">Price</div>
                   <div className="text-15 lh-16 fw-500 text-blue-1">
-                    ${dataa?.attributes?.price}
+                    €{dataa?.attributes?.price}
                   </div>
                 </div>
               </div>

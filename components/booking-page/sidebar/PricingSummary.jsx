@@ -8,7 +8,7 @@ const PricingSummary = ({ dataa, rezOpt }) => {
         </div>
         {/* End col */}
         <div className="col-auto">
-          <div className="text-15">US${dataa?.attributes?.price * rezOpt?.p}</div>
+          <div className="text-15">€{dataa?.attributes?.price * rezOpt?.p}</div>
         </div>
         {/* End col */}
       </div>
@@ -19,7 +19,7 @@ const PricingSummary = ({ dataa, rezOpt }) => {
           <div className="text-15">Taxes and fees</div>
         </div>
         <div className="col-auto">
-          <div className="text-15">US$0</div>
+          <div className="text-15">€0</div>
         </div>
       </div>
       {/* End .row */}
@@ -40,7 +40,7 @@ const PricingSummary = ({ dataa, rezOpt }) => {
             <div className="text-18 lh-13 fw-500">Price</div>
           </div>
           <div className="col-auto">
-            <div className="text-18 lh-13 fw-500">US${dataa?.attributes?.price * rezOpt?.p}</div>
+            <div className="text-18 lh-13 fw-500">€{dataa?.attributes?.price * rezOpt?.p}</div>
           </div>
         </div>
       </div>

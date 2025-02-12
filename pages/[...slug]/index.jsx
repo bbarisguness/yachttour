@@ -566,7 +566,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                         <div className="text-14">
                                             <span className="rounded-100 py-4 px-10 text-center text-14 fw-500 bg-blue-1-05 text-blue-1">{tourDetail?.data[0]?.attributes?.private === true ? 'Private' : 'Shared'}</span>
                                             <span className="text-22 text-dark-1 fw-500">
-                                                ${tourDetail?.data[0]?.attributes?.price}
+                                                €{tourDetail?.data[0]?.attributes?.price}
                                             </span>
                                         </div>
                                     </div>

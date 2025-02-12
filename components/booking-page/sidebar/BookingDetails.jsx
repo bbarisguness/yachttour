@@ -27,7 +27,7 @@ const BookingDetails = ({ dataa, rezOpt }) => {
               </div>
             </div> */}
             <div style={{ justifyContent: 'space-between' }} className="col-auto">
-              <div className="text-14 fw-500">$ {dataa?.attributes?.price}</div>
+              <div className="text-14 fw-500">€{dataa?.attributes?.price}</div>
             </div>
           </div>
         </div>
@@ -63,7 +63,7 @@ const BookingDetails = ({ dataa, rezOpt }) => {
       <div className="row y-gap-20 justify-between items-center">
         <div className="col-auto">
           <div className="text-15">Total price:</div>
-          <div className="fw-500">${rezOpt?.p * dataa?.attributes?.price}</div>
+          <div className="fw-500">€{rezOpt?.p * dataa?.attributes?.price}</div>
         </div>
       </div>
       {/* End row */}
