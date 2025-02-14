@@ -44,7 +44,7 @@ const StickyHeader = ({ tour }) => {
                 <div className="col-auto">
                   <div className="text-14">
                     <span className="text-22 text-dark-1 fw-500">
-                      ${tour?.data[0]?.attributes?.price}
+                      €{tour?.data[0]?.attributes?.price}
                     </span>
                   </div>
                 </div>
