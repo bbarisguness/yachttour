@@ -28,7 +28,7 @@ const OrderSubmittedInfo = ({ rezOpt, dataa, paymentType, userInfo, orderNo }) =
               <div className="col-lg-3 col-md-6">
                 <div className="text-15 lh-12">Date</div>
                 <div className="text-15 lh-12 fw-500 text-blue-1 mt-10">
-                  {rezOpt?.m}.{rezOpt?.d}.{rezOpt?.y}
+                  {rezOpt?.m < 10 ? `0${rezOpt?.m}` : rezOpt?.m}.{rezOpt?.d < 10 ? `0${rezOpt?.d}` : rezOpt?.d}.{rezOpt?.y}
                 </div>
               </div>
               {/* End .col */}
@@ -173,10 +173,21 @@ const OrderSubmittedInfo = ({ rezOpt, dataa, paymentType, userInfo, orderNo }) =
                 <div className="d-flex justify-between border-top-light pt-10">
                   <div className="text-15 lh-16">Check in</div>
                   <div className="text-15 lh-16 fw-500 text-blue-1">
-                    {rezOpt?.m}.{rezOpt?.d}.{rezOpt?.y}
+                    {rezOpt?.m < 10 ? `0${rezOpt?.m}` : rezOpt?.m}.{rezOpt?.d < 10 ? `0${rezOpt?.d}` : rezOpt?.d}.{rezOpt?.y}
                   </div>
                 </div>
               </div>
+              {
+                rezOpt?.om &&
+                <div className="col-12">
+                  <div className="d-flex justify-between border-top-light pt-10">
+                    <div className="text-15 lh-16">Check out</div>
+                    <div className="text-15 lh-16 fw-500 text-blue-1">
+                      {rezOpt?.om < 10 ? `0${rezOpt?.om}` : rezOpt?.om}.{rezOpt?.od < 10 ? `0${rezOpt?.od}` : rezOpt?.od}.{rezOpt?.oy}
+                    </div>
+                  </div>
+                </div>
+              }
               {/* End .col */}
               <div className="col-12">
                 <div className="d-flex justify-between border-top-light pt-10">
@@ -186,6 +197,17 @@ const OrderSubmittedInfo = ({ rezOpt, dataa, paymentType, userInfo, orderNo }) =
                   </div>
                 </div>
               </div>
+              {
+                rezOpt?.et &&
+                <div className="col-12">
+                  <div className="d-flex justify-between border-top-light pt-10">
+                    <div className="text-15 lh-16">End Time</div>
+                    <div className="text-15 lh-16 fw-500 text-blue-1">
+                      {rezOpt?.et}
+                    </div>
+                  </div>
+                </div>
+              }
               {/* End .col */}
               <div className="col-12">
                 <div className="d-flex justify-between border-top-light pt-10">

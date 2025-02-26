@@ -161,7 +161,7 @@ const Activity = ({ data }) => {
                     </div>
                   </div>
                   <div style={{ display: '-webkit-box', WebkitLineClamp: '1', WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                    {item?.attributes?.shortText}
+                  {item?.attributes?.private === true ? 'Private' : 'Shared'} {","} {item?.attributes?.person} people
                   </div>
                 </div>
               </div>

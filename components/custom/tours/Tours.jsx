@@ -158,12 +158,12 @@ const Tours = ({ data }) => {
                   <div className="col-auto">
                     <div className="text-14 text-light-1">
                       <span className="text-16 fw-500 text-dark-1">
-                      € {item?.attributes?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span style={{position: 'relative', top: '-1px' }} className="fw-400 text-15">{item?.attributes?.private ? 'daily/hourly' : 'per person'}</span>
+                        € {item?.attributes?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span style={{ position: 'relative', top: '-1px' }} className="fw-400 text-15">{item?.attributes?.private ? 'daily/hourly' : 'per person'}</span>
                       </span>
                     </div>
                   </div>
                   <div style={{ display: '-webkit-box', WebkitLineClamp: '1', WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-                    {item?.attributes?.shortText}
+                    {item?.attributes?.private === true ? 'Private' : 'Shared'} {","} {item?.attributes?.person} people
                   </div>
                 </div>
               </div>

@@ -7,8 +7,13 @@ const PortSearch = ({ data }) => {
   const [categories, setCategories] = useState([])
 
   useEffect(() => {
+    setSelectedItem(null)
     setCategories(data?.data[0]?.attributes?.ports)
-  }, [])
+    if(data?.data[0]?.attributes?.ports?.data?.length === 1) {
+      setSelectedItem(data?.data[0]?.attributes?.ports?.data[0]?.attributes?.name)
+      setSelectedId(data?.data[0]?.attributes?.ports?.data[0]?.id)
+    }
+  }, [data])
 
   const handleOptionClick = (item) => {
     setSelectedItem(item.attributes.name);
@@ -22,13 +27,18 @@ const PortSearch = ({ data }) => {
       m: a.m,
       y: a.y,
       t: a.t,
+      et: a?.et,
       l: selectedItem,
       i: selectedId,
       p: a.p,
-      n: a.n
+      n: a.n,
+      od: a?.od,
+      om: a?.om,
+      oy: a?.oy,
+      on: a?.on
     }
     localStorage.setItem('s', JSON.stringify(object));
-  }, [selectedItem])
+  }, [selectedItem, data])
 
   return (
     <>

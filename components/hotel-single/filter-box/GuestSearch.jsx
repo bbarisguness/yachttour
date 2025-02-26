@@ -14,10 +14,15 @@ export default function GuestSearch() {
       m: a.m,
       y: a.y,
       t: a.t,
+      et: a?.et,
       l: a.l,
       i: a.i,
       p: person,
-      n: a.n
+      n: a.n,
+      od: a?.od,
+      om: a?.om,
+      oy: a?.oy,
+      on: a?.on
     }
     localStorage.setItem('s', JSON.stringify(object));
   }, [person])

@@ -39,10 +39,10 @@ const BookingDetails = ({ dataa, rezOpt }) => {
       <div className="row y-gap-20 justify-between items-center">
         <div className="col-auto">
           <div className="text-15">Check in:</div>
-          <div className="fw-400">{rezOpt?.m}.{rezOpt?.d}.{rezOpt?.y}</div>
+          <div className="fw-400">{rezOpt?.m < 10 ? `0${rezOpt?.m}` : rezOpt?.m}.{rezOpt?.d < 10 ? `0${rezOpt?.d}` : rezOpt?.d}.{rezOpt?.y} {rezOpt?.om ? `- ${rezOpt?.om < 10 ? `0${rezOpt?.om}` : rezOpt?.om}.${rezOpt?.od < 10 ? `0${rezOpt?.od}` : rezOpt?.od}.${rezOpt?.oy}` : ''}</div>
         </div>
         <div className="col-auto">
-          <div className="text-15">{rezOpt?.t}</div>
+          <div className="text-15">{rezOpt?.t} {rezOpt?.et ? `- ${rezOpt?.et}` : ''}</div>
         </div>
       </div>
       {/* End row */}

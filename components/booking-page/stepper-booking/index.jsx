@@ -10,13 +10,30 @@ const Index = ({ dataa, rezOpt }) => {
   const router = useRouter()
   const [currentStep, setCurrentStep] = useState(0);
   const [date, setDate] = useState(new Date('05 October 2011 14:48 GMT+3'))
+  const [endDate, setEndDate] = useState(new Date('05 October 2011 14:48 GMT+3'))
   const [paymentType, setPaymentType] = useState('Cash')
   const [paid, setPaid] = useState(false)
   const [finish, setFinish] = useState(false)
   const [orderNo, setOrderNo] = useState(Math.floor(Math.random() * 5000 + Date.now()))
 
   useEffect(() => {
-    setDate(new Date(`${rezOpt.d} ${rezOpt.n} ${rezOpt.y} ${rezOpt.t} GMT+3`))
+
+    if (rezOpt?.t?.replace(/\s+/g, '')?.split('-')[0]) {
+      setDate(new Date(`${rezOpt.d} ${rezOpt.n} ${rezOpt.y} ${rezOpt?.t?.replace(/\s+/g, '')?.split('-')[0]} GMT+3`))
+    } else {
+      setDate(new Date(`${rezOpt.d} ${rezOpt.n} ${rezOpt.y} ${rezOpt?.t} GMT+3`))
+    }
+
+    // setDate(new Date(`${rezOpt.d} ${rezOpt.n} ${rezOpt.y} ${rezOpt.t} GMT+3`))
+    if (rezOpt?.od && rezOpt?.on && rezOpt?.oy && rezOpt?.et) {
+      setEndDate(new Date(`${rezOpt.od} ${rezOpt.on} ${rezOpt.oy} ${rezOpt.et} GMT+3`))
+    } else {
+      if (rezOpt?.t?.replace(/\s+/g, '')?.split('-')[1]) {
+        setEndDate(new Date(`${rezOpt.d} ${rezOpt.n} ${rezOpt.y} ${rezOpt?.t?.replace(/\s+/g, '')?.split('-')[1]} GMT+3`))
+      } else {
+        setEndDate(new Date(`${rezOpt.d} ${rezOpt.n} ${rezOpt.y} ${rezOpt?.t} GMT+3`))
+      }
+    }
   }, [])
 
   useEffect(() => {
@@ -45,6 +62,7 @@ const Index = ({ dataa, rezOpt }) => {
     note: userInfo.note,
     reservationStatusType: "Reserved",
     date: date,
+    endDate: endDate,
     amount: dataa?.attributes?.price,
     qty: rezOpt?.p,
     total: rezOpt?.p * dataa?.attributes?.price,
@@ -57,7 +75,7 @@ const Index = ({ dataa, rezOpt }) => {
   const validateEmailRegex = /^\S+@\S+\.\S+$/;
 
   const steps = [
-    { 
+    {
       title: currentStep === 0 ? 'Personal Details' : '',
       stepNo: "1",
       stepBar: (

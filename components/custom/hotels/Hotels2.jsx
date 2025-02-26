@@ -149,12 +149,12 @@ const Hotels2 = ({ data }) => {
                     3256 reviews
                   </div> */}
                   <div className="text-dark-1 fw-500">
-                  € {item?.attributes?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span style={{position: 'relative', top: '-1px' }} className="fw-400 text-15">{item?.attributes?.private ? 'daily/hourly' : 'per person'}</span>
+                    € {item?.attributes?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span style={{ position: 'relative', top: '-1px' }} className="fw-400 text-15">{item?.attributes?.private ? 'daily/hourly' : 'per person'}</span>
                   </div>
                 </div>
                 <div className="mt-5">
                   <div style={{ display: '-webkit-box', WebkitLineClamp: '1', WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis' }} className="fw-400">
-                    {item?.attributes?.shortText}
+                    {item?.attributes?.private === true ? 'Private' : 'Shared'} {","} {item?.attributes?.person} people
                   </div>
                 </div>
               </div>

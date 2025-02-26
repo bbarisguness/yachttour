@@ -1,17 +1,16 @@
 import { useEffect, useState } from "react";
 import { getSearchCategory } from "../../../services/category";
 
-const HourSearch = ({ data }) => {
+const EndTimeSearch = ({ data }) => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [categories, setCategories] = useState([])
 
   useEffect(() => {
-    setSelectedItem(null)
     setCategories(data?.data[0]?.attributes?.hours?.hours)
-  }, [data])
+  }, [])
 
   const handleOptionClick = (item) => {
-    setSelectedItem(`${item.hour} ${item?.finishHour ? `- ${item?.finishHour}` : ''}`);
+    setSelectedItem(item.hour);
   };
 
   useEffect(() => {
@@ -20,14 +19,19 @@ const HourSearch = ({ data }) => {
       d: a.d,
       m: a.m,
       y: a.y,
-      t: selectedItem,
+      t: a.t,
+      et: selectedItem,
       l: a.l,
       i: a.i,
       p: a.p,
-      n: a.n
+      n: a.n,
+      od: a?.od,
+      om: a?.om,
+      oy: a?.oy,
+      on: a?.on
     }
     localStorage.setItem('s', JSON.stringify(object));
-  }, [selectedItem,data])
+  }, [selectedItem])
 
   return (
     <>
@@ -37,7 +41,7 @@ const HourSearch = ({ data }) => {
           data-bs-auto-close="true"
           data-bs-offset="0,22"
         >
-          <h4 className="text-15 fw-500 ls-2 lh-16">Start / Finish Time</h4>
+          <h4 className="text-15 fw-500 ls-2 lh-16">End Time</h4>
           <div className="text-15 text-light-1 ls-2 lh-16">
             <div>{selectedItem == null && 'Select Time'} {selectedItem !== null && selectedItem}</div>
           </div>
@@ -59,7 +63,7 @@ const HourSearch = ({ data }) => {
                     <div className="icon-location-2 text-light-1 text-20 pt-4" />
                     <div className="ml-10">
                       <div className="text-15 lh-0 fw-500 js-search-option-target">
-                        {item.hour} {item?.finishHour ? `- ${item?.finishHour}` : ''}
+                        {item.hour}
                       </div>
 
                     </div>
@@ -74,4 +78,4 @@ const HourSearch = ({ data }) => {
   );
 };
 
-export default HourSearch;
+export default EndTimeSearch;
