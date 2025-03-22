@@ -3,6 +3,7 @@ import Link from "next/link";
 import Slider from "react-slick";
 import { hotelsData } from "../../../data/hotels";
 import isTextMatched from "../../../utils/isTextMatched";
+import { photoFormatsDetect } from "../../../utils/photoFormatsDetect";
 
 const Hotels2 = ({ data }) => {
   var settings = {
@@ -102,7 +103,7 @@ const Hotels2 = ({ data }) => {
                             src={`${`http://3.74.191.230:1337`}${slide?.attributes?.formats?.medium?.url}`}
                             alt="image"
                           /> */}
-                                <img className="rounded-4 col-12 js-lazy" src={`${'http://3.74.191.230:1337'}${slide?.attributes?.formats?.medium?.url}`} alt="image" />
+                                <img className="rounded-4 col-12 js-lazy" src={`${'http://3.74.191.230:1337'}${photoFormatsDetect(slide, 'medium')?.url}`} alt="image" />
                               </div>
                             </div>
                           )
@@ -149,7 +150,7 @@ const Hotels2 = ({ data }) => {
                     3256 reviews
                   </div> */}
                   <div className="text-dark-1 fw-500">
-                    € {item?.attributes?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span style={{ position: 'relative', top: '-1px' }} className="fw-400 text-15">{item?.attributes?.private ? 'daily/hourly' : 'per person'}</span>
+                  € {item?.attributes?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span style={{position: 'relative', top: '-1px' }} className="fw-400 text-15">{item?.attributes?.private ? item?.attributes?.reservationType === 'daily' ? "daily" : item?.attributes?.reservationType === 'hourly' ? "hourly" : "" : 'per person'}</span>
                   </div>
                 </div>
                 <div className="mt-5">

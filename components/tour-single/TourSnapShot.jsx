@@ -6,7 +6,7 @@ const TourSnapShot = ({ data }) => {
           <i className="icon-clock text-22 text-blue-1 mr-10"></i>
           <div className="text-15 lh-15">
             Duration:
-            <br /> 11h
+            <br /> {data?.data[0]?.attributes?.duration}
           </div>
         </div>
       </div>
@@ -23,15 +23,25 @@ const TourSnapShot = ({ data }) => {
       </div>
       {/* End .col */}
 
-      <div className="col-md-auto col-6">
-        <div className="d-flex">
-          <i className="icon-route text-22 text-blue-1 mr-10"></i>
-          <div className="text-15 lh-15">
-            Near public
-            <br /> transportation
+      {
+        data?.data[0]?.attributes?.tourSnapshot3 &&
+        <div className="col-md-auto col-6">
+          <div className="d-flex">
+            <i className="icon-check text-22 text-blue-1 mr-10"></i>
+            <div className="text-15 lh-15">
+              {data?.data[0]?.attributes?.tourSnapshot3?.split(" ").length >= 3 ? (
+                <>
+                  {data?.data[0]?.attributes?.tourSnapshot3?.split(" ").slice(0, 2).join(" ")}
+                  <br />
+                  {data?.data[0]?.attributes?.tourSnapshot3?.split(" ").slice(2).join(" ")}
+                </>
+              ) : (
+                data?.data[0]?.attributes?.tourSnapshot3
+              )}
+            </div>
           </div>
         </div>
-      </div>
+      }
       {/* End .col */}
 
       <div className="col-md-auto col-6">
@@ -39,7 +49,7 @@ const TourSnapShot = ({ data }) => {
           <i className="icon-access-denied text-22 text-blue-1 mr-10"></i>
           <div className="text-15 lh-15">
             Free cancellation <br />
-            <a href="#" className="text-blue-1 underline">
+            <a href="#cancellation" className="text-blue-1 underline">
               Learn more
             </a>
           </div>

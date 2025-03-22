@@ -8,6 +8,7 @@ const SidebarRight = ({ data }) => {
           <div>
             <span className="text-20 fw-500">€{data?.data[0]?.attributes?.price}</span>
             {/* <span className="text-14 text-light-1 ml-5">for</span> */}
+            <span style={{ position: 'relative', top: '-1px' }} className="fw-400 text-15"> {" / "} {data?.data[0]?.attributes?.private ? data?.data[0]?.attributes?.reservationType === 'daily' ? "daily" : data?.data[0]?.attributes?.reservationType === 'hourly' ? "hourly" : "" : 'per person'}</span>
           </div>
           <div className="d-flex items-center">
             <div className="text-14 text-right mr-10">

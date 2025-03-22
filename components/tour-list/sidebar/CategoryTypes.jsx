@@ -87,7 +87,7 @@ export default function CategoryTypes() {
               <div className="text-15 ml-10">{category.attributes.name}</div>
             </div>
             {
-              category?.attributes?.slug === "tour" &&
+              category?.attributes?.slug === "tour" && router.pathname !== "/tours/shared" && router.pathname !== "/tours/private"  &&
               <>
                 <div className="form-checkbox d-flex items-center pl-20">
                   <input defaultChecked={searchParams.get('publicTour') === "true"} onClick={(e) => changePrivateOrPublic({ e, value: 1 })} type="checkbox" />

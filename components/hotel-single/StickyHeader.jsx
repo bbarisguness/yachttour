@@ -46,6 +46,7 @@ const StickyHeader = ({ tour }) => {
                     <span className="text-22 text-dark-1 fw-500">
                       €{tour?.data[0]?.attributes?.price}
                     </span>
+                    <span style={{ position: 'relative', top: '-1px' }} className="fw-400 text-15"> {" / "} {tour?.data[0]?.attributes?.private ? tour?.data[0]?.attributes?.reservationType === 'daily' ? "daily" : tour?.data[0]?.attributes?.reservationType === 'hourly' ? "hourly" : "" : 'per person'}</span>
                   </div>
                 </div>
                 {/* <div className="col-auto">

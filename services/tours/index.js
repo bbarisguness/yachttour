@@ -235,6 +235,50 @@ async function getTourFilterSlug({ rSlug, category, page, price, person, sort })
     return data
 }
 
+async function getToursSharedOrPrivate({ aSlug, bSlug = "shared", page, price, person, sort }) {
+    const splitPrice = price?.split(',') || '';
+    const splitPerson = person?.split('-') || '';
+
+    const sorting = sort?.toUpperCase()
+    const filterSort = sorting == 'ASC' || sorting == 'DESC' ? sorting : 'ASC'
+    const rSlugBool = bSlug === "private" ? true : bSlug === "shared" ? false : ""
+
+    const query = qs.stringify({
+        fields: '*',
+        populate: '*',
+        sort: {
+            price: filterSort
+        },
+        filters: {
+            destinations: {
+                slug: {
+                    $eqi: `${aSlug}`,
+                }
+            },
+            private: {
+                $eq: rSlugBool
+            },
+            price: {
+                $between: [parseInt(splitPrice[0]?.slice(4, splitPrice[0].length)) || 0, parseInt(splitPrice[1]?.slice(4, splitPrice[1].length)) || 20000],
+            },
+            person: {
+                $between: [parseInt(splitPerson[0]) == 20 ? 0 : parseInt(splitPerson[0]) || 0, parseInt(splitPerson[1]) || 100000],
+            },
+        },
+        pagination: {
+            pageSize: 9,
+            page: page,
+        },
+    }, {
+        encodeValuesOnly: true,
+    });
+    const response = await fetch(`${apiUrl}/tours?${query}`, {
+        cache: 'no-store'
+    })
+    const data = await response.json()
+    return data
+}
+
 async function getTourDetail({ tourSlug }) {
     const query = qs.stringify({
         fields: '*',
@@ -348,4 +392,4 @@ async function getTourCategory({ category }) {
 }
 
 
-export { getTours, getTourDetail, getTourCategory, getTourDestination, getToursPagination, getTourFilter, getTourFilterSlug, getOtherTour }
+export { getTours, getTourDetail, getTourCategory, getTourDestination, getToursPagination, getTourFilter, getTourFilterSlug, getOtherTour, getToursSharedOrPrivate }

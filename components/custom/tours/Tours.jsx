@@ -3,6 +3,7 @@ import Link from "next/link";
 import Slider from "react-slick";
 import toursData from "../../../data/tours";
 import isTextMatched from "../../../utils/isTextMatched";
+import { photoFormatsDetect } from "../../../utils/photoFormatsDetect";
 
 const Tours = ({ data }) => {
   var settings = {
@@ -101,7 +102,7 @@ const Tours = ({ data }) => {
                             src={`${`http://3.74.191.230:1337`}${slide?.attributes?.formats?.medium?.url}`}
                             alt="image"
                           /> */}
-                                <img className="rounded-4 col-12 js-lazy" src={`${'http://3.74.191.230:1337'}${slide?.attributes?.formats?.medium?.url}`} alt="image" />
+                                <img className="rounded-4 col-12 js-lazy" src={`${'http://3.74.191.230:1337'}${photoFormatsDetect(slide, 'medium')?.url}`} alt="image" />
                               </div>
                             </div>
                           )
@@ -158,7 +159,7 @@ const Tours = ({ data }) => {
                   <div className="col-auto">
                     <div className="text-14 text-light-1">
                       <span className="text-16 fw-500 text-dark-1">
-                        € {item?.attributes?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span style={{ position: 'relative', top: '-1px' }} className="fw-400 text-15">{item?.attributes?.private ? 'daily/hourly' : 'per person'}</span>
+                      € {item?.attributes?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span style={{position: 'relative', top: '-1px' }} className="fw-400 text-15">{item?.attributes?.private ? item?.attributes?.reservationType === 'daily' ? "daily" : item?.attributes?.reservationType === 'hourly' ? "hourly" : "" : 'per person'}</span>
                       </span>
                     </div>
                   </div>

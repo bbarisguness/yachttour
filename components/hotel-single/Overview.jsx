@@ -6,11 +6,12 @@ import React, { useState } from 'react';
 
 const Overview = ({ data }) => {
   const [descView, setDescView] = useState(false)
+  const [cancellationView, setCancellationView] = useState(false)
   return (
     <>
       <h3 className="text-22 fw-500 pt-40 border-top-light">Overview</h3>
       <p style={{ whiteSpace: 'pre-line' }} className="text-dark-1 text-15 mt-20">
-        {data?.data[0]?.attributes?.longText}
+        {data?.data[0]?.attributes?.shortText}
       </p>
       {
         data?.data[0]?.attributes?.feature2Title &&
@@ -176,6 +177,23 @@ const Overview = ({ data }) => {
                     )
                   })
                 }
+              </div>
+            </div>
+          </>
+        }
+        {
+          data?.data[0]?.attributes?.cancellation &&
+          <>
+            <div className="mb-20 mt-20 border-top-light pt-10"></div>
+            <div className='row'>
+              <div id='cancellation' className='col-xl-3 fw-500'>
+                Cancellation
+              </div>
+              <div className='col-xl-9'>
+                <div style={{ whiteSpace: 'pre-line', display: cancellationView ? '' : '-webkit-box', WebkitLineClamp: cancellationView ? '' : '4', WebkitBoxOrient: cancellationView ? '' : 'vertical', overflow: cancellationView ? '' : 'hidden', textOverflow: cancellationView ? '' : 'ellipsis' }}>
+                  {data?.data[0]?.attributes?.cancellation}
+                </div>
+                <button onClick={() => setCancellationView(!cancellationView)} style={{ textDecoration: 'underline' }}>{cancellationView ? "See less" : "See more"}</button>
               </div>
             </div>
           </>

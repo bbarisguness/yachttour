@@ -3,6 +3,7 @@ import Link from "next/link";
 import Slider from "react-slick";
 import { hotelsData } from "../../data/hotels";
 import isTextMatched from "../../utils/isTextMatched";
+import { photoFormatsDetect } from "../../utils/photoFormatsDetect";
 
 const Hotels2 = ({ otherTours }) => {
   var settings = {
@@ -102,7 +103,7 @@ const Hotels2 = ({ otherTours }) => {
                             src={`${`http://3.74.191.230:1337`}${slide?.attributes?.formats?.medium?.url}`}
                             alt="image"
                           /> */}
-                                <img className="rounded-4 col-12 js-lazy" src={`${'http://3.74.191.230:1337'}${slide?.attributes?.formats?.medium?.url}`} alt="image" />
+                                <img className="rounded-4 col-12 js-lazy" src={`${'http://3.74.191.230:1337'}${photoFormatsDetect(slide, 'medium')?.url}`} alt="image" />
                               </div>
                             </div>
                           )
@@ -110,7 +111,7 @@ const Hotels2 = ({ otherTours }) => {
                       })
                     }
                   </Slider>
-
+                  
                   <div className="cardImage__leftBadge">
                     <div
                       className={`py-5 px-15 rounded-right-4 text-12 lh-16 fw-500 uppercase ${item?.attributes?.tag == "blackAttr" ? "bg-dark-1 text-white" : ""} ${item?.attributes?.tag == "brownAttr" ? "bg-brown-1 text-white" : ""} ${item?.attributes?.tag == "blueAttr" ? "bg-blue-1 text-white" : ""
@@ -134,7 +135,7 @@ const Hotels2 = ({ otherTours }) => {
                 </p>
                 <div className="d-flex items-center mt-20">
                   <div className="text-16 fw-500 text-dark-1">
-                    € {item?.attributes?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span style={{ position: 'relative', top: '-1px' }} className="fw-400 text-15">{item?.attributes?.private ? 'daily/hourly' : 'per person'}</span>
+                    € {item?.attributes?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span style={{ position: 'relative', top: '-1px' }} className="fw-400 text-15">{item?.attributes?.private ? item?.attributes?.reservationType === 'daily' ? "daily" : item?.attributes?.reservationType === 'hourly' ? "hourly" : "" : 'per person'}</span>
                   </div>
                 </div>
                 <div className="mt-5">

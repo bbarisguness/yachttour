@@ -494,6 +494,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                     <TourProperties data={filterDestinations} />
                                 </div>
                                 {/* End .row */}
+
                                 <Pagination data={filterDestinations?.meta} />
                             </div>
                             {/* End .col for right content */}
@@ -568,6 +569,7 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                             <span className="text-22 text-dark-1 fw-500">
                                                 €{tourDetail?.data[0]?.attributes?.price}
                                             </span>
+                                            <span style={{ position: 'relative', top: '-1px' }} className="fw-400 text-15"> {" / "} {tourDetail?.data[0]?.attributes?.private ? tourDetail?.data[0]?.attributes?.reservationType === 'daily' ? "daily" : tourDetail?.data[0]?.attributes?.reservationType === 'hourly' ? "hourly" : "" : 'per person'}</span>
                                         </div>
                                     </div>
                                     {/* <div className="col-auto">
