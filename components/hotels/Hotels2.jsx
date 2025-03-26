@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import { hotelsData } from "../../data/hotels";
 import isTextMatched from "../../utils/isTextMatched";
 import { photoFormatsDetect } from "../../utils/photoFormatsDetect";
+import { extractNumbers } from "../../utils/extractNumbers";
 
 const Hotels2 = ({ otherTours }) => {
   var settings = {
@@ -135,7 +136,7 @@ const Hotels2 = ({ otherTours }) => {
                 </p>
                 <div className="d-flex items-center mt-20">
                   <div className="text-16 fw-500 text-dark-1">
-                    € {item?.attributes?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span style={{ position: 'relative', top: '-1px' }} className="fw-400 text-15">{item?.attributes?.private ? item?.attributes?.reservationType === 'daily' ? "daily" : item?.attributes?.reservationType === 'hourly' ? "hourly" : "" : 'per person'}</span>
+                    € {item?.attributes?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span style={{ position: 'relative', top: '-1px' }} className="fw-400 text-15">{item?.attributes?.private ? item?.attributes?.reservationType === 'daily' ? "daily" : item?.attributes?.reservationType === 'hourly' ? extractNumbers(item?.attributes?.duration) : "" : 'per person'}</span>
                   </div>
                 </div>
                 <div className="mt-5">

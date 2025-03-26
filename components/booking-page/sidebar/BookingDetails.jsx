@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { photoFormatsDetect } from "../../../utils/photoFormatsDetect";
 
 const BookingDetails = ({ dataa, rezOpt }) => {
   return (
@@ -9,7 +10,7 @@ const BookingDetails = ({ dataa, rezOpt }) => {
           <Image
             width={140}
             height={140}
-            src={`http://3.74.191.230:1337${dataa?.attributes?.images?.data[0]?.attributes?.formats?.medium?.url}`}
+            src={`${`http://3.74.191.230:1337`}${photoFormatsDetect(dataa?.attributes?.images?.data[0], 'medium')?.url}`}
             alt="image"
             className="size-140 rounded-4 object-cover"
           />
@@ -27,7 +28,7 @@ const BookingDetails = ({ dataa, rezOpt }) => {
               </div>
             </div> */}
             <div style={{ justifyContent: 'space-between' }} className="col-auto">
-              <div className="text-14 fw-500">€{dataa?.attributes?.price}</div>
+              <div className="text-14 fw-500">€{dataa?.attributes?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</div>
             </div>
           </div>
         </div>
@@ -63,7 +64,7 @@ const BookingDetails = ({ dataa, rezOpt }) => {
       <div className="row y-gap-20 justify-between items-center">
         <div className="col-auto">
           <div className="text-15">Total price:</div>
-          <div className="fw-500">€{rezOpt?.p * dataa?.attributes?.price}</div>
+          <div className="fw-500">€{(rezOpt?.p * dataa?.attributes?.price)?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</div>
         </div>
       </div>
       {/* End row */}

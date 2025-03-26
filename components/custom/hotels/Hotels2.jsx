@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import { hotelsData } from "../../../data/hotels";
 import isTextMatched from "../../../utils/isTextMatched";
 import { photoFormatsDetect } from "../../../utils/photoFormatsDetect";
+import { extractNumbers } from "../../../utils/extractNumbers";
 
 const Hotels2 = ({ data }) => {
   var settings = {
@@ -150,7 +151,7 @@ const Hotels2 = ({ data }) => {
                     3256 reviews
                   </div> */}
                   <div className="text-dark-1 fw-500">
-                  € {item?.attributes?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span style={{position: 'relative', top: '-1px' }} className="fw-400 text-15">{item?.attributes?.private ? item?.attributes?.reservationType === 'daily' ? "daily" : item?.attributes?.reservationType === 'hourly' ? "hourly" : "" : 'per person'}</span>
+                  € {item?.attributes?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span style={{position: 'relative', top: '-1px' }} className="fw-400 text-15">{item?.attributes?.private ? item?.attributes?.reservationType === 'daily' ? "daily" : item?.attributes?.reservationType === 'hourly' ? extractNumbers(item?.attributes?.duration) : "" : 'per person'}</span>
                   </div>
                 </div>
                 <div className="mt-5">

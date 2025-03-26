@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import { hotelsData } from "../../../data/hotels";
 import isTextMatched from "../../../utils/isTextMatched";
 import { photoFormatsDetect } from "../../../utils/photoFormatsDetect";
+import { extractNumbers } from "../../../utils/extractNumbers";
 
 const HomeTourList = ({ data }) => {
   var itemSettings = {
@@ -114,7 +115,7 @@ const HomeTourList = ({ data }) => {
                   3252 reviews
                 </div> */}
                 <div className="fw-500">
-                € {item?.attributes?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span style={{position: 'relative', top: '-1px' }} className="fw-400 text-15">{item?.attributes?.private ? item?.attributes?.reservationType === 'daily' ? "daily" : item?.attributes?.reservationType === 'hourly' ? "hourly" : "" : 'per person'}</span>
+                € {item?.attributes?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span style={{position: 'relative', top: '-1px' }} className="fw-400 text-15">{item?.attributes?.private ? item?.attributes?.reservationType === 'daily' ? "daily" : item?.attributes?.reservationType === 'hourly' ? extractNumbers(item?.attributes?.duration) : "" : 'per person'}</span>
                 </div>
               </div>
               <div style={{ display: '-webkit-box', WebkitLineClamp: '1', WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis' }} className="mt-5">

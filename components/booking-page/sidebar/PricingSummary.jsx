@@ -8,7 +8,7 @@ const PricingSummary = ({ dataa, rezOpt }) => {
         </div>
         {/* End col */}
         <div className="col-auto">
-          <div className="text-15">€{dataa?.attributes?.price * rezOpt?.p}</div>
+          <div className="text-15">€{(dataa?.attributes?.price * rezOpt?.p)?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</div>
         </div>
         {/* End col */}
       </div>
@@ -40,7 +40,7 @@ const PricingSummary = ({ dataa, rezOpt }) => {
             <div className="text-18 lh-13 fw-500">Price</div>
           </div>
           <div className="col-auto">
-            <div className="text-18 lh-13 fw-500">€{dataa?.attributes?.price * rezOpt?.p}</div>
+            <div className="text-18 lh-13 fw-500">€{(dataa?.attributes?.price * rezOpt?.p)?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</div>
           </div>
         </div>
       </div>

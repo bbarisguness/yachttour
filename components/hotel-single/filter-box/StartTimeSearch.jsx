@@ -6,8 +6,13 @@ const StartTimeSearch = ({ data }) => {
   const [categories, setCategories] = useState([])
 
   useEffect(() => {
-    setSelectedItem(null)
-    setCategories(data?.data[0]?.attributes?.hours?.hours)
+    if (data?.data[0]?.attributes?.hours?.hours?.data?.length === 1) {
+      setSelectedItem(data?.data[0]?.attributes?.hours?.hours?.data[0]?.hour);
+      setCategories(data?.data[0]?.attributes?.hours?.hours)
+    } else {
+      setSelectedItem(null)
+      setCategories(data?.data[0]?.attributes?.hours?.hours)
+    }
   }, [data])
 
   const handleOptionClick = (item) => {

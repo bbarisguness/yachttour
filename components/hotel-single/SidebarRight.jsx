@@ -1,4 +1,5 @@
 import FilterBox from "../../components/hotel-single/filter-box";
+import { extractNumbers } from "../../utils/extractNumbers";
 
 const SidebarRight = ({ data }) => {
   return (
@@ -6,9 +7,9 @@ const SidebarRight = ({ data }) => {
       <div className="px-30 py-30 border-light rounded-4 shadow-4">
         <div className="d-flex items-center justify-between">
           <div>
-            <span className="text-20 fw-500">€{data?.data[0]?.attributes?.price}</span>
+            <span className="text-20 fw-500">€{data?.data[0]?.attributes?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}</span>
             {/* <span className="text-14 text-light-1 ml-5">for</span> */}
-            <span style={{ position: 'relative', top: '-1px' }} className="fw-400 text-15"> {" / "} {data?.data[0]?.attributes?.private ? data?.data[0]?.attributes?.reservationType === 'daily' ? "daily" : data?.data[0]?.attributes?.reservationType === 'hourly' ? "hourly" : "" : 'per person'}</span>
+            <span style={{ position: 'relative', top: '-1px' }} className="fw-400 text-15"> {" / "} {data?.data[0]?.attributes?.private ? data?.data[0]?.attributes?.reservationType === 'daily' ? "daily" : data?.data[0]?.attributes?.reservationType === 'hourly' ? extractNumbers(data?.data[0]?.attributes?.duration) : "" : 'per person'}</span>
           </div>
           <div className="d-flex items-center">
             <div className="text-14 text-right mr-10">

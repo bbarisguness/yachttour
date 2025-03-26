@@ -4,6 +4,7 @@ import Slider from "react-slick";
 import activityData from "../../../data/activity";
 import isTextMatched from "../../../utils/isTextMatched";
 import { photoFormatsDetect } from "../../../utils/photoFormatsDetect";
+import { extractNumbers } from "../../../utils/extractNumbers";
 
 const Activity = ({ data }) => {
   var settings = {
@@ -157,7 +158,7 @@ const Activity = ({ data }) => {
                   <div className="col-auto">
                     <div className="text-14 text-light-1">
                       <span className="text-16 fw-500 text-dark-1">
-                        € {item?.attributes?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span style={{ position: 'relative', top: '-1px' }} className="fw-400 text-15">{item?.attributes?.private ? item?.attributes?.reservationType === 'daily' ? "daily" : item?.attributes?.reservationType === 'hourly' ? "hourly" : "" : 'per person'}</span>
+                        € {item?.attributes?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span style={{ position: 'relative', top: '-1px' }} className="fw-400 text-15">{item?.attributes?.private ? item?.attributes?.reservationType === 'daily' ? "daily" : item?.attributes?.reservationType === 'hourly' ? extractNumbers(item?.attributes?.duration) : "" : 'per person'}</span>
                       </span>
                     </div>
                   </div>

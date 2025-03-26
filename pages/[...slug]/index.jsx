@@ -39,6 +39,7 @@ import style from './image.module.css'
 import Sidebar2 from "../../components/tour-list/tour-list-v2/Sidebar2";
 import Pagination from "../../components/tour-list/common/Pagination";
 import { photoFormatsDetect } from "../../utils/photoFormatsDetect";
+import { extractNumbers } from "../../utils/extractNumbers";
 
 export default function DestinationDetail({ data, toursDestination, yachtDestination, guletDestination, destinationsIsNot, tourDetail, filterDestinations, otherTours }) {
     const router = useRouter();
@@ -567,9 +568,9 @@ export default function DestinationDetail({ data, toursDestination, yachtDestina
                                         <div className="text-14">
                                             <span className="rounded-100 py-4 px-10 text-center text-14 fw-500 bg-blue-1-05 text-blue-1">{tourDetail?.data[0]?.attributes?.private === true ? 'Private' : 'Shared'}</span>
                                             <span className="text-22 text-dark-1 fw-500">
-                                                €{tourDetail?.data[0]?.attributes?.price}
+                                                €{tourDetail?.data[0]?.attributes?.price?.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")}
                                             </span>
-                                            <span style={{ position: 'relative', top: '-1px' }} className="fw-400 text-15"> {" / "} {tourDetail?.data[0]?.attributes?.private ? tourDetail?.data[0]?.attributes?.reservationType === 'daily' ? "daily" : tourDetail?.data[0]?.attributes?.reservationType === 'hourly' ? "hourly" : "" : 'per person'}</span>
+                                            <span style={{ position: 'relative', top: '-1px' }} className="fw-400 text-15"> {" / "} {tourDetail?.data[0]?.attributes?.private ? tourDetail?.data[0]?.attributes?.reservationType === 'daily' ? "daily" : tourDetail?.data[0]?.attributes?.reservationType === 'hourly' ? extractNumbers(tourDetail?.data[0]?.attributes?.duration) : "" : 'per person'}</span>
                                         </div>
                                     </div>
                                     {/* <div className="col-auto">
