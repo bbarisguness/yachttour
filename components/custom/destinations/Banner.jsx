@@ -27,7 +27,7 @@ const Banner = ({ data }) => {
         {
           !loading &&
           <img
-            src={`${"http://3.74.191.230:1337"}${mobile ? data?.data[0]?.attributes?.image?.data[0]?.attributes?.formats?.medium?.url : data?.data[0]?.attributes?.image?.data[0]?.attributes?.formats?.large?.url}`}
+            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${mobile ? data?.data[0]?.attributes?.image?.data[0]?.attributes?.formats?.medium?.url : data?.data[0]?.attributes?.image?.data[0]?.attributes?.formats?.large?.url}`}
             alt="image"
             className="col-12 rounded-4"
             style={{ minHeight: " 300px", maxHeight: '600px' }}

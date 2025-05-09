@@ -22,7 +22,7 @@ export default function BlogList({ data }) {
                                             height={300}
                                             style={{ minHeight: '312px', maxHeight: '312px' }}
                                             className="cover w-100 img-fluid"
-                                            src={`${"http://3.74.191.230:1337"}${item?.attributes?.image?.data[0]?.attributes.url}`}
+                                            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${item?.attributes?.image?.data[0]?.attributes.url}`}
                                             alt="image"
                                         />
                                     </div>

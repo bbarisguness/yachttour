@@ -22,7 +22,7 @@ const Blog = ({ data }) => {
                   width={400}
                   height={300}
                   className="img-ratio js-lazy"
-                  src={`${"http://3.74.191.230:1337"}${item?.attributes?.image?.data[0].attributes?.url}`}
+                  src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${item?.attributes?.image?.data[0].attributes?.url}`}
                   alt="image"
                 />
               </div>

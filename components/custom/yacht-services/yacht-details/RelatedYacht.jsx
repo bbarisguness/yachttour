@@ -27,7 +27,7 @@ const RelatedYacht = () => {
                   height={300}
                   style={{ minHeight: '234px' }}
                   className="cover w-100 img-fluid"
-                  src={`${"http://3.74.191.230:1337"}${item.attributes.image.data[0].attributes.formats.small.url}`}
+                  src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${item.attributes.image.data[0].attributes.formats.small.url}`}
                   alt="image"
                 />
               </div>

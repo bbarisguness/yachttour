@@ -4,9 +4,8 @@ const nextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'http',
-        hostname: '3.74.191.230',
-        port: '1337',
+        protocol: 'https',
+        hostname: 'morosite.testgrande.com',
         pathname: '/**',
       },
     ],

@@ -49,7 +49,7 @@ export default function YachtDetailPage({ data }) {
             </div>
             <div className="col-12">
               <img
-                src={`${"http://3.74.191.230:1337"}${data?.data[0]?.attributes.image?.data?.attributes?.url}`}
+                src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${data?.data[0]?.attributes.image?.data?.attributes?.url}`}
                 alt={data?.data[0]?.attributes.name}
                 className="col-12 rounded-8 w-100 img_large_details"
               />

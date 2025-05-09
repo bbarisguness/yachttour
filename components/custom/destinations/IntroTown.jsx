@@ -35,7 +35,7 @@ const IntroTown = ({ data }) => {
           {
             !loading &&
             <img
-              src={`${`http://3.74.191.230:1337`}${mobile ? data?.data[0]?.attributes?.map?.data?.attributes?.formats?.medium?.url : data?.data[0]?.attributes?.map?.data?.attributes?.url}`}
+              src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${mobile ? data?.data[0]?.attributes?.map?.data?.attributes?.formats?.medium?.url : data?.data[0]?.attributes?.map?.data?.attributes?.url}`}
               alt="image"
               className="col-12 rounded-4"
             />

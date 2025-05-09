@@ -37,7 +37,7 @@ const YachtList = ({ home, data }) => {
                                             height={300}
                                             style={{ minHeight: '312px', maxHeight: '312px' }}
                                             className="cover w-100 img-fluid"
-                                            src={`${"http://3.74.191.230:1337"}${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
+                                            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${item?.attributes?.image?.data?.attributes?.formats?.medium?.url}`}
                                             alt="image"
                                         />
                                     </div>

@@ -10,7 +10,7 @@ const BookingDetails = ({ dataa, rezOpt }) => {
           <Image
             width={140}
             height={140}
-            src={`${`http://3.74.191.230:1337`}${photoFormatsDetect(dataa?.attributes?.images?.data[0], 'medium')?.url}`}
+            src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${photoFormatsDetect(dataa?.attributes?.images?.data[0], 'medium')?.url}`}
             alt="image"
             className="size-140 rounded-4 object-cover"
           />

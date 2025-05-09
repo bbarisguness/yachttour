@@ -29,7 +29,7 @@ export default function Contact() {
 
             <div className="map-outer">
                 <div className="map-canvas">
-                    <div style={{ height: '100%', width: '100%', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundImage: `url(http://3.74.191.230:1337/uploads/img4_8a45f6f666.jpg)` }}></div>
+                    <div style={{ height: '100%', width: '100%', backgroundPosition: 'center', backgroundRepeat: 'no-repeat', backgroundSize: 'cover', backgroundImage: `url(${process.env.NEXT_PUBLIC_BACKEND_URL}/uploads/img4_8a45f6f666.jpg)` }}></div>
                 </div>
             </div>
 

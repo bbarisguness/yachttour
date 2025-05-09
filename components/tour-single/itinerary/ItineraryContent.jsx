@@ -66,7 +66,7 @@ const ItineraryContent = ({ data }) => {
                       <Image
                         width={350}
                         height={160}
-                        src={`${'http://3.74.191.230:1337'}${item?.attributes?.image?.data?.attributes?.url}`}
+                        src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${item?.attributes?.image?.data?.attributes?.url}`}
                         alt="image"
                         className="rounded-4 mt-15"
                       />

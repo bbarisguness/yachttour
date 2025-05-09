@@ -1,4 +1,4 @@
-const apiUrl = "http://3.74.191.230:1337/api"
+const apiUrl = process.env.NEXT_PUBLIC_API_URL
 
 const qs = require('qs');
 

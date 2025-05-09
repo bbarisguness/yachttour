@@ -48,7 +48,7 @@ const TourProperties = ({ data }) => {
                             src={`${"http://3.74.191.230:1337"}${slide?.attributes?.formats?.medium?.url}`}
                             alt="image"
                           /> */}
-                                <img style={{ aspectRatio: '1/1' }} className="rounded-4 col-12 js-lazy" src={`${'http://3.74.191.230:1337'}${photoFormatsDetect(slide, 'medium')?.url}`} alt="image" />
+                                <img style={{ aspectRatio: '1/1' }} className="rounded-4 col-12 js-lazy" src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${photoFormatsDetect(slide, 'medium')?.url}`} alt="image" />
                               </SwiperSlide>
                             )
                           }

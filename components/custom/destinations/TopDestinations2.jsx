@@ -67,7 +67,7 @@ const TopDestinations2 = ({ data }) => {
                     width={600}
                     height={600}
                     className="img-ratio rounded-4 js-lazy"
-                    src={`${`http://3.74.191.230:1337`}${mobile ? item?.attributes?.image?.data[0].attributes?.formats?.medium?.url : item?.attributes?.image?.data[0].attributes?.formats?.large?.url}`}
+                    src={`${process.env.NEXT_PUBLIC_BACKEND_URL}${mobile ? item?.attributes?.image?.data[0].attributes?.formats?.medium?.url : item?.attributes?.image?.data[0].attributes?.formats?.large?.url}`}
                     alt="image"
                   />
                 }
