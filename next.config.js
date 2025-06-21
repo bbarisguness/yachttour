@@ -5,7 +5,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'morobackend.testgrande.com',
+        hostname: 'lab.moroyachting.com',
         pathname: '/**',
       },
     ],
