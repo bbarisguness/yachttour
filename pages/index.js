@@ -15,15 +15,16 @@ import { getBlogs } from "../services/blog";
 import { getTours } from "../services/tours";
 import { getYachtServices } from "../services/yacht-services";
 import { getHomePage } from "../services/homepage"
+import { getTourTypes } from "../services/tourTypes";
 
-export default function Home({ destinations, tours, homepage }) {
+export default function Home({ destinations, tours, homepage, tourTypes }) {
   return (
     <>
       <Seo canonical="/" pageDesc={homepage?.data?.attributes?.metaFields?.metaDescription} pageTitle={homepage?.data?.attributes?.metaFields?.metaTitle} />
 
       <Header />
 
-      <Hero slider={homepage?.data?.attributes?.slider?.data?.attributes} />
+      <Hero tourTypes={tourTypes} slider={homepage?.data?.attributes?.slider?.data?.attributes} />
 
       <section className="layout-pt-md layout-pb-lg mt-60">
         <div className="container">
@@ -163,5 +164,6 @@ export async function getServerSideProps() {
   const destinations = await getDestinations()
   const tours = await getTours()
   const homepage = await getHomePage()
-  return { props: { destinations, tours, homepage } }
+  const tourTypes = await getTourTypes()
+  return { props: { destinations, tours, homepage, tourTypes } }
 }

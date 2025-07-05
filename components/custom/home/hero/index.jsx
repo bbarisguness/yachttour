@@ -2,7 +2,7 @@ import Image from "next/image";
 import MainFilterSearchBox from "./MainFilterSearchBox";
 import Head from "next/head";
 
-const index = ({ slider }) => {
+const index = ({ slider, tourTypes }) => {
   const imageUrl = `${process.env.NEXT_PUBLIC_BACKEND_URL}${slider?.url}`;
   return (
     <>
@@ -43,7 +43,7 @@ const index = ({ slider }) => {
                 data-aos="fade-up"
                 data-aos-delay="200"
               >
-                <MainFilterSearchBox />
+                <MainFilterSearchBox tourTypes={tourTypes} />
               </div>
               {/* End tab-filter */}
             </div>

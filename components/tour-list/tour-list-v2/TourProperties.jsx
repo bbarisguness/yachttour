@@ -7,7 +7,29 @@ import isTextMatched from "../../../utils/isTextMatched";
 import { photoFormatsDetect } from "../../../utils/photoFormatsDetect";
 import { extractNumbers } from "../../../utils/extractNumbers";
 
-const TourProperties = ({ data }) => {
+const TourProperties = ({ data, checkIn = null, checkOut = null }) => {
+  function calculateDayDifference(date1, date2) {
+    const [day1, month1, year1] = date1.split('-').map(Number);
+    const [day2, month2, year2] = date2.split('-').map(Number);
+
+    const d1 = new Date(year1, month1 - 1, day1);
+    const d2 = new Date(year2, month2 - 1, day2);
+
+    const diffTime = Math.abs(d2 - d1); // mutlak değer alınır
+    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); // milisaniyeyi güne çevir
+
+    return diffDays;
+  }
+
+  const totalDayCalculate = () => {
+    if (checkIn && checkOut) {
+      return calculateDayDifference(checkIn, checkOut)
+    } else {
+      return null
+    }
+  }
+
+
   return (
     <>
       {data?.data?.slice(0, 9).map((item, index) => (
@@ -88,7 +110,36 @@ const TourProperties = ({ data }) => {
                 {item?.attributes?.destinations?.data[0]?.attributes?.name} {item?.attributes?.destinations?.data[1]?.attributes?.name}
               </p>
 
-              <div className="row justify-between items-center pt-15">
+              <div className="row x-gap-20 y-gap-10 items-center pt-10">
+                <div className="col-auto">
+                  <div className="d-flex items-center text-14 text-dark-1">
+                    <i className="icon-bed mr-10"></i>
+                    <div className="lh-14">{item?.attributes?.cabin}</div>
+                  </div>
+                </div>
+
+                <div className="col-auto">
+                  <div className="d-flex items-center text-14 text-dark-1">
+                    <i className="icon-yatch mr-10"></i>
+                    <div className="lh-14">{item?.attributes?.width} m</div>
+                  </div>
+                </div>
+
+                <div className="col-auto">
+                  <div className="d-flex items-center text-14 text-dark-1">
+                    <i className="icon-speedometer mr-10"></i>
+                    <div className="lh-14">{item?.attributes?.enginehp} hp</div>
+                  </div>
+                </div>
+                <div className="col-auto">
+                  <div className="d-flex items-center text-14 text-dark-1">
+                    <i className="icon-calendar-2 mr-10"></i>
+                    <div className="lh-14">{item?.attributes?.year}</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="row justify-between items-center pt-10">
                 {/* <div className="col-auto">
                   <div className="d-flex items-center">
                     <div className="text-14 text-light-1">
@@ -96,16 +147,20 @@ const TourProperties = ({ data }) => {
                     </div>
                   </div>
                 </div> */}
-                <div className="col-auto">
-                  <div className="text-14 text-light-1">
+                <div style={{ width: '100%' }} className="col-auto">
+                  <div style={{ display: 'flex', justifyContent: 'space-between' }} className="text-14 text-light-1">
                     <span className="text-16 fw-500 text-dark-1">
                       € {item?.attributes?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span style={{ position: 'relative', top: '-1px' }} className="fw-400 text-15">{item?.attributes?.private ? item?.attributes?.reservationType === 'daily' ? "daily" : item?.attributes?.reservationType === 'hourly' ? extractNumbers(item?.attributes?.duration) : "" : 'per person'}</span>
                     </span>
+                    {
+                      totalDayCalculate() &&
+                      <span style={{ textAlign: 'end' }}> Total € {(item?.attributes?.price * totalDayCalculate()).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} </span>
+                    }
                   </div>
                 </div>
-                <div style={{ display: '-webkit-box', WebkitLineClamp: '1', WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                {/* <div style={{ display: '-webkit-box', WebkitLineClamp: '1', WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                   {item?.attributes?.private === true ? 'Private' : 'Shared'} {","} {item?.attributes?.person} people
-                </div>
+                </div> */}
               </div>
             </div>
           </Link>

@@ -110,18 +110,45 @@ const HomeTourList = ({ data }) => {
               <p className="text-light-1 lh-14 text-14 mt-5">
                 {item?.attributes?.destinations?.data[0]?.attributes?.name} {item?.attributes?.destinations?.data[1]?.attributes?.name}
               </p>
-              <div style={{ justifyContent: 'space-between' }} className="d-flex items-center mt-20">
+              <div className="row x-gap-20 y-gap-10 items-center pt-10">
+                <div className="col-auto">
+                  <div className="d-flex items-center text-14 text-dark-1">
+                    <i className="icon-bed mr-10"></i>
+                    <div className="lh-14">{item?.attributes?.cabin}</div>
+                  </div>
+                </div>
+
+                <div className="col-auto">
+                  <div className="d-flex items-center text-14 text-dark-1">
+                    <i className="icon-yatch mr-10"></i>
+                    <div className="lh-14">{item?.attributes?.width} m</div>
+                  </div>
+                </div>
+
+                <div className="col-auto">
+                  <div className="d-flex items-center text-14 text-dark-1">
+                    <i className="icon-speedometer mr-10"></i>
+                    <div className="lh-14">{item?.attributes?.enginehp} hp</div>
+                  </div>
+                </div>
+                <div className="col-auto">
+                  <div className="d-flex items-center text-14 text-dark-1">
+                    <i className="icon-calendar-2 mr-10"></i>
+                    <div className="lh-14">{item?.attributes?.year}</div>
+                  </div>
+                </div>
+              </div>
+              <div style={{ justifyContent: 'space-between' }} className="d-flex items-center mt-10">
                 {/* <div className="text-14 text-light-1">
                   3252 reviews
                 </div> */}
                 <div className="fw-500">
-                € {item?.attributes?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span style={{position: 'relative', top: '-1px' }} className="fw-400 text-15">{item?.attributes?.private ? item?.attributes?.reservationType === 'daily' ? "daily" : item?.attributes?.reservationType === 'hourly' ? extractNumbers(item?.attributes?.duration) : "" : 'per person'}</span>
+                  € {item?.attributes?.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")} <span style={{ position: 'relative', top: '-1px' }} className="fw-400 text-15">{item?.attributes?.private ? item?.attributes?.reservationType === 'daily' ? "daily" : item?.attributes?.reservationType === 'hourly' ? extractNumbers(item?.attributes?.duration) : "" : 'per person'}</span>
                 </div>
               </div>
-              <div style={{ display: '-webkit-box', WebkitLineClamp: '1', WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis' }} className="mt-5">
-                {/* {item?.attributes?.shortText} */}
+              {/* <div style={{ display: '-webkit-box', WebkitLineClamp: '1', WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis' }} className="mt-5">
                 {item?.attributes?.private === true ? 'Private' : 'Shared'} {","} {item?.attributes?.person} people
-              </div>
+              </div> */}
             </div>
           </Link>
         </div>

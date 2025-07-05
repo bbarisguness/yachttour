@@ -10,7 +10,7 @@ const Counter = ({ name, defaultValue, onCounterChange }) => {
     onCounterChange(name, count + 1);
   };
   const decrementCount = () => {
-    if (count > 0) {
+    if (count > 1) {
       setCount(count - 1);
       onCounterChange(name, count - 1);
     }
@@ -20,8 +20,10 @@ const Counter = ({ name, defaultValue, onCounterChange }) => {
     const a = JSON.parse(localStorage.getItem('i')) || '';
     const object = {
       l: a.l,
-      c: a.c,
-      p: count
+      p: count,
+      tourType: a.tourType,
+      checkIn: a.checkIn,
+      checkOut: a.checkOut,
     }
     localStorage.setItem('i', JSON.stringify(object));
   }, [count])

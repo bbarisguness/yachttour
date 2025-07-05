@@ -18,8 +18,10 @@ const SearchBar = () => {
     const a = JSON.parse(localStorage.getItem('i')) || '';
     const object = {
       l: item.attributes.slug,
-      c: a.c,
-      p: a.p
+      p: a.p,
+      tourType: a.tourType,
+      checkIn: a.checkIn,
+      checkOut: a.checkOut,
     }
     localStorage.setItem('i', JSON.stringify(object));
   };
@@ -63,7 +65,7 @@ const SearchBar = () => {
                       <div className="text-15 lh-12 fw-500 js-search-option-target">
                         {item.attributes.name}
                       </div>
-                      
+
                     </div>
                   </div>
                 </li>

@@ -28,8 +28,7 @@ async function getToursPagination({ page }) {
     return data
 }
 
-async function getTourFilter({ page, cat, dest, price, person, sort, publicTour = "false", privateTour = "false" }) {
-
+async function getTourFilter({ page, cat, dest, price, person, sort, publicTour = "false", privateTour = "false", tourType }) {
     const splitCat = cat?.split(",");
     const splitDest = dest?.split(",");
     const splitPrice = price?.split(',') || '';
@@ -40,42 +39,51 @@ async function getTourFilter({ page, cat, dest, price, person, sort, publicTour 
     let query = ""
 
     if ((publicTour === "true" && privateTour === "false")) {
+        const filters = {
+            category: {
+                slug: {
+                    $in: splitCat,
+                },
+            },
+            destinations: {
+                slug: {
+                    $in: splitDest,
+                },
+            },
+            private: {
+                $eq: false
+            },
+            price: {
+                $between: [parseInt(splitPrice[0]?.slice(4, splitPrice[0].length)) || 0, parseInt(splitPrice[1]?.slice(4, splitPrice[1].length)) || 20000],
+            },
+            person: {
+                $between: [parseInt(splitPerson[0]) == 20 ? 0 : parseInt(splitPerson[0]) || 0, parseInt(splitPerson[1]) || 100000],
+            },
+            // width: {
+            //     $between: [parseInt(splitWidth[0]) == 40 ? 0 : parseInt(splitWidth[0]) || 0, parseInt(splitWidth[1]) || 100000],
+            // },
+            // enginehp: {
+            //     $between: [parseInt(splitHp[0]) == 1000 ? 0 : parseInt(splitHp[0]) || 0, parseInt(splitHp[1]) || 100000],
+            // },
+            // year: {
+            //     $between: [parseInt(splitYear[0]?.slice(4, splitYear[0].length)) || 1956, parseInt(splitYear[1]?.slice(4, splitYear[1].length)) || 2024],
+            // },
+        }
+
+        if (tourType !== undefined) {
+            filters.tour_types = {
+                id: {
+                    $eq: parseInt(tourType),
+                },
+            };
+        }
         query = qs.stringify({
             fields: '*',
             populate: '*',
             sort: {
                 price: sort
             },
-            filters: {
-                category: {
-                    slug: {
-                        $in: splitCat,
-                    },
-                },
-                destinations: {
-                    slug: {
-                        $in: splitDest,
-                    },
-                },
-                private: {
-                    $eq: false
-                },
-                price: {
-                    $between: [parseInt(splitPrice[0]?.slice(4, splitPrice[0].length)) || 0, parseInt(splitPrice[1]?.slice(4, splitPrice[1].length)) || 20000],
-                },
-                person: {
-                    $between: [parseInt(splitPerson[0]) == 20 ? 0 : parseInt(splitPerson[0]) || 0, parseInt(splitPerson[1]) || 100000],
-                },
-                // width: {
-                //     $between: [parseInt(splitWidth[0]) == 40 ? 0 : parseInt(splitWidth[0]) || 0, parseInt(splitWidth[1]) || 100000],
-                // },
-                // enginehp: {
-                //     $between: [parseInt(splitHp[0]) == 1000 ? 0 : parseInt(splitHp[0]) || 0, parseInt(splitHp[1]) || 100000],
-                // },
-                // year: {
-                //     $between: [parseInt(splitYear[0]?.slice(4, splitYear[0].length)) || 1956, parseInt(splitYear[1]?.slice(4, splitYear[1].length)) || 2024],
-                // },
-            },
+            filters: filters,
             pagination: {
                 pageSize: 9,
                 page: page,
@@ -84,42 +92,51 @@ async function getTourFilter({ page, cat, dest, price, person, sort, publicTour 
             encodeValuesOnly: true,
         });
     } else if ((publicTour === "false" && privateTour === "true")) {
+        const filters = {
+            category: {
+                slug: {
+                    $in: splitCat,
+                },
+            },
+            destinations: {
+                slug: {
+                    $in: splitDest,
+                },
+            },
+            private: {
+                $eq: true
+            },
+            price: {
+                $between: [parseInt(splitPrice[0]?.slice(4, splitPrice[0].length)) || 0, parseInt(splitPrice[1]?.slice(4, splitPrice[1].length)) || 20000],
+            },
+            person: {
+                $between: [parseInt(splitPerson[0]) == 20 ? 0 : parseInt(splitPerson[0]) || 0, parseInt(splitPerson[1]) || 100000],
+            },
+            // width: {
+            //     $between: [parseInt(splitWidth[0]) == 40 ? 0 : parseInt(splitWidth[0]) || 0, parseInt(splitWidth[1]) || 100000],
+            // },
+            // enginehp: {
+            //     $between: [parseInt(splitHp[0]) == 1000 ? 0 : parseInt(splitHp[0]) || 0, parseInt(splitHp[1]) || 100000],
+            // },
+            // year: {
+            //     $between: [parseInt(splitYear[0]?.slice(4, splitYear[0].length)) || 1956, parseInt(splitYear[1]?.slice(4, splitYear[1].length)) || 2024],
+            // },
+        }
+
+        if (tourType !== undefined) {
+            filters.tour_types = {
+                id: {
+                    $eq: parseInt(tourType),
+                },
+            };
+        }
         query = qs.stringify({
             fields: '*',
             populate: '*',
             sort: {
                 price: sort
             },
-            filters: {
-                category: {
-                    slug: {
-                        $in: splitCat,
-                    },
-                },
-                destinations: {
-                    slug: {
-                        $in: splitDest,
-                    },
-                },
-                private: {
-                    $eq: true
-                },
-                price: {
-                    $between: [parseInt(splitPrice[0]?.slice(4, splitPrice[0].length)) || 0, parseInt(splitPrice[1]?.slice(4, splitPrice[1].length)) || 20000],
-                },
-                person: {
-                    $between: [parseInt(splitPerson[0]) == 20 ? 0 : parseInt(splitPerson[0]) || 0, parseInt(splitPerson[1]) || 100000],
-                },
-                // width: {
-                //     $between: [parseInt(splitWidth[0]) == 40 ? 0 : parseInt(splitWidth[0]) || 0, parseInt(splitWidth[1]) || 100000],
-                // },
-                // enginehp: {
-                //     $between: [parseInt(splitHp[0]) == 1000 ? 0 : parseInt(splitHp[0]) || 0, parseInt(splitHp[1]) || 100000],
-                // },
-                // year: {
-                //     $between: [parseInt(splitYear[0]?.slice(4, splitYear[0].length)) || 1956, parseInt(splitYear[1]?.slice(4, splitYear[1].length)) || 2024],
-                // },
-            },
+            filters: filters,
             pagination: {
                 pageSize: 9,
                 page: page,
@@ -129,39 +146,48 @@ async function getTourFilter({ page, cat, dest, price, person, sort, publicTour 
         });
     }
     else {
+        const filters = {
+            category: {
+                slug: {
+                    $in: splitCat,
+                },
+            },
+            destinations: {
+                slug: {
+                    $in: splitDest,
+                },
+            },
+            price: {
+                $between: [parseInt(splitPrice[0]?.slice(4, splitPrice[0].length)) || 0, parseInt(splitPrice[1]?.slice(4, splitPrice[1].length)) || 20000],
+            },
+            person: {
+                $between: [parseInt(splitPerson[0]) == 20 ? 0 : parseInt(splitPerson[0]) || 0, parseInt(splitPerson[1]) || 100000],
+            },
+            // width: {
+            //     $between: [parseInt(splitWidth[0]) == 40 ? 0 : parseInt(splitWidth[0]) || 0, parseInt(splitWidth[1]) || 100000],
+            // },
+            // enginehp: {
+            //     $between: [parseInt(splitHp[0]) == 1000 ? 0 : parseInt(splitHp[0]) || 0, parseInt(splitHp[1]) || 100000],
+            // },
+            // year: {
+            //     $between: [parseInt(splitYear[0]?.slice(4, splitYear[0].length)) || 1956, parseInt(splitYear[1]?.slice(4, splitYear[1].length)) || 2024],
+            // },
+        }
+
+        if (tourType !== undefined) {
+            filters.tour_types = {
+                id: {
+                    $eq: parseInt(tourType),
+                },
+            };
+        }
         query = qs.stringify({
             fields: '*',
             populate: '*',
             sort: {
                 price: sort
             },
-            filters: {
-                category: {
-                    slug: {
-                        $in: splitCat,
-                    },
-                },
-                destinations: {
-                    slug: {
-                        $in: splitDest,
-                    },
-                },
-                price: {
-                    $between: [parseInt(splitPrice[0]?.slice(4, splitPrice[0].length)) || 0, parseInt(splitPrice[1]?.slice(4, splitPrice[1].length)) || 20000],
-                },
-                person: {
-                    $between: [parseInt(splitPerson[0]) == 20 ? 0 : parseInt(splitPerson[0]) || 0, parseInt(splitPerson[1]) || 100000],
-                },
-                // width: {
-                //     $between: [parseInt(splitWidth[0]) == 40 ? 0 : parseInt(splitWidth[0]) || 0, parseInt(splitWidth[1]) || 100000],
-                // },
-                // enginehp: {
-                //     $between: [parseInt(splitHp[0]) == 1000 ? 0 : parseInt(splitHp[0]) || 0, parseInt(splitHp[1]) || 100000],
-                // },
-                // year: {
-                //     $between: [parseInt(splitYear[0]?.slice(4, splitYear[0].length)) || 1956, parseInt(splitYear[1]?.slice(4, splitYear[1].length)) || 2024],
-                // },
-            },
+            filters: filters,
             pagination: {
                 pageSize: 9,
                 page: page,

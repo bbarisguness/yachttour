@@ -8,7 +8,8 @@ import Header from "../../components/custom/home/headers/header2/header";
 import Footer from "../../components/custom/footers/footer";
 import TopHeaderFilter2 from '../../components/tour-list/tour-list-v2/TopHeaderFilter2';
 
-export default function Tours({ tours }) {
+export default function Tours({ tours, query }) {
+
     return (
         <>
             <Seo searchPage={true} pageTitle="Tour List" />
@@ -63,7 +64,7 @@ export default function Tours({ tours }) {
                             <div className="mt-30"></div>
                             {/* End mt--30 */}
                             <div className="row y-gap-30">
-                                <TourProperties data={tours} />
+                                <TourProperties checkIn={query?.checkIn} checkOut={query?.checkOut} data={tours} />
                             </div>
                             {/* End .row */}
                             <Pagination data={tours?.meta} />
@@ -89,12 +90,13 @@ export async function getServerSideProps({ query }) {
     const person = query.e
     const privateTour = query.privateTour
     const publicTour = query.publicTour
+    const tourType = query.tourType
 
     // const width = query.w
     // const hp = query.hp
     // const year = query.y
 
     const sort = query.sort
-    const tours = await getTourFilter({ page, cat, dest, price, person, sort, privateTour, publicTour })
-    return { props: { tours } }
+    const tours = await getTourFilter({ page, cat, dest, price, person, sort, privateTour, publicTour, tourType })
+    return { props: { tours, query } }
 }

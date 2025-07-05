@@ -89,12 +89,13 @@ export async function getServerSideProps({ query }) {
     const person = query.e
     const privateTour = "false"
     const publicTour = "true"
+    const tourType = query.tourType
 
     // const width = query.w
     // const hp = query.hp
     // const year = query.y
 
     const sort = query.sort
-    const tours = await getTourFilter({ page, cat, dest, price, person, sort, privateTour, publicTour })
+    const tours = await getTourFilter({ page, cat, dest, price, person, sort, privateTour, publicTour, tourType })
     return { props: { tours } }
 }

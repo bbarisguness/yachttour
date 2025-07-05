@@ -19,7 +19,8 @@ const CategorySearch = () => {
     const object = {
       l: a.l,
       c: item.attributes.slug,
-      p: a.p
+      p: a.p,
+      tourType: a.tourType
     }
     localStorage.setItem('i', JSON.stringify(object));
   };

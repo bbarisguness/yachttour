@@ -145,6 +145,35 @@ const Activity = ({ data }) => {
                   {item?.attributes?.destinations?.data[0]?.attributes?.name} {item?.attributes?.destinations?.data[1]?.attributes?.name}
                 </p>
 
+                <div className="row x-gap-20 y-gap-10 items-center pt-10">
+                  <div className="col-auto">
+                    <div className="d-flex items-center text-14 text-dark-1">
+                      <i className="icon-bed mr-10"></i>
+                      <div className="lh-14">{item?.attributes?.cabin}</div>
+                    </div>
+                  </div>
+
+                  <div className="col-auto">
+                    <div className="d-flex items-center text-14 text-dark-1">
+                      <i className="icon-yatch mr-10"></i>
+                      <div className="lh-14">{item?.attributes?.width} m</div>
+                    </div>
+                  </div>
+
+                  <div className="col-auto">
+                    <div className="d-flex items-center text-14 text-dark-1">
+                      <i className="icon-speedometer mr-10"></i>
+                      <div className="lh-14">{item?.attributes?.enginehp} hp</div>
+                    </div>
+                  </div>
+                  <div className="col-auto">
+                    <div className="d-flex items-center text-14 text-dark-1">
+                      <i className="icon-calendar-2 mr-10"></i>
+                      <div className="lh-14">{item?.attributes?.year}</div>
+                    </div>
+                  </div>
+                </div>
+
                 <div className="row justify-between items-center pt-10">
                   {/* <div className="col-auto">
                     <div className="d-flex items-center">
@@ -162,9 +191,9 @@ const Activity = ({ data }) => {
                       </span>
                     </div>
                   </div>
-                  <div style={{ display: '-webkit-box', WebkitLineClamp: '1', WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                  {/* <div style={{ display: '-webkit-box', WebkitLineClamp: '1', WebkitBoxOrient: 'vertical', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                     {item?.attributes?.private === true ? 'Private' : 'Shared'} {","} {item?.attributes?.person} people
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </Link>
